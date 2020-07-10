@@ -1,0 +1,25 @@
+{
+  "name": "retro",
+  "version": "0.0.1",
+  "description": "React JS Retro Tool",
+  "main": "index.js",
+  "author": "Waddah.Mortada",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WaddahMortada/retro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WaddahMortada/retro/issues"
+  },
+  "homepage": "https://github.com/WaddahMortada/retro#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0"
+  }
+}
