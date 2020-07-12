@@ -1,13 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Column from './Column'
 
 const Board = props => {
+  const columns = []
+
+  props.type.split('_').forEach((title, key) => {
+    columns.push(
+      <Column title={title} />
+    )
+  })
+
   return (
-    <div>Board</div>
+    <div>{columns}</div>
   )
 }
 
-Board.PropTypes = {
+Board.propTypes = {
   type: PropTypes.any
 }
 
