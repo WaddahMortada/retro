@@ -20,7 +20,6 @@ const Board = props => {
   }
 
   useEffect(() => {
-    console.log('totalVotes ', totalVotes)
     if (totalVotes >= props.voteLimit) {
       setVotesDisabled(true)
     } else {
