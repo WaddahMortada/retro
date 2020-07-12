@@ -7,7 +7,7 @@ const Board = props => {
 
   props.type.split('_').forEach((title, key) => {
     columns.push(
-      <Column title={title} />
+      <Column key={key} title={title} />
     )
   })
 
