@@ -7,20 +7,24 @@ import styles from '../../../style/style.css' // eslint-disable-line no-unused-v
 
 const View = props => {
   const upVote = () => {
-    props.card.upVote++
-    props.OnUpVote(props.card)
+    if (!props.votesDisabled) {
+      props.card.upVote++
+      props.OnUpVote(props.card)
+      props.upVote()
+    }
   }
 
   const downVote = () => {
     props.card.upVote--
     props.OnUpVote(props.card)
+    props.downVote()
   }
 
   return (
     <div>
       <div>{props.card.value}</div>
       <button onClick={() => props.setEdit(true)}>Edit</button>
-      <div className="thumb" onClick={() => upVote()}>
+      <div className={'thumb' + ((props.votesDisabled) ? ' disable' : '')} onClick={() => upVote()}>
         <FontAwesomeIcon className="icon-thumb" icon={faThumbsUp} /><FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsUp} />
         {props.card.upVote ? props.card.upVote : null}
       </div>
@@ -35,7 +39,10 @@ const View = props => {
 View.propTypes = {
   card: PropTypes.any,
   setEdit: PropTypes.any,
-  OnUpVote: PropTypes.any
+  OnUpVote: PropTypes.any,
+  upVote: PropTypes.any,
+  downVote: PropTypes.any,
+  votesDisabled: PropTypes.any
 }
 
 export default View

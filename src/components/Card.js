@@ -18,7 +18,7 @@ const Card = props => {
 
   return (
     <div>
-      {(props.card.value && !edit) ? <ViewCard OnUpVote={updateCardValue} card={props.card} setEdit={setEdit} /> : <AddEditCard index={props.index} card={props.card} updateCardValue={updateCardValue} deleteCard={deleteCard} />}
+      {(props.card.value && !edit) ? <ViewCard OnUpVote={updateCardValue} card={props.card} setEdit={setEdit} upVote={props.upVote} downVote={props.downVote} votesDisabled={props.votesDisabled} /> : <AddEditCard index={props.index} card={props.card} updateCardValue={updateCardValue} deleteCard={deleteCard} />}
     </div>
   )
 }
@@ -27,7 +27,10 @@ Card.propTypes = {
   card: PropTypes.any,
   index: PropTypes.any,
   OnUpdateCard: PropTypes.any,
-  OnDeleteCard: PropTypes.any
+  OnDeleteCard: PropTypes.any,
+  upVote: PropTypes.any,
+  downVote: PropTypes.any,
+  votesDisabled: PropTypes.any
 }
 
 export default Card

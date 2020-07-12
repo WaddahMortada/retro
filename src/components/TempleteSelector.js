@@ -7,7 +7,6 @@ const TemplateSelector = props => {
 
   const create = () => {
     event.preventDefault()
-    console.log(voteLimit)
     props.setTemplate(template)
     props.setVoteLimit(voteLimit)
   }

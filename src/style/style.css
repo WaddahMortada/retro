@@ -5,3 +5,8 @@
 .thumb:hover .icon-thumb-solid {
     display: inline;
 }
+.disable {
+  cursor: not-allowed;
+  pointer-events:none;
+  color: gray;
+}

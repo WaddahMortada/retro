@@ -23,7 +23,16 @@ const Column = props => {
 
   cards.forEach((card, key) => {
     CardsComponent.push(
-      <Card key={key} index={key} card={card} OnUpdateCard={updateCard} OnDeleteCard={deleteCard} />
+      <Card
+        key={key}
+        index={key}
+        card={card}
+        OnUpdateCard={updateCard}
+        OnDeleteCard={deleteCard}
+        upVote={props.upVote}
+        downVote={props.downVote}
+        votesDisabled={props.votesDisabled}
+      />
     )
   })
 
@@ -37,7 +46,10 @@ const Column = props => {
 }
 
 Column.propTypes = {
-  title: PropTypes.any
+  title: PropTypes.any,
+  upVote: PropTypes.any,
+  downVote: PropTypes.any,
+  votesDisabled: PropTypes.any
 }
 
 export default Column
