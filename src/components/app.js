@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import TemplateSelector from './TempleteSelector'
+import { toTitleCase } from '../lib/helpers'
 
 const App = props => {
   const [template, setTemplate] = useState()
@@ -17,6 +18,7 @@ const App = props => {
   return (
     <div className="appContainer">
       <h1>Retro Tool</h1>
+      <h3>{toTitleCase(template)}</h3>
       <button onClick={() => setTemplate()}>New Board</button>
     </div>
   )
