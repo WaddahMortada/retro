@@ -7,6 +7,10 @@ const App = props => {
   const [template, setTemplate] = useState()
   const [voteLimit, setVoteLimit] = useState(5)
 
+  const resetTemplate = () => {
+    if (window.confirm('Are you sure you want to clear current board?')) setTemplate()
+  }
+
   useEffect(() => {
     console.log(template)
   })
@@ -21,7 +25,7 @@ const App = props => {
     <div className="appContainer">
       <h1>Retro Tool</h1>
       <h3>{toTitleCase(template)}</h3>
-      <button onClick={() => setTemplate()}>New Board</button>
+      <button onClick={() => resetTemplate()}>New Board</button>
       <Board type={template} voteLimit={voteLimit} />
     </div>
   )
