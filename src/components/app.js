@@ -5,6 +5,7 @@ import { toTitleCase } from '../lib/helpers'
 
 const App = props => {
   const [template, setTemplate] = useState()
+  const [voteLimit, setVoteLimit] = useState(5)
 
   useEffect(() => {
     console.log(template)
@@ -12,7 +13,7 @@ const App = props => {
 
   if (!template) {
     return (
-      <TemplateSelector setTemplate={setTemplate} />
+      <TemplateSelector setTemplate={setTemplate} setVoteLimit={setVoteLimit} />
     )
   }
 
@@ -21,7 +22,7 @@ const App = props => {
       <h1>Retro Tool</h1>
       <h3>{toTitleCase(template)}</h3>
       <button onClick={() => setTemplate()}>New Board</button>
-      <Board type={template} />
+      <Board type={template} voteLimit={voteLimit} />
     </div>
   )
 }
