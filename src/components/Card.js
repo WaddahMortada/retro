@@ -6,9 +6,7 @@ import ViewCard from './Action/Card/View'
 const Card = props => {
   const [edit, setEdit] = useState(false)
 
-  const updateCardValue = value => {
-    const card = props.card
-    card.value = value
+  const updateCardValue = card => {
     props.OnUpdateCard(card)
     if (edit) setEdit(false)
   }
@@ -20,7 +18,7 @@ const Card = props => {
 
   return (
     <div>
-      {(props.card.value && !edit) ? <ViewCard card={props.card} setEdit={setEdit} /> : <AddEditCard index={props.index} card={props.card} updateCardValue={updateCardValue} deleteCard={deleteCard} />}
+      {(props.card.value && !edit) ? <ViewCard OnUpVote={updateCardValue} card={props.card} setEdit={setEdit} /> : <AddEditCard index={props.index} card={props.card} updateCardValue={updateCardValue} deleteCard={deleteCard} />}
     </div>
   )
 }

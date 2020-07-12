@@ -1,0 +1,7 @@
+.thumb:hover .icon-thumb,
+.thumb .icon-thumb-solid {
+    display: none;
+}
+.thumb:hover .icon-thumb-solid {
+    display: inline;
+}

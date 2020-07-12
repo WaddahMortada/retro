@@ -9,7 +9,8 @@ const AddEdit = props => {
     event.preventDefault()
     if (inputText) {
       setInputText('')
-      props.updateCardValue(inputText, props.index)
+      props.card.value = inputText
+      props.updateCardValue(props.card, props.index)
     }
   }
 
