@@ -8,7 +8,8 @@ const TemplateSelector = props => {
   const create = () => {
     event.preventDefault()
     props.setTemplate(template)
-    props.setVoteLimit(voteLimit)
+    props.votes.limit = voteLimit
+    props.setVotes({ ...props.votes })
   }
 
   return (
@@ -32,7 +33,8 @@ const TemplateSelector = props => {
 
 TemplateSelector.propTypes = {
   setTemplate: PropTypes.any,
-  setVoteLimit: PropTypes.any
+  setVotes: PropTypes.any,
+  votes: PropTypes.any
 }
 
 export default TemplateSelector

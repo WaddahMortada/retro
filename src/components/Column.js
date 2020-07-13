@@ -29,9 +29,8 @@ const Column = props => {
         card={card}
         OnUpdateCard={updateCard}
         OnDeleteCard={deleteCard}
-        upVote={props.upVote}
-        downVote={props.downVote}
-        votesDisabled={props.votesDisabled}
+        votefunctions={props.votefunctions}
+        votes={props.votes}
       />
     )
   })
@@ -47,9 +46,8 @@ const Column = props => {
 
 Column.propTypes = {
   title: PropTypes.any,
-  upVote: PropTypes.any,
-  downVote: PropTypes.any,
-  votesDisabled: PropTypes.any
+  votefunctions: PropTypes.any,
+  votes: PropTypes.any
 }
 
 export default Column
