@@ -22,6 +22,16 @@ const Column = props => {
     setCards([...cards])
   }
 
+  const deleteColumn = () => {
+    cards.map(card => {
+      for (let index = card.upVote; index > 0; index--) {
+        props.votefunctions.downVote()
+      }
+    })
+    setCards([])
+    props.deleteColumn(props.index)
+  }
+
   cards.forEach((card, key) => {
     CardsComponent.push(
       <Card
@@ -49,7 +59,7 @@ const Column = props => {
   return (
     <div className="column">
       {edit ? EditTitle : DisplayTitle}
-      <button onClick={() => props.deleteColumn(props.index)}>Delete</button>
+      <button onClick={() => deleteColumn()}>Delete</button>
       <button onClick={() => addCard()}>+</button>
       {CardsComponent}
     </div>
