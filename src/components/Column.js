@@ -47,7 +47,7 @@ const Column = props => {
   </div>
 
   return (
-    <div>
+    <div className="column">
       {edit ? EditTitle : DisplayTitle}
       <button onClick={() => props.deleteColumn(props.index)}>Delete</button>
       <button onClick={() => addCard()}>+</button>

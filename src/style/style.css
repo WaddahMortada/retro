@@ -1,3 +1,14 @@
+body {
+  background-color: rgb(16, 92, 60)
+}
+.board {
+  width: 100%;
+}
+.column {
+  display: inline-block;
+  padding: 0px 10px;
+  width: 30%;
+}
 .thumb:hover .icon-thumb,
 .thumb .icon-thumb-solid {
     display: none;

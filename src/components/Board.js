@@ -45,12 +45,12 @@ const Board = props => {
   </div>
 
   return (
-    <div>
+    <div className="board">
       {display ? AddColumnModule : null}
       <div className={(display) ? 'dim' : null} onClick={(display) ? () => setDisplayModule(false) : null}>
         <h3>Used Votes: {props.votes.total} out of {props.votes.limit}</h3>
-        <button onClick={() => displayAddModule()}>Add Column</button>
-        <div>{ColumnComponent}</div>
+        {!display ? <button onClick={() => displayAddModule()}>Add Column</button> : null}
+        {ColumnComponent}
       </div>
     </div>
   )

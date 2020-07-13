@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import TemplateSelector from './TempleteSelector'
 import Board from './Board'
 import { toTitleCase } from '../lib/helpers'
+import '../style/style.css'
 
 const App = props => {
   const [template, setTemplate] = useState()
