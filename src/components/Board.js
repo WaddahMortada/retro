@@ -16,9 +16,21 @@ const Board = props => {
     setDisplayModule(false)
   }
 
+  const setColumnTitle = (index, title) => {
+    columns[index] = title
+    setColumns([...columns])
+  }
+
+  const deleteColumn = index => {
+    console.log(index)
+    columns.splice(index, 1)
+    console.log(columns)
+    setColumns([...columns])
+  }
+
   columns.forEach((title, key) => {
     ColumnComponent.push(
-      <Column key={key} title={title} votes={props.votes} votefunctions={props.votefunctions} />
+      <Column key={key} index={key} title={title} votes={props.votes} votefunctions={props.votefunctions} deleteColumn={deleteColumn} setColumnTitle={setColumnTitle} />
     )
   })
 

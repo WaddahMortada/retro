@@ -6,6 +6,7 @@ import Card from './Card'
 const Column = props => {
   const CardsComponent = []
   const [cards, setCards] = useState([])
+  const [edit, setEdit] = useState(false)
 
   const addCard = () => {
     setCards([...cards, { value: null, upVote: 0, downVote: 0 }])
@@ -37,7 +38,11 @@ const Column = props => {
 
   return (
     <div>
-      <h3>{toTitleCase(props.title)}</h3>
+      {edit
+        ? <div><input type="text" value={toTitleCase(props.title)} onChange={(e) => props.setColumnTitle(props.index, e.target.value)} /><button onClick={() => setEdit(false)}>Edit</button></div>
+        : <div><h3>{toTitleCase(props.title)}</h3><button onClick={() => setEdit(true)}>Edit</button></div>
+      }
+      <button onClick={() => props.deleteColumn(props.index)}>Delete</button>
       <button onClick={() => addCard()}>+</button>
       {CardsComponent}
     </div>
@@ -45,9 +50,12 @@ const Column = props => {
 }
 
 Column.propTypes = {
+  index: PropTypes.any,
   title: PropTypes.any,
   votefunctions: PropTypes.any,
-  votes: PropTypes.any
+  votes: PropTypes.any,
+  setColumnTitle: PropTypes.any,
+  deleteColumn: PropTypes.any
 }
 
 export default Column
