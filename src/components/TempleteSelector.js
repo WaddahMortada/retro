@@ -19,6 +19,7 @@ const TemplateSelector = props => {
         <h3>Template</h3>
         <select onChange={(e) => setTemplate(e.target.value)} value={template} required>
           <option value=""></option>
+          <option value="blank_board">Blank Board</option>
           <option value="mad_sad_glad">Mad Sad Glad</option>
           <option value="start_stop_continue">Start Stop Continue</option>
           <option value="liked_learnt_lacked">Liked Learnt Lacked</option>
