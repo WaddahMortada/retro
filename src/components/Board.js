@@ -5,10 +5,6 @@ import Column from './Column'
 const Board = props => {
   const columns = []
 
-  if (props.type === 'empty_board') {
-    // ..
-  }
-
   props.type.split('_').forEach((title, key) => {
     columns.push(
       <Column key={key} title={title} votes={props.votes} votefunctions={props.votefunctions} />
