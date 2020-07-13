@@ -9,7 +9,7 @@ const Column = props => {
   const [edit, setEdit] = useState(false)
 
   const addCard = () => {
-    setCards([...cards, { value: null, upVote: 0, downVote: 0 }])
+    setCards([...cards, { value: null, upVote: 0 }])
   }
 
   const updateCard = (card, index) => {
