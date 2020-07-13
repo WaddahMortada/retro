@@ -35,10 +35,6 @@ const App = props => {
     if (window.confirm('Are you sure you want to clear current board?')) setTemplate()
   }
 
-  useEffect(() => {
-    console.log(template)
-  }, [template])
-
   if (!template) {
     return (
       <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} />
