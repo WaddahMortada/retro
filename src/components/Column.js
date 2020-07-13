@@ -36,12 +36,19 @@ const Column = props => {
     )
   })
 
+  const EditTitle = <div>
+    <input type="text" value={toTitleCase(props.title)} onChange={(e) => props.setColumnTitle(props.index, e.target.value)} />
+    <button onClick={() => setEdit(false)}>Edit</button>
+  </div>
+
+  const DisplayTitle = <div>
+    <h3>{toTitleCase(props.title)}</h3>
+    <button onClick={() => setEdit(true)}>Edit</button>
+  </div>
+
   return (
     <div>
-      {edit
-        ? <div><input type="text" value={toTitleCase(props.title)} onChange={(e) => props.setColumnTitle(props.index, e.target.value)} /><button onClick={() => setEdit(false)}>Edit</button></div>
-        : <div><h3>{toTitleCase(props.title)}</h3><button onClick={() => setEdit(true)}>Edit</button></div>
-      }
+      {edit ? EditTitle : DisplayTitle}
       <button onClick={() => props.deleteColumn(props.index)}>Delete</button>
       <button onClick={() => addCard()}>+</button>
       {CardsComponent}

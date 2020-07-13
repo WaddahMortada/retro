@@ -16,11 +16,10 @@ const Card = props => {
     props.OnDeleteCard(props.index)
   }
 
-  return (
-    <div>
-      {(props.card.value && !edit) ? <ViewCard OnUpVote={updateCardValue} card={props.card} setEdit={setEdit} votefunctions={props.votefunctions} votes={props.votes} /> : <AddEditCard index={props.index} card={props.card} updateCardValue={updateCardValue} deleteCard={deleteCard} />}
-    </div>
-  )
+  const ViewCardModule = <ViewCard OnUpVote={updateCardValue} card={props.card} setEdit={setEdit} votefunctions={props.votefunctions} votes={props.votes} />
+  const AddEditCardModule = <AddEditCard index={props.index} card={props.card} updateCardValue={updateCardValue} deleteCard={deleteCard} />
+
+  return <div>{(props.card.value && !edit) ? ViewCardModule : AddEditCardModule}</div>
 }
 
 Card.propTypes = {

@@ -20,18 +20,21 @@ const View = props => {
     props.votefunctions.downVote()
   }
 
+  const DownVote = <div className="thumb" onClick={() => downVote()}>
+    <FontAwesomeIcon className="icon-thumb" icon={faThumbsDown} />
+    <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsDown} />
+  </div>
+
   return (
     <div>
       <div>{props.card.value}</div>
       <button onClick={() => props.setEdit(true)}>Edit</button>
       <div className={'thumb' + ((props.votes.disable) ? ' disable' : '')} onClick={() => upVote()}>
-        <FontAwesomeIcon className="icon-thumb" icon={faThumbsUp} /><FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsUp} />
+        <FontAwesomeIcon className="icon-thumb" icon={faThumbsUp} />
+        <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsUp} />
         {props.card.upVote ? props.card.upVote : null}
       </div>
-      {props.card.upVote
-        ? <div className="thumb" onClick={() => downVote()}><FontAwesomeIcon className="icon-thumb" icon={faThumbsDown} /><FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsDown} /></div>
-        : null
-      }
+      { props.card.upVote ? DownVote : null }
     </div>
   )
 }
