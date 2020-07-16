@@ -1,12 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Column from './Column'
 import AddColumn from './Action/Column/Add'
 
 const Board = props => {
+  // Card: { value: null, upVote: 0 }
+  // Column: {title, cards}
+  // Board: [column1, column2]
   const ColumnComponent = []
-  const [columns, setColumns] = useState(props.type !== 'blank_board' ? props.type.split('_') : [])
+  const [columns, setColumns] = useState([{ title: '', cards: [{ value: '', upVote: 0 }] }])
   const [display, setDisplayModule] = useState(false)
+
+  useEffect(() => {
+    const columnsTitle = props.type !== 'blank_board' ? props.type.split('_') : []
+    const columnsObjects = []
+    columnsTitle.forEach(title => {
+      columnsObjects.push({ title: title, cards: [] })
+    })
+    setColumns(columnsObjects)
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const displayAddModule = () => {
     setDisplayModule(true)
@@ -16,8 +28,8 @@ const Board = props => {
     setDisplayModule(false)
   }
 
-  const setColumnTitle = (index, title) => {
-    columns[index] = title
+  const updateColumn = (index, column) => {
+    columns[index] = column
     setColumns([...columns])
   }
 
@@ -26,16 +38,15 @@ const Board = props => {
     setColumns([...columns])
   }
 
-  columns.forEach((title, key) => {
+  columns.forEach((column, key) => {
     ColumnComponent.push(
       <Column
         key={key}
         index={key}
-        title={title}
+        column={column}
         votes={props.votes}
-        deleteColumn={deleteColumn}
-        setColumnTitle={setColumnTitle}
         voteFunctions={props.voteFunctions}
+        columnFunctions={{ update: updateColumn, delete: deleteColumn }}
       />
     )
   })

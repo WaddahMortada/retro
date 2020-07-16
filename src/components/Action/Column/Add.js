@@ -6,7 +6,7 @@ const Add = props => {
 
   const submit = (event) => {
     event.preventDefault()
-    props.columns.push(title)
+    props.columns.push({ title: title, cards: [] })
     props.setColumns([...props.columns])
     setTitle('')
   }

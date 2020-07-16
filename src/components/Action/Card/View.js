@@ -9,14 +9,14 @@ const View = props => {
   const upVote = () => {
     if (!props.votes.disable) {
       props.card.upVote++
-      props.OnUpVote(props.card)
+      props.updateCard(props.card)
       props.voteFunctions.upVote()
     }
   }
 
   const downVote = () => {
     props.card.upVote--
-    props.OnUpVote(props.card)
+    props.updateCard(props.card)
     props.voteFunctions.downVote()
   }
 
@@ -42,7 +42,7 @@ const View = props => {
 View.propTypes = {
   card: PropTypes.any,
   setEdit: PropTypes.any,
-  OnUpVote: PropTypes.any,
+  updateCard: PropTypes.any,
   voteFunctions: PropTypes.any,
   votes: PropTypes.any
 }

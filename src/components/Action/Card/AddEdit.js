@@ -10,13 +10,13 @@ const AddEdit = props => {
     if (inputText) {
       setInputText('')
       props.card.value = inputText
-      props.updateCardValue(props.card, props.index)
+      props.cardFunctions.update(props.card)
     }
   }
 
   const deleteCard = () => {
     setInputText('')
-    props.deleteCard()
+    props.cardFunctions.delete()
   }
 
   return (
@@ -31,8 +31,7 @@ const AddEdit = props => {
 AddEdit.propTypes = {
   card: PropTypes.any,
   index: PropTypes.any,
-  updateCardValue: PropTypes.any,
-  deleteCard: PropTypes.any
+  cardFunctions: PropTypes.any
 }
 
 export default AddEdit

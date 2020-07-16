@@ -6,8 +6,8 @@ import ViewCard from './Action/Card/View'
 const Card = props => {
   const [edit, setEdit] = useState(false)
 
-  const updateCardValue = card => {
-    props.OnUpdateCard(card)
+  const updateCard = card => {
+    props.cardFunctions.update(props.index, card)
     if (edit) setEdit(false)
   }
 
@@ -16,11 +16,11 @@ const Card = props => {
     for (let index = props.card.upVote; index > 0; index--) {
       props.voteFunctions.downVote()
     }
-    props.OnDeleteCard(props.index)
+    props.cardFunctions.delete(props.index)
   }
 
-  const ViewCardModule = <ViewCard OnUpVote={updateCardValue} card={props.card} setEdit={setEdit} voteFunctions={props.voteFunctions} votes={props.votes} />
-  const AddEditCardModule = <AddEditCard index={props.index} card={props.card} updateCardValue={updateCardValue} deleteCard={deleteCard} />
+  const ViewCardModule = <ViewCard updateCard={updateCard} card={props.card} setEdit={setEdit} voteFunctions={props.voteFunctions} votes={props.votes} />
+  const AddEditCardModule = <AddEditCard index={props.index} card={props.card} cardFunctions={{ update: updateCard, delete: deleteCard }} />
 
   return <div>{(props.card.value && !edit) ? ViewCardModule : AddEditCardModule}</div>
 }
@@ -28,8 +28,7 @@ const Card = props => {
 Card.propTypes = {
   card: PropTypes.any,
   index: PropTypes.any,
-  OnUpdateCard: PropTypes.any,
-  OnDeleteCard: PropTypes.any,
+  cardFunctions: PropTypes.any,
   voteFunctions: PropTypes.any,
   votes: PropTypes.any
 }
