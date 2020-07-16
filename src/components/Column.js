@@ -25,7 +25,7 @@ const Column = props => {
   const deleteColumn = () => {
     cards.map(card => {
       for (let index = card.upVote; index > 0; index--) {
-        props.votefunctions.downVote()
+        props.voteFunctions.downVote()
       }
     })
     setCards([])
