@@ -49,7 +49,7 @@ const App = props => {
       <h1>Retro Tool</h1>
       <h3 className="inlineBlock">{toTitleCase(template)}</h3>
       <button className="inlineBlock floatRight" onClick={() => resetTemplate()}>New Board</button>
-      <Board type={template} votes={votes} votefunctions={{ upVote: upVote, downVote: downVote }} />
+      <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} />
     </div>
   )
 }

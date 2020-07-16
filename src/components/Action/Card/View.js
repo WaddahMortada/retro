@@ -10,14 +10,14 @@ const View = props => {
     if (!props.votes.disable) {
       props.card.upVote++
       props.OnUpVote(props.card)
-      props.votefunctions.upVote()
+      props.voteFunctions.upVote()
     }
   }
 
   const downVote = () => {
     props.card.upVote--
     props.OnUpVote(props.card)
-    props.votefunctions.downVote()
+    props.voteFunctions.downVote()
   }
 
   const DownVote = <div className="inlineBlock thumb" onClick={() => downVote()}>
@@ -43,7 +43,7 @@ View.propTypes = {
   card: PropTypes.any,
   setEdit: PropTypes.any,
   OnUpVote: PropTypes.any,
-  votefunctions: PropTypes.any,
+  voteFunctions: PropTypes.any,
   votes: PropTypes.any
 }
 

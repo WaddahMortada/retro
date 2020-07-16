@@ -40,7 +40,7 @@ const Column = props => {
         card={card}
         OnUpdateCard={updateCard}
         OnDeleteCard={deleteCard}
-        votefunctions={props.votefunctions}
+        voteFunctions={props.voteFunctions}
         votes={props.votes}
       />
     )
@@ -71,7 +71,7 @@ const Column = props => {
 Column.propTypes = {
   index: PropTypes.any,
   title: PropTypes.any,
-  votefunctions: PropTypes.any,
+  voteFunctions: PropTypes.any,
   votes: PropTypes.any,
   setColumnTitle: PropTypes.any,
   deleteColumn: PropTypes.any

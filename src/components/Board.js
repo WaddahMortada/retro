@@ -33,9 +33,9 @@ const Board = props => {
         index={key}
         title={title}
         votes={props.votes}
-        votefunctions={props.votefunctions}
         deleteColumn={deleteColumn}
         setColumnTitle={setColumnTitle}
+        voteFunctions={props.voteFunctions}
       />
     )
   })
@@ -63,7 +63,7 @@ const Board = props => {
 Board.propTypes = {
   type: PropTypes.any,
   votes: PropTypes.any,
-  votefunctions: PropTypes.any
+  voteFunctions: PropTypes.any
 }
 
 export default Board

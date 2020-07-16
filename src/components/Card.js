@@ -14,12 +14,12 @@ const Card = props => {
   const deleteCard = () => {
     setEdit(false)
     for (let index = props.card.upVote; index > 0; index--) {
-      props.votefunctions.downVote()
+      props.voteFunctions.downVote()
     }
     props.OnDeleteCard(props.index)
   }
 
-  const ViewCardModule = <ViewCard OnUpVote={updateCardValue} card={props.card} setEdit={setEdit} votefunctions={props.votefunctions} votes={props.votes} />
+  const ViewCardModule = <ViewCard OnUpVote={updateCardValue} card={props.card} setEdit={setEdit} voteFunctions={props.voteFunctions} votes={props.votes} />
   const AddEditCardModule = <AddEditCard index={props.index} card={props.card} updateCardValue={updateCardValue} deleteCard={deleteCard} />
 
   return <div>{(props.card.value && !edit) ? ViewCardModule : AddEditCardModule}</div>
@@ -30,7 +30,7 @@ Card.propTypes = {
   index: PropTypes.any,
   OnUpdateCard: PropTypes.any,
   OnDeleteCard: PropTypes.any,
-  votefunctions: PropTypes.any,
+  voteFunctions: PropTypes.any,
   votes: PropTypes.any
 }
 
