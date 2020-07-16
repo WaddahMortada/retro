@@ -51,17 +51,19 @@ const Column = props => {
     <button onClick={() => setEdit(false)}>Edit</button>
   </div>
 
-  const DisplayTitle = <div>
-    <h3>{toTitleCase(props.title)}</h3>
-    <button onClick={() => setEdit(true)}>Edit</button>
+  const DisplayTitle = <div className="inlineBlock">
+    <h3 className="inlineBlock">{toTitleCase(props.title)}</h3>
+    <button className="inlineBlock" onClick={() => setEdit(true)}>Edit</button>
   </div>
 
   return (
     <div className="column">
       {edit ? EditTitle : DisplayTitle}
-      <button onClick={() => deleteColumn()}>Delete</button>
-      <button onClick={() => addCard()}>+</button>
-      {CardsComponent}
+      <button className="inlineBlock" onClick={() => deleteColumn()}>Delete</button>
+      <div className="block">
+        <button className="addCardButton" onClick={() => addCard()}>+</button>
+        {CardsComponent}
+      </div>
     </div>
   )
 }

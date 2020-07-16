@@ -1,14 +1,25 @@
 body {
-  background-color: rgb(16, 92, 60)
+  background-color: rgb(16, 92, 60);
+  color: rgb(243, 235, 235);
 }
+
+.appContainer {
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+}
+
 .board {
   width: 100%;
 }
+
 .column {
   display: inline-block;
   padding: 0px 10px;
   width: 30%;
+  top: 0px;
 }
+
 .thumb:hover .icon-thumb,
 .thumb .icon-thumb-solid {
     display: none;
@@ -16,8 +27,41 @@ body {
 .thumb:hover .icon-thumb-solid {
     display: inline;
 }
+
 .disable {
   cursor: not-allowed;
   pointer-events:none;
   color: gray;
+}
+
+.dim {
+  background:#000;
+  opacity:0.5;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:99;
+}
+
+.columnTitle {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.inlineBlock {
+  display: inline-block;
+  padding: 3px;
+}
+
+.block {
+  display: block;
+}
+
+.floatRight {
+  float: right;
+}
+
+.addCardButton {
+  width: 100%;
 }

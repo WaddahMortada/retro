@@ -48,9 +48,13 @@ const Board = props => {
     <div className="board">
       {display ? AddColumnModule : null}
       <div className={(display) ? 'dim' : null} onClick={(display) ? () => setDisplayModule(false) : null}>
-        <h3>Used Votes: {props.votes.total} out of {props.votes.limit}</h3>
-        {!display ? <button onClick={() => displayAddModule()}>Add Column</button> : null}
-        {ColumnComponent}
+        <div>
+          <h3 className="inlineBlock">Used Votes: {props.votes.total} out of {props.votes.limit}</h3>
+          {!display ? <button className="inlineBlock floatRight" onClick={() => displayAddModule()}>Add Column</button> : null}
+        </div>
+        <div>
+          {ColumnComponent}
+        </div>
       </div>
     </div>
   )

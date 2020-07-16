@@ -38,15 +38,17 @@ const App = props => {
 
   if (!template) {
     return (
-      <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} />
+      <div className="appContainer">
+        <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} />
+      </div>
     )
   }
 
   return (
     <div className="appContainer">
       <h1>Retro Tool</h1>
-      <h3>{toTitleCase(template)}</h3>
-      <button onClick={() => resetTemplate()}>New Board</button>
+      <h3 className="inlineBlock">{toTitleCase(template)}</h3>
+      <button className="inlineBlock floatRight" onClick={() => resetTemplate()}>New Board</button>
       <Board type={template} votes={votes} votefunctions={{ upVote: upVote, downVote: downVote }} />
     </div>
   )
