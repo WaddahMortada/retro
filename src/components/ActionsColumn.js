@@ -25,16 +25,13 @@ const ActionsColumn = props => {
     if (value[0] !== bullet) {
       target.value = `${bulletWithSpace}${value}`
     }
-
-    // Save the changes in the state
-    setActions(target.value)
   }
 
   return (
     <div className="column">
       <h3 className="inlineBlock">Actions</h3>
       <div>
-        <textarea onBlur={() => console.log('Blur: ', actions)} onKeyUp={handleInput} rows="5">{actions}</textarea>
+        <textarea onBlur={() => console.log('Blur: ', actions)} onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} rows="5" value={actions}></textarea>
       </div>
     </div>
   )
