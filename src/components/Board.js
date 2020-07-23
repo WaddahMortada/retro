@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Column from './Column'
 import AddColumn from './Action/Column/Add'
+import ActionsColumn from './ActionsColumn'
 
 const Board = props => {
   // Card: { value: null, upVote: 0 }
@@ -65,6 +66,7 @@ const Board = props => {
         </div>
         <div>
           {ColumnComponent}
+          <ActionsColumn />
         </div>
       </div>
     </div>
