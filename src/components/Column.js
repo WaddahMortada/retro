@@ -50,20 +50,23 @@ const Column = props => {
     )
   })
 
+  const DeleteButton = <Button className="float-right" size="sm" variant="danger" onClick={() => deleteColumn()}>Delete</Button>
+
   const EditTitle = <div>
     <input type="text" value={toTitleCase(props.column.title)} onChange={(e) => updateColumnTitle(e.target.value)} />
-    <Button variant="info" onClick={() => setEdit(false)}>Edit</Button>
+    {DeleteButton}
+    <Button className="float-right" size="sm" variant="info" onClick={() => setEdit(false)}>Edit</Button>
   </div>
 
-  const DisplayTitle = <div className="inlineBlock">
+  const DisplayTitle = <div>
     <h5 className="inlineBlock">{toTitleCase(props.column.title)}</h5>
-    <Button variant="info" className="inlineBlock" onClick={() => setEdit(true)}>Edit</Button>
+    {DeleteButton}
+    <Button className="float-right" size="sm" variant="info" onClick={() => setEdit(true)}>Edit</Button>
   </div>
 
   return (
     <Col>
       {edit ? EditTitle : DisplayTitle}
-      <Button variant="danger" className="inlineBlock" onClick={() => deleteColumn()}>Delete</Button>
       <div className="block">
         <Button variant="dark" className="addCardButton" onClick={() => addCard()}>+</Button>
         {CardsComponent}
