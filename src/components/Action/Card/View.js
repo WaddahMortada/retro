@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons'
 import { faThumbsUp as solidFaThumbsUp, faThumbsDown as solidFaThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import styles from '../../../style/style.css' // eslint-disable-line no-unused-vars
+import { Row, Col, Button } from 'react-bootstrap'
 
 const View = props => {
   const upVote = () => {
@@ -26,16 +26,18 @@ const View = props => {
   </div>
 
   return (
-    <div>
-      <div className="inlineBlock">{props.card.value}</div>
-      <button className="inlineBlock floatRight" onClick={() => props.setEdit(true)}>Edit</button>
-      <div className={'inlineBlock thumb' + ((props.votes.disable) ? ' disable' : '')} onClick={() => upVote()}>
-        <FontAwesomeIcon className="icon-thumb" icon={faThumbsUp} />
-        <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsUp} />
-        {props.card.upVote ? props.card.upVote : null}
-      </div>
-      { props.card.upVote ? DownVote : null }
-    </div>
+    <Row>
+      <Col>
+        <div className="inlineBlock">{props.card.value}</div>
+        <Button variant="info" className="inlineBlock floatRight" onClick={() => props.setEdit(true)}>Edit</Button>
+        <div className={'inlineBlock thumb' + ((props.votes.disable) ? ' disable' : '')} onClick={() => upVote()}>
+          <FontAwesomeIcon className="icon-thumb" icon={faThumbsUp} />
+          <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsUp} />
+          {props.card.upVote ? props.card.upVote : null}
+        </div>
+        { props.card.upVote ? DownVote : null }
+      </Col>
+    </Row>
   )
 }
 

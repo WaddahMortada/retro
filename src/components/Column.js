@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { toTitleCase } from '../lib/helpers'
 import Card from './Card'
+import { Col, Button } from 'react-bootstrap'
 
 const Column = props => {
   const CardsComponent = []
@@ -51,23 +52,23 @@ const Column = props => {
 
   const EditTitle = <div>
     <input type="text" value={toTitleCase(props.column.title)} onChange={(e) => updateColumnTitle(e.target.value)} />
-    <button onClick={() => setEdit(false)}>Edit</button>
+    <Button variant="info" onClick={() => setEdit(false)}>Edit</Button>
   </div>
 
   const DisplayTitle = <div className="inlineBlock">
-    <h3 className="inlineBlock">{toTitleCase(props.column.title)}</h3>
-    <button className="inlineBlock" onClick={() => setEdit(true)}>Edit</button>
+    <h5 className="inlineBlock">{toTitleCase(props.column.title)}</h5>
+    <Button variant="info" className="inlineBlock" onClick={() => setEdit(true)}>Edit</Button>
   </div>
 
   return (
-    <div className="column">
+    <Col>
       {edit ? EditTitle : DisplayTitle}
-      <button className="inlineBlock" onClick={() => deleteColumn()}>Delete</button>
+      <Button variant="danger" className="inlineBlock" onClick={() => deleteColumn()}>Delete</Button>
       <div className="block">
-        <button className="addCardButton" onClick={() => addCard()}>+</button>
+        <Button variant="dark" className="addCardButton" onClick={() => addCard()}>+</Button>
         {CardsComponent}
       </div>
-    </div>
+    </Col>
   )
 }
 

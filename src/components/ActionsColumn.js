@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Col from 'react-bootstrap/Col'
 
 const bullet = '\u2022'
 const bulletWithSpace = `${bullet} `
@@ -28,12 +29,12 @@ const ActionsColumn = props => {
   }
 
   return (
-    <div className="column">
-      <h3 className="inlineBlock">Actions</h3>
+    <Col>
+      <h5 className="inlineBlock">Actions</h5>
       <div>
         <textarea onBlur={() => console.log('Blur: ', actions)} onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} rows="5" value={actions}></textarea>
       </div>
-    </div>
+    </Col>
   )
 }
 

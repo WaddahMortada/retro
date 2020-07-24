@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Column from './Column'
 import AddColumn from './Action/Column/Add'
 import ActionsColumn from './ActionsColumn'
+import { Row, Col, Button } from 'react-bootstrap'
 
 const Board = props => {
   // Card: { value: null, upVote: 0 }
@@ -57,19 +58,31 @@ const Board = props => {
   </div>
 
   return (
-    <div className="board">
-      {display ? AddColumnModule : null}
-      <div className={(display) ? 'dim' : null} onClick={(display) ? () => setDisplayModule(false) : null}>
-        <div>
-          <h3 className="inlineBlock">Used Votes: {props.votes.total} out of {props.votes.limit}</h3>
-          {!display ? <button className="inlineBlock floatRight" onClick={() => displayAddModule()}>Add Column</button> : null}
-        </div>
-        <div>
-          {ColumnComponent}
-          <ActionsColumn />
-        </div>
-      </div>
-    </div>
+    <Row>
+      <Col>
+        <Row>
+          <Col>
+            {display ? AddColumnModule : null}
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <div className={(display) ? 'dim' : null} onClick={(display) ? () => setDisplayModule(false) : null}>
+              <Row>
+                <Col>
+                  <h5 className="inlineBlock">Used Votes: {props.votes.total} out of {props.votes.limit}</h5>
+                  {!display ? <Button variant="success" className="inlineBlock floatRight" onClick={() => displayAddModule()}>Add Column</Button> : null}
+                </Col>
+              </Row>
+              <Row>
+                {ColumnComponent}
+                <ActionsColumn />
+              </Row>
+            </div>
+          </Col>
+        </Row>
+      </Col>
+    </Row>
   )
 }
 

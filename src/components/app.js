@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react'
 import TemplateSelector from './TempleteSelector'
 import Board from './Board'
 import { toTitleCase } from '../lib/helpers'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/style.css'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 
 const App = props => {
   const [template, setTemplate] = useState()
@@ -45,12 +47,24 @@ const App = props => {
   }
 
   return (
-    <div className="appContainer">
       <h1>Retro Tool</h1>
-      <h3 className="inlineBlock">{toTitleCase(template)}</h3>
-      <button className="inlineBlock floatRight" onClick={() => resetTemplate()}>New Board</button>
-      <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} />
-    </div>
+    <Container fluid>
+      <div className="appContainer">
+        <Row>
+          <Col>
+            <Row>
+            </Row>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <h5 className="inlineBlock">{toTitleCase(template)}</h5>
+            <Button variant="success" className="inlineBlock floatRight" onClick={() => resetTemplate()}>New Board</Button>
+          </Col>
+        </Row>
+        <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} />
+      </div>
+    </Container>
   )
 }
 
