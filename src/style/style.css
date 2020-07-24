@@ -24,6 +24,12 @@ body {
   top: 0px;
 }
 
+.actionsList {
+  width: 90%;
+  background-color: rgb(42, 109, 109);
+  color: rgb(241, 234, 234);
+}
+
 .thumb:hover .icon-thumb,
 .thumb .icon-thumb-solid {
     display: none;

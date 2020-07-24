@@ -32,7 +32,7 @@ const ActionsColumn = props => {
     <Col>
       <h5 className="inlineBlock">Actions</h5>
       <div>
-        <textarea onBlur={() => console.log('Blur: ', actions)} onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} rows="5" value={actions}></textarea>
+        <textarea className="actionsList" onBlur={() => console.log('Blur: ', actions)} onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} rows="5" value={actions}></textarea>
       </div>
     </Col>
   )

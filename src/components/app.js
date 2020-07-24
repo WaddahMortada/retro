@@ -52,8 +52,8 @@ const App = props => {
       <div className="appContainer">
         <Row>
           <Col>
-            <Row>
-              <h1>Ritroooo Tool</h1><img style={{ paddingLeft: '20px', width: '80px', height: '50px' }} src={Warrimoo} />
+            <Row className="justify-content-md-center">
+              <h1>Retroooo Tool</h1><img style={{ paddingLeft: '20px', width: '80px', height: '45px' }} src={Warrimoo} />
             </Row>
           </Col>
         </Row>
