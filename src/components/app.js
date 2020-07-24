@@ -4,7 +4,7 @@ import Board from './Board'
 import { toTitleCase } from '../lib/helpers'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/style.css'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Navbar, Nav } from 'react-bootstrap'
 import Warrimoo from '../assets/warrimoo.gif'
 
 const App = props => {
@@ -59,8 +59,12 @@ const App = props => {
         </Row>
         <Row>
           <Col>
-            <h5 className="inlineBlock">{toTitleCase(template)}</h5>
-            <Button variant="success" className="inlineBlock floatRight" onClick={() => resetTemplate()}>New Board</Button>
+            <Navbar bg="dark" variant="dark">
+              <Nav className="mr-auto">
+                <h5 className="inlineBlock">Template: {toTitleCase(template)}</h5>
+              </Nav>
+              <Button variant="warning" className="inlineBlock float-right" onClick={() => resetTemplate()}>New Board</Button>
+            </Navbar>
           </Col>
         </Row>
         <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} />

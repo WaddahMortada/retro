@@ -1,6 +1,7 @@
 body {
   background-color: rgb(16, 92, 60);
-  color: rgb(243, 235, 235);
+  color: rgb(241, 234, 234);
+}
 }
 
 .appContainer {
@@ -58,9 +59,9 @@ body {
   display: block;
 }
 
-.floatRight {
+/* .floatRight {
   float: right;
-}
+} */
 
 .addCardButton {
   width: 100%;
