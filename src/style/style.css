@@ -2,6 +2,9 @@ body {
   background-color: rgb(16, 92, 60);
   color: rgb(241, 234, 234);
 }
+
+.backgroundColorGreen {
+  background-color: rgb(16, 92, 60);
 }
 
 .appContainer {

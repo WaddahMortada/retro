@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Column from './Column'
 import AddColumn from './Action/Column/Add'
 import ActionsColumn from './ActionsColumn'
-import { Row, Col, Button } from 'react-bootstrap'
+import { Row, Col, Button, Card } from 'react-bootstrap'
 
 const Board = props => {
   // Card: { value: null, upVote: 0 }
@@ -60,27 +60,34 @@ const Board = props => {
   return (
     <Row>
       <Col>
-        <Row>
-          <Col>
-            {display ? AddColumnModule : null}
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <div className={(display) ? 'dim' : null} onClick={(display) ? () => setDisplayModule(false) : null}>
-              <Row>
-                <Col>
-                  <h5 className="inlineBlock">Used Votes: {props.votes.total} out of {props.votes.limit}</h5>
-                  {!display ? <Button variant="success" className="inlineBlock floatRight" onClick={() => displayAddModule()}>Add Column</Button> : null}
-                </Col>
-              </Row>
-              <Row>
-                {ColumnComponent}
-                <ActionsColumn />
-              </Row>
-            </div>
-          </Col>
-        </Row>
+        <Card className="backgroundColorGreen">
+          <Card.Header>
+            <Row>
+              <Col>
+                <h5 className="inlineBlock">Used Votes: {props.votes.total} out of {props.votes.limit}</h5>
+                {!display ? <Button variant="success" className="inlineBlock float-right" onClick={() => displayAddModule()}>Add Column</Button> : null}
+              </Col>
+            </Row>
+          </Card.Header>
+          <Card.Body>
+            <Row>
+              <Col>
+                {/* <div className={(display) ? 'dim' : null} onClick={(display) ? () => setDisplayModule(false) : null}> */}
+                <div>
+                  <Row>
+                    <Col>
+                      {display ? AddColumnModule : null}
+                    </Col>
+                  </Row>
+                  <Row>
+                    {ColumnComponent}
+                    <ActionsColumn />
+                  </Row>
+                </div>
+              </Col>
+            </Row>
+          </Card.Body>
+        </Card>
       </Col>
     </Row>
   )
