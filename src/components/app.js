@@ -5,6 +5,7 @@ import { toTitleCase } from '../lib/helpers'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/style.css'
 import { Container, Row, Col, Button } from 'react-bootstrap'
+import Warrimoo from '../assets/warrimoo.gif'
 
 const App = props => {
   const [template, setTemplate] = useState()
@@ -47,12 +48,12 @@ const App = props => {
   }
 
   return (
-      <h1>Retro Tool</h1>
     <Container fluid>
       <div className="appContainer">
         <Row>
           <Col>
             <Row>
+              <h1>Ritroooo Tool</h1><img style={{ paddingLeft: '20px', width: '80px', height: '50px' }} src={Warrimoo} />
             </Row>
           </Col>
         </Row>
