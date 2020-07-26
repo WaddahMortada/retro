@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import Button from 'react-bootstrap/Button'
+import { faTrash, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const AddEdit = props => {
   const isEdit = props.card && props.card.value
@@ -23,8 +25,12 @@ const AddEdit = props => {
   return (
     <form onSubmit={addCard}>
       <input type="text" autoFocus value={inputText} onChange={e => setInputText(e.target.value)} />
-      <Button className="float-right" size="sm" variant="danger" onClick={() => deleteCard()}>Delete</Button>
-      <Button className="float-right" size="sm" variant="success" as="input" type="submit" value={isEdit ? 'Submit' : 'Add'} />
+      <Button className="float-right" size="sm" variant="danger" onClick={() => deleteCard()}>
+        <FontAwesomeIcon className="icon-thumb" icon={faTrash} />
+      </Button>
+      <Button className="float-right" size="sm" variant="success" onClick={() => addCard()}>
+        <FontAwesomeIcon className="icon-thumb" icon={faCheck} />
+      </Button>
     </form>
   )
 }
