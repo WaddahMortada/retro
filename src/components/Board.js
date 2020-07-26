@@ -59,30 +59,28 @@ const Board = props => {
   </div>
 
   return (
-    <Row>
-      <Col>
+    <Row className="fullHeight">
+      <Col className="fullHeight">
         <Navbar className="secondNav">
           <Nav className="mr-auto">
             <h5 className="inlineBlock">Used Votes: {props.votes.total} out of {props.votes.limit}</h5>
           </Nav>
           {!display ? <Button variant="success" className="inlineBlock float-right" onClick={() => displayAddModule()}>Add Column</Button> : null}
         </Navbar>
-        <Card className="boardCard">
-          <Card.Body>
-            <Row>
-              <Col>
+        <Card className="boardCard fullHeight">
+          <Card.Body className="fullHeight">
+            <Row className="fullHeight">
+              <Col className="fullHeight">
                 {/* <div className={(display) ? 'dim' : null} onClick={(display) ? () => setDisplayModule(false) : null}> */}
-                <div>
-                  <Row>
-                    <Col>
-                      {display ? AddColumnModule : null}
-                    </Col>
-                  </Row>
-                  <Row>
-                    {ColumnComponent}
-                    <Col><ActionsColumn /></Col>
-                  </Row>
-                </div>
+                <Row>
+                  <Col>
+                    {display ? AddColumnModule : null}
+                  </Col>
+                </Row>
+                <Row className="fullHeight">
+                  {ColumnComponent}
+                  <Col className="fullHeight"><ActionsColumn /></Col>
+                </Row>
               </Col>
             </Row>
           </Card.Body>

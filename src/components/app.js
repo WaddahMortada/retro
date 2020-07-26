@@ -48,27 +48,25 @@ const App = props => {
   }
 
   return (
-    <Container fluid>
-      <div className="appContainer">
-        <Row>
-          <Col>
-            <Row className="justify-content-md-center">
-              <h1>Retroooo Tool</h1><img style={{ paddingLeft: '20px', width: '80px', height: '45px' }} src={Warrimoo} />
-            </Row>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <Navbar bg="dark" variant="dark">
-              <Nav className="mr-auto">
-                <h5 className="inlineBlock">Template: {toTitleCase(template)}</h5>
-              </Nav>
-              <Button variant="warning" className="inlineBlock float-right" onClick={() => resetTemplate()}>New Board</Button>
-            </Navbar>
-          </Col>
-        </Row>
-        <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} />
-      </div>
+    <Container fluid className="appContainer">
+      <Row>
+        <Col>
+          <Row className="justify-content-md-center">
+            <h1>Retroooo Tool</h1><img style={{ paddingLeft: '20px', width: '80px', height: '45px' }} src={Warrimoo} />
+          </Row>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Navbar bg="dark" variant="dark">
+            <Nav className="mr-auto">
+              <h5 className="inlineBlock">Template: {toTitleCase(template)}</h5>
+            </Nav>
+            <Button variant="warning" className="inlineBlock float-right" onClick={() => resetTemplate()}>New Board</Button>
+          </Navbar>
+        </Col>
+      </Row>
+      <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} />
     </Container>
   )
 }

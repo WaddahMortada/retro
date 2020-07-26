@@ -66,7 +66,7 @@ const Column = props => {
   </div>
 
   return (
-    <CardBootstrap className="boardCard">
+    <CardBootstrap className="boardCard fullHeight">
       <CardBootstrap.Header>
         {edit ? EditTitle : DisplayTitle}
         <Button variant="dark" className="addCardButton" onClick={() => addCard()}>+</Button>
