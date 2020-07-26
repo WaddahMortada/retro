@@ -4,6 +4,8 @@ import { toTitleCase } from '../lib/helpers'
 import Card from './Card'
 import CardBootstrap from 'react-bootstrap/Card'
 import { Row, Col, Button } from 'react-bootstrap'
+import { faPlus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Column = props => {
   const CardsComponent = []
@@ -51,25 +53,33 @@ const Column = props => {
     )
   })
 
-  const DeleteButton = <Button className="float-right" size="sm" variant="danger" onClick={() => deleteColumn()}>Delete</Button>
+  const DeleteButton = <Button className="float-right" size="sm" variant="danger" onClick={() => deleteColumn()}>
+    <FontAwesomeIcon className="icon-thumb" icon={faTrash} />
+  </Button>
 
   const EditTitle = <div>
     <input type="text" value={toTitleCase(props.column.title)} onChange={(e) => updateColumnTitle(e.target.value)} />
     {DeleteButton}
-    <Button className="float-right" size="sm" variant="info" onClick={() => setEdit(false)}>Edit</Button>
+    <Button className="float-right" size="sm" variant="info" onClick={() => setEdit(false)}>
+      <FontAwesomeIcon className="icon-thumb" icon={faPen} />
+    </Button>
   </div>
 
   const DisplayTitle = <div>
     <h5 className="inlineBlock">{toTitleCase(props.column.title)}</h5>
     {DeleteButton}
-    <Button className="float-right" size="sm" variant="info" onClick={() => setEdit(true)}>Edit</Button>
+    <Button className="float-right" size="sm" variant="info" onClick={() => setEdit(true)}>
+      <FontAwesomeIcon className="icon-thumb" icon={faPen} />
+    </Button>
   </div>
 
   return (
     <CardBootstrap className="boardCard fullHeight">
       <CardBootstrap.Header>
         {edit ? EditTitle : DisplayTitle}
-        <Button variant="dark" className="addCardButton" onClick={() => addCard()}>+</Button>
+        <Button variant="dark" className="addCardButton" onClick={() => addCard()}>
+          <FontAwesomeIcon className="icon-thumb" icon={faPlus} />
+        </Button>
       </CardBootstrap.Header>
       <CardBootstrap.Body>
         <Row>
