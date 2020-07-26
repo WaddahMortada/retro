@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import AddEditCard from './Action/Card/AddEdit'
 import ViewCard from './Action/Card/View'
+import CardBootstrap from 'react-bootstrap/Card'
 
 const Card = props => {
   const [edit, setEdit] = useState(false)
@@ -22,7 +23,13 @@ const Card = props => {
   const ViewCardModule = <ViewCard updateCard={updateCard} card={props.card} setEdit={setEdit} voteFunctions={props.voteFunctions} votes={props.votes} />
   const AddEditCardModule = <AddEditCard index={props.index} card={props.card} cardFunctions={{ update: updateCard, delete: deleteCard }} />
 
-  return <div>{(props.card.value && !edit) ? ViewCardModule : AddEditCardModule}</div>
+  return (
+    <CardBootstrap className="itemChildCard">
+      <CardBootstrap.Body>
+        {(props.card.value && !edit) ? ViewCardModule : AddEditCardModule}
+      </CardBootstrap.Body>
+    </CardBootstrap>
+  )
 }
 
 Card.propTypes = {

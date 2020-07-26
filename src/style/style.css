@@ -7,6 +7,10 @@ body {
   background-color: rgb(16, 92, 60);
 }
 
+.itemChildCard {
+  background-color: rgb(43 101 71);
+}
+
 .appContainer {
   margin: auto;
   width: 90%;
