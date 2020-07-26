@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card'
 
 const bullet = '\u2022'
 const bulletWithSpace = `${bullet} `
@@ -29,12 +29,16 @@ const ActionsColumn = props => {
   }
 
   return (
-    <Col>
-      <h5 className="inlineBlock">Actions</h5>
-      <div>
-        <textarea className="actionsList" onBlur={() => console.log('Blur: ', actions)} onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} onClick={handleInput} rows="5" value={actions}></textarea>
-      </div>
-    </Col>
+    <Card className="backgroundColorGreen">
+      <Card.Header>
+        <h5 className="inlineBlock">Actions</h5>
+      </Card.Header>
+      <Card.Body>
+        <div>
+          <textarea className="actionsList" onBlur={() => console.log('Blur: ', actions)} onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} onClick={handleInput} rows="5" value={actions}></textarea>
+        </div>
+      </Card.Body>
+    </Card>
   )
 }
 

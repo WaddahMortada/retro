@@ -81,7 +81,7 @@ const Board = props => {
                   </Row>
                   <Row>
                     {ColumnComponent}
-                    <ActionsColumn />
+                    <Col><ActionsColumn /></Col>
                   </Row>
                 </div>
               </Col>
