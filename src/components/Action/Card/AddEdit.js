@@ -23,8 +23,8 @@ const AddEdit = props => {
   return (
     <form onSubmit={addCard}>
       <input type="text" autoFocus value={inputText} onChange={e => setInputText(e.target.value)} />
-      <Button variant="success" as="input" type="submit" value={isEdit ? 'Edit' : 'Add'} />
-      <Button variant="danger" onClick={() => deleteCard()}>Delete</Button>
+      <Button className="float-right" size="sm" variant="danger" onClick={() => deleteCard()}>Delete</Button>
+      <Button className="float-right" size="sm" variant="success" as="input" type="submit" value={isEdit ? 'Edit' : 'Add'} />
     </form>
   )
 }
