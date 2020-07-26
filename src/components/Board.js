@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Column from './Column'
 import AddColumn from './Action/Column/Add'
 import ActionsColumn from './ActionsColumn'
-import { Row, Col, Button, Card } from 'react-bootstrap'
+import { Row, Col, Button, Navbar, Nav, Card } from 'react-bootstrap'
 
 const Board = props => {
   // Card: { value: null, upVote: 0 }
@@ -60,15 +60,13 @@ const Board = props => {
   return (
     <Row>
       <Col>
+        <Navbar className="backgroundColorGreen">
+          <Nav className="mr-auto">
+            <h5 className="inlineBlock">Used Votes: {props.votes.total} out of {props.votes.limit}</h5>
+          </Nav>
+          {!display ? <Button variant="success" className="inlineBlock float-right" onClick={() => displayAddModule()}>Add Column</Button> : null}
+        </Navbar>
         <Card className="backgroundColorGreen">
-          <Card.Header>
-            <Row>
-              <Col>
-                <h5 className="inlineBlock">Used Votes: {props.votes.total} out of {props.votes.limit}</h5>
-                {!display ? <Button variant="success" className="inlineBlock float-right" onClick={() => displayAddModule()}>Add Column</Button> : null}
-              </Col>
-            </Row>
-          </Card.Header>
           <Card.Body>
             <Row>
               <Col>
