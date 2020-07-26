@@ -10,21 +10,22 @@ const ActionsColumn = props => {
 
   const handleInput = (event) => {
     const { keyCode, target } = event
-    const { selectionStart, value } = target
+    const selectionStart = target.selectionStart
+
+    target.value = target.value.split('\n').map(row => {
+      if (row === '') {
+        return bulletWithSpace
+      }
+      if (!row.includes(bullet)) {
+        return bulletWithSpace + row
+      }
+      return row
+    }).join('\n')
 
     if (keyCode === enter) {
-      // Add bullet point to the end (new line)
-      target.value = [...value].map((char, i) => {
-        return (i === selectionStart - 1) ? `\n${bulletWithSpace}` : char
-      }).join('')
-
       // Update the select position
       target.selectionStart = selectionStart + bulletWithSpace.length
       target.selectionEnd = selectionStart + bulletWithSpace.length
-    }
-
-    if (value[0] !== bullet) {
-      target.value = `${bulletWithSpace}${value}`
     }
   }
 
