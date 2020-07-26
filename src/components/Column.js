@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { toTitleCase } from '../lib/helpers'
 import Card from './Card'
-import { Col, Button } from 'react-bootstrap'
+import CardBootstrap from 'react-bootstrap/Card'
+import { Row, Col, Button } from 'react-bootstrap'
 
 const Column = props => {
   const CardsComponent = []
@@ -65,13 +66,19 @@ const Column = props => {
   </div>
 
   return (
-    <Col>
-      {edit ? EditTitle : DisplayTitle}
-      <div className="block">
+    <CardBootstrap className="backgroundColorGreen">
+      <CardBootstrap.Header>
+        {edit ? EditTitle : DisplayTitle}
         <Button variant="dark" className="addCardButton" onClick={() => addCard()}>+</Button>
-        {CardsComponent}
-      </div>
-    </Col>
+      </CardBootstrap.Header>
+      <CardBootstrap.Body>
+        <Row>
+          <Col>
+            {CardsComponent}
+          </Col>
+        </Row>
+      </CardBootstrap.Body>
+    </CardBootstrap>
   )
 }
 

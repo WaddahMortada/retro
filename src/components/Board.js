@@ -42,14 +42,15 @@ const Board = props => {
 
   columns.forEach((column, key) => {
     ColumnComponent.push(
-      <Column
-        key={key}
-        index={key}
-        column={column}
-        votes={props.votes}
-        voteFunctions={props.voteFunctions}
-        columnFunctions={{ update: updateColumn, delete: deleteColumn }}
-      />
+      <Col key={key}>
+        <Column
+          index={key}
+          column={column}
+          votes={props.votes}
+          voteFunctions={props.voteFunctions}
+          columnFunctions={{ update: updateColumn, delete: deleteColumn }}
+        />
+      </Col>
     )
   })
 
