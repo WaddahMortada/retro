@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons'
-import { faThumbsUp as solidFaThumbsUp, faThumbsDown as solidFaThumbsDown } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp as solidFaThumbsUp, faThumbsDown as solidFaThumbsDown, faPen } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Row, Col, Button } from 'react-bootstrap'
 
@@ -28,8 +28,10 @@ const View = props => {
   return (
     <Row>
       <Col>
-        <div className="inlineBlock">{props.card.value}</div>
-        <Button variant="info" className="inlineBlock float-right" onClick={() => props.setEdit(true)}>Edit</Button>
+        <div style={{ display: 'table-caption' }}>{props.card.value}</div>
+        <Button variant="info" size="sm" className="float-right" onClick={() => props.setEdit(true)}>
+          <FontAwesomeIcon className="icon-thumb" icon={faPen} />
+        </Button>
         <div className={'inlineBlock thumb' + ((props.votes.disable) ? ' disable' : '')} onClick={() => upVote()}>
           <FontAwesomeIcon className="icon-thumb" icon={faThumbsUp} />
           <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsUp} />
