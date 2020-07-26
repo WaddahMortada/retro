@@ -29,7 +29,7 @@ const View = props => {
     <Row>
       <Col>
         <div className="inlineBlock">{props.card.value}</div>
-        <Button variant="info" className="inlineBlock floatRight" onClick={() => props.setEdit(true)}>Edit</Button>
+        <Button variant="info" className="inlineBlock float-right" onClick={() => props.setEdit(true)}>Edit</Button>
         <div className={'inlineBlock thumb' + ((props.votes.disable) ? ' disable' : '')} onClick={() => upVote()}>
           <FontAwesomeIcon className="icon-thumb" icon={faThumbsUp} />
           <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsUp} />
