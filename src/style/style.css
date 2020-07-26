@@ -1,14 +1,20 @@
 body {
-  background-color: rgb(16, 92, 60);
+  background-color: rgb(33 78 59);
   color: rgb(241, 234, 234);
 }
 
-.backgroundColorGreen {
-  background-color: rgb(16, 92, 60);
+.boardCard {
+  /* rgb(16, 92, 60) */
+  background-color: rgb(30 101 75);
+}
+
+.secondNav {
+  background-color: rgb(9 82 82);
 }
 
 .itemChildCard {
-  background-color: rgb(43 101 71);
+  /* rgb(43 101 71) */
+  background-color: rgb(35 109 82);
 }
 
 .appContainer {

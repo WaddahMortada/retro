@@ -29,7 +29,7 @@ const ActionsColumn = props => {
   }
 
   return (
-    <Card className="backgroundColorGreen">
+    <Card className="boardCard">
       <Card.Header>
         <h5 className="inlineBlock">Actions</h5>
       </Card.Header>

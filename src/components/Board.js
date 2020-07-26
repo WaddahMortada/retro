@@ -61,13 +61,13 @@ const Board = props => {
   return (
     <Row>
       <Col>
-        <Navbar className="backgroundColorGreen">
+        <Navbar className="secondNav">
           <Nav className="mr-auto">
             <h5 className="inlineBlock">Used Votes: {props.votes.total} out of {props.votes.limit}</h5>
           </Nav>
           {!display ? <Button variant="success" className="inlineBlock float-right" onClick={() => displayAddModule()}>Add Column</Button> : null}
         </Navbar>
-        <Card className="backgroundColorGreen">
+        <Card className="boardCard">
           <Card.Body>
             <Row>
               <Col>
