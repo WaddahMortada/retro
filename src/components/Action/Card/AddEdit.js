@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const AddEdit = props => {
   const isEdit = props.card && props.card.value
   const [inputText, setInputText] = useState(isEdit ? props.card.value : '')
+  const [rowsNumber, setRowsNumber] = useState(isEdit ? props.card.value.split('\n').length : 1)
 
-  const addCard = (event) => {
-    event.preventDefault()
+  const addCard = () => {
     if (inputText) {
       setInputText('')
       props.card.value = inputText
@@ -22,9 +22,26 @@ const AddEdit = props => {
     props.cardFunctions.delete()
   }
 
+  const updateInputSize = (event) => {
+    const { keyCode, target } = event
+    const rowsNum = target.value.split('\n').length
+
+    switch (keyCode) {
+      case 13: // Enter
+        setRowsNumber(rowsNumber + 1)
+        break
+      case 8: // Backspace
+        if (rowsNum !== rowsNumber) {
+          setRowsNumber((rowsNum > 0) ? rowsNum : 1)
+        }
+        break
+    }
+  }
+
+  // Fix AUTOFOCUS SELECTOR POINTER (should always start at the end)
   return (
-    <form onSubmit={addCard}>
-      <input type="text" autoFocus value={inputText} onChange={e => setInputText(e.target.value)} />
+    <form>
+      <textarea className="actionsList" style={{ width: '80%' }} rows={rowsNumber} onKeyUp={updateInputSize} autoFocus value={inputText} onChange={e => setInputText(e.target.value)} />
       <Button className="float-right" size="sm" variant="danger" onClick={() => deleteCard()}>
         <FontAwesomeIcon className="icon-thumb" icon={faTrash} />
       </Button>
