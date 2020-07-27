@@ -5,7 +5,11 @@ import { toTitleCase } from '../lib/helpers'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/style.css'
 import { Container, Row, Col, Button, Navbar, Nav } from 'react-bootstrap'
+import { faChalkboard } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Warrimoo from '../assets/warrimoo.gif'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import '../style/style.css'
 
 const App = props => {
   const [template, setTemplate] = useState()
@@ -62,7 +66,9 @@ const App = props => {
             <Nav className="mr-auto">
               <h5 className="inlineBlock">Template: {toTitleCase(template)}</h5>
             </Nav>
-            <Button variant="warning" className="inlineBlock float-right" onClick={() => resetTemplate()}>New Board</Button>
+            <Button style={{ color: 'white', padding: '5px' }} variant="warning" className="inlineBlock float-right" onClick={() => resetTemplate()}>
+              <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
+            </Button>
           </Navbar>
         </Col>
       </Row>
