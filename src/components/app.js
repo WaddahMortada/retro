@@ -52,7 +52,7 @@ const App = props => {
       <Row>
         <Col>
           <Row className="justify-content-md-center">
-            <h1>Retroooo Tool</h1><img style={{ paddingLeft: '20px', width: '80px', height: '45px' }} src={Warrimoo} />
+            <h1>Retroooo</h1><img style={{ paddingLeft: '20px', width: '80px', height: '45px' }} src={Warrimoo} />
           </Row>
         </Col>
       </Row>
