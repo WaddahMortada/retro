@@ -4,6 +4,8 @@ import Column from './Column'
 import AddColumn from './Action/Column/Add'
 import ActionsColumn from './ActionsColumn'
 import { Row, Col, Button, Navbar, Nav, Card } from 'react-bootstrap'
+import { faColumns } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Board = props => {
   // Card: { value: null, upVote: 0 }
@@ -58,6 +60,10 @@ const Board = props => {
     <AddColumn columns={columns} setColumns={setColumns} closeModule={closeModule} onBlur={closeModule} />
   </div>
 
+  const AddColumnButton = <Button variant="success" className="float-right" style={{ padding: '5px' }} onClick={() => displayAddModule()}>
+    <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
+  </Button>
+
   return (
     <Row className="fullHeight">
       <Col className="fullHeight">
@@ -65,7 +71,7 @@ const Board = props => {
           <Nav className="mr-auto">
             <h5 className="inlineBlock">Used Votes: {props.votes.total} out of {props.votes.limit}</h5>
           </Nav>
-          {!display ? <Button variant="success" className="inlineBlock float-right" onClick={() => displayAddModule()}>Add Column</Button> : null}
+          {!display ? AddColumnButton : null}
         </Navbar>
         <Card className="boardCard fullHeight">
           <Card.Body className="fullHeight">
