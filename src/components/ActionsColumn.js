@@ -32,10 +32,10 @@ const ActionsColumn = props => {
   return (
     <Card className="boardCard fullHeight">
       <Card.Header>
-        <h5 className="inlineBlock">Actions</h5>
+        <h5>Actions</h5>
       </Card.Header>
       <Card.Body>
-        <textarea className="actionsList" onBlur={() => console.log('Blur: ', actions)} onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} onClick={handleInput} rows="5" value={actions}></textarea>
+        <textarea className="textareaInput" onBlur={() => console.log('Blur: ', actions)} onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} onClick={handleInput} rows="5" value={actions}></textarea>
       </Card.Body>
     </Card>
   )
