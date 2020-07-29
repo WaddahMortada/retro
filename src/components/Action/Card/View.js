@@ -28,7 +28,7 @@ const View = props => {
   return (
     <Row>
       <Col>
-        <div style={{ display: 'table-caption' }}>{props.card.value}</div>
+        <div className="viewCard">{props.card.value}</div>
         <Button variant="info" size="sm" className="float-right" onClick={() => props.setEdit(true)}>
           <FontAwesomeIcon className="icon-thumb" icon={faPen} />
         </Button>
