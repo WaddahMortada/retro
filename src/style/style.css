@@ -15,6 +15,18 @@ body {
   padding-bottom: 9%;
 }
 
+.logoImage {
+  margin-bottom: 7px;
+  width: 70px;
+  height: 65px;
+  border-radius: 50%;
+}
+
+.logo {
+  margin-bottom: 10px;
+  height: 70px;
+}
+
 .boardCard {
   /* rgb(16, 92, 60) */
   background-color: rgb(30 101 75);

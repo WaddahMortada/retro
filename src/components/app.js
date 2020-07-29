@@ -8,6 +8,7 @@ import { Container, Row, Col, Button, Navbar, Nav } from 'react-bootstrap'
 import { faChalkboard } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Warrimoo from '../assets/warrimoo.gif'
+import RetroooGta from '../assets/retroooo-gta-thick.png'
 import '../assets/warrimoo.png'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/style.css'
@@ -57,7 +58,10 @@ const App = props => {
       <Row>
         <Col>
           <Row className="justify-content-md-center">
-            <h1>Retroooo</h1><img style={{ paddingLeft: '20px', width: '80px', height: '45px' }} src={Warrimoo} />
+            <img className="logoImage" src={Warrimoo} />
+          </Row>
+          <Row className="justify-content-md-center">
+            <img className="logo" src={RetroooGta} />
           </Row>
         </Col>
       </Row>
