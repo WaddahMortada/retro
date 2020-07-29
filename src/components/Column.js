@@ -53,7 +53,7 @@ const Column = props => {
     )
   })
 
-  const DeleteButton = <Button className="float-right" size="sm" variant="danger" onClick={() => deleteColumn()}>
+  const DeleteButton = <Button className="float-right columnButton" size="sm" variant="danger" onClick={() => deleteColumn()}>
     <FontAwesomeIcon className="icon-thumb" icon={faTrash} />
   </Button>
 

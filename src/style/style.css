@@ -29,6 +29,11 @@ body {
   padding-bottom: 9%;
 }
 
+.columnButton {
+  margin-left: 5px;
+  width: 33px;
+}
+
 .deleteCardButton {
   margin-left: 5px;
   width: 32px;
