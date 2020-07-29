@@ -60,16 +60,16 @@ const Board = props => {
     <AddColumn columns={columns} setColumns={setColumns} closeModule={closeModule} onBlur={closeModule} />
   </div>
 
-  const AddColumnButton = <Button variant="success" className="float-right" style={{ padding: '5px' }} onClick={() => displayAddModule()}>
+  const AddColumnButton = <Button variant="success" className="float-right" style={{ padding: '5px 10px' }} onClick={() => displayAddModule()}>
     <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
   </Button>
 
   return (
-    <Row className="fullHeight">
+    <Row className="fullHeight nav">
       <Col className="fullHeight">
-        <Navbar className="secondNav">
+        <Navbar className="secondNav navBar">
           <Nav className="mr-auto">
-            <h5 className="inlineBlock">Used Votes: {props.votes.total} out of {props.votes.limit}</h5>
+            <h5 className="navHeader">Used Votes: {props.votes.total} out of {props.votes.limit}</h5>
           </Nav>
           {!display ? AddColumnButton : null}
         </Navbar>

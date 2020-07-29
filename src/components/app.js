@@ -60,13 +60,13 @@ const App = props => {
           </Row>
         </Col>
       </Row>
-      <Row>
+      <Row className="nav">
         <Col>
-          <Navbar bg="dark" variant="dark">
+          <Navbar className="navBar" bg="dark" variant="dark">
             <Nav className="mr-auto">
-              <h5 className="inlineBlock">Template: {toTitleCase(template)}</h5>
+              <h5 className="navHeader">Template: {toTitleCase(template)}</h5>
             </Nav>
-            <Button style={{ color: 'white', padding: '5px' }} variant="warning" className="inlineBlock float-right" onClick={() => resetTemplate()}>
+            <Button style={{ color: 'white', padding: '5px 10px' }} variant="warning" className="inlineBlock float-right" onClick={() => resetTemplate()}>
               <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
             </Button>
           </Navbar>
