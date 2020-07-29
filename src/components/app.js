@@ -8,6 +8,7 @@ import { Container, Row, Col, Button, Navbar, Nav } from 'react-bootstrap'
 import { faChalkboard } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Warrimoo from '../assets/warrimoo.gif'
+import '../assets/warrimoo.png'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/style.css'
 
