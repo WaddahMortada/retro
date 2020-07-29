@@ -41,11 +41,11 @@ const AddEdit = props => {
   // Fix AUTOFOCUS SELECTOR POINTER (should always start at the end)
   return (
     <form>
-      <textarea className="actionsList" style={{ width: '80%' }} rows={rowsNumber} onKeyUp={updateInputSize} autoFocus value={inputText} onChange={e => setInputText(e.target.value)} />
-      <Button className="float-right" size="sm" variant="danger" onClick={() => deleteCard()}>
+      <textarea className="textareaInput columnInput" rows={rowsNumber} onKeyUp={updateInputSize} autoFocus value={inputText} onChange={e => setInputText(e.target.value)} />
+      <Button className="float-right deleteCardButton" size="sm" variant="danger" onClick={() => deleteCard()}>
         <FontAwesomeIcon className="icon-thumb" icon={faTrash} />
       </Button>
-      <Button className="float-right" size="sm" variant="success" onClick={() => addCard()}>
+      <Button className="float-right submitCardButton" size="sm" variant="success" onClick={() => addCard()}>
         <FontAwesomeIcon className="icon-thumb" icon={faCheck} />
       </Button>
     </form>
