@@ -13,7 +13,9 @@ const Board = props => {
   // Board: [column1, column2]
   const ColumnComponent = []
   const [columns, setColumns] = useState([{ title: '', cards: [{ value: '', upVote: 0 }] }])
-  const [display, setDisplayModule] = useState(false)
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   useEffect(() => {
     const columnsTitle = props.type !== 'blank_board' ? props.type.split('_') : []
@@ -23,14 +25,6 @@ const Board = props => {
     })
     setColumns(columnsObjects)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-  const displayAddModule = () => {
-    setDisplayModule(true)
-  }
-
-  const closeModule = () => {
-    setDisplayModule(false)
-  }
 
   const updateColumn = (index, column) => {
     columns[index] = column
@@ -57,12 +51,8 @@ const Board = props => {
   })
 
   const AddColumnModule = <div className="editModule">
-    <AddColumn columns={columns} setColumns={setColumns} closeModule={closeModule} onBlur={closeModule} />
+    <AddColumn columns={columns} setColumns={setColumns} show={show} handleClose={handleClose} handleShow={handleShow} />
   </div>
-
-  const AddColumnButton = <Button variant="success" className="float-right" style={{ padding: '5px 10px' }} onClick={() => displayAddModule()}>
-    <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
-  </Button>
 
   return (
     <Row className="fullHeight nav">
@@ -71,7 +61,9 @@ const Board = props => {
           <Nav className="mr-auto">
             <h5 className="navHeader">Used Votes: {props.votes.total} out of {props.votes.limit}</h5>
           </Nav>
-          {!display ? AddColumnButton : null}
+          <Button variant="success" className="float-right" style={{ padding: '5px 10px' }} onClick={handleShow}>
+            <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
+          </Button>
         </Navbar>
         <Card className="boardCard fullHeight">
           <Card.Body className="fullHeight">
@@ -80,7 +72,7 @@ const Board = props => {
                 {/* <div className={(display) ? 'dim' : null} onClick={(display) ? () => setDisplayModule(false) : null}> */}
                 <Row>
                   <Col>
-                    {display ? AddColumnModule : null}
+                    {show ? AddColumnModule : null}
                   </Col>
                 </Row>
                 <Row className="fullHeight">

@@ -1,8 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import PropTypes from 'prop-types'
+import { Modal, Form, Button } from 'react-bootstrap'
 
 const Add = props => {
   const [title, setTitle] = useState('')
+  const autoFocus = useRef(null);
+
+  useEffect(() => {
+    autoFocus.current.focus();
+  }, []);
 
   const submit = (event) => {
     event.preventDefault()
@@ -11,18 +17,28 @@ const Add = props => {
     setTitle('')
   }
   return (
-    <form onSubmit={submit}>
-      <input type="text" autoFocus onChange={(e) => setTitle(e.target.value)} value={title} />
-      <input type="submit" value="Submit" />
-      <button onClick={props.closeModule}>Close</button>
-    </form>
+    <Modal aria-labelledby="contained-modal-title-vcenter" centered show={props.show} onHide={props.handleClose}>
+      <Modal.Header className="addColumnModelTitle">
+        <Modal.Title>Add New Column</Modal.Title>
+      </Modal.Header>
+      <Modal.Body className="addColumnModelBody">
+        <form onSubmit={submit}>
+          <input className="inputModal" type="text" ref={autoFocus} onChange={(e) => setTitle(e.target.value)} value={title} />
+          <Button className="float-right closeModalButton" variant="secondary" onClick={props.handleClose}>Close</Button>
+          <Button className="float-right submitModalButton" variant="success" as="input" type="submit" value="Submit" />
+        </form>
+      </Modal.Body>
+    </Modal>
   )
 }
 
 Add.propTypes = {
   columns: PropTypes.any,
   setColumns: PropTypes.any,
-  closeModule: PropTypes.any
+  show: PropTypes.any,
+  handleShow: PropTypes.any,
+  handleClose: PropTypes.any
+  // closeModule: PropTypes.any
 }
 
 export default Add

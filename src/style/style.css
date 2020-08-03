@@ -78,6 +78,7 @@ body {
   background-color: rgb(52, 58, 64);
   color: rgb(241, 234, 234);
   resize: none;
+  border-radius: 5px;
 }
 
 .columnInput {
@@ -132,4 +133,32 @@ body {
 
 .addCardButton {
   width: 100%;
+}
+
+.addColumnModelTitle {
+  /* rgb(52, 58, 64) */
+  background-color:rgb(39, 56, 62);
+  border: none;
+}
+
+.addColumnModelBody {
+  /* rgb(35, 109, 82) */
+  background-color: rgb(23, 97, 101);
+}
+
+.inputModal {
+  padding: 8px 0px;
+  width: 100%;
+  height: 100%;
+  /* background-color: rgb(52, 58, 64); */
+  /* color: rgb(241, 234, 234); */
+  border-radius: 5px;
+}
+
+.submitModalButton {
+  margin: 10px 5px;
+}
+
+.closeModalButton {
+  margin: 10px 5px;
 }
