@@ -43,13 +43,7 @@ const App = props => {
     if (window.confirm('Are you sure you want to clear current board?')) setTemplate()
   }
 
-  if (!template) {
-    return (
-      <div className="appContainer">
-        <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} />
-      </div>
-    )
-  }
+  const TemplateCompnent = <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} />
 
   return (
     <Container fluid className="appContainer">
@@ -75,7 +69,10 @@ const App = props => {
           </Navbar>
         </Col>
       </Row>
-      <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} />
+      {!template
+        ? TemplateCompnent
+        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} />
+      }
     </Container>
   )
 }
