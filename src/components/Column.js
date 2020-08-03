@@ -58,7 +58,7 @@ const Column = props => {
   </Button>
 
   const EditTitle = <div>
-    <input type="text" value={toTitleCase(props.column.title)} onChange={(e) => updateColumnTitle(e.target.value)} />
+    <input className="editColumnInput" type="text" value={toTitleCase(props.column.title)} onChange={(e) => updateColumnTitle(e.target.value)} />
     {DeleteButton}
     <Button className="float-right" size="sm" variant="info" onClick={() => setEdit(false)}>
       <FontAwesomeIcon className="icon-thumb" icon={faPen} />

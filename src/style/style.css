@@ -162,3 +162,8 @@ body {
 .closeModalButton {
   margin: 10px 5px;
 }
+
+.editColumnInput {
+  width: 50%;
+  margin-bottom: 8px;
+}
