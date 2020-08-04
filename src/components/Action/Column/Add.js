@@ -24,7 +24,7 @@ const Add = props => {
       <Modal.Body className="addColumnModelBody">
         <form onSubmit={submit}>
           <Form.Group>
-            <Form.Control className="inputModal" type="text" ref={autoFocus} onChange={(e) => setTitle(e.target.value)} value={title} />
+            <Form.Control className="inputModal" type="text" ref={autoFocus} onChange={(e) => setTitle(e.target.value)} value={title} required />
             <Button className="float-right closeModalButton" variant="secondary" onClick={props.handleClose}>Close</Button>
             <Button className="float-right submitModalButton" variant="success" as="input" type="submit" value="Submit" />
           </Form.Group>
