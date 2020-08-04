@@ -40,7 +40,7 @@ const App = props => {
   }, [votes.total, votes.limit]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const resetTemplate = () => {
-    if (window.confirm('Are you sure you want to clear current board?')) setTemplate()
+    if (window.confirm('Are you sure you want to clear current board?')) setTemplate('')
   }
 
   const TemplateCompnent = <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} />
