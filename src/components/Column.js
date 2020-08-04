@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { toTitleCase } from '../lib/helpers'
 import Card from './Card'
@@ -10,6 +10,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Column = props => {
   const CardsComponent = []
   const [edit, setEdit] = useState(false)
+  const [title, setTitle] = useState()
+
+  useEffect(() => {
+    setTitle(props.column.title)
+  }, [props.column.title])
+
+  const submit = (event) => {
+    event.preventDefault()
+    props.column.title = title
+    props.columnFunctions.update(props.index, props.column)
+    setEdit(false)
+  }
 
   const addCard = () => {
     props.column.cards.push({ value: '', upVote: 0 })
@@ -53,21 +65,18 @@ const Column = props => {
     )
   })
 
-  const DeleteButton = <Button className="float-right columnButton" size="sm" variant="danger" onClick={() => deleteColumn()}>
-    <FontAwesomeIcon className="icon-thumb" icon={faTrash} />
-  </Button>
-
-  const EditTitle = <div>
-    <input className="editColumnInput" type="text" value={toTitleCase(props.column.title)} onChange={(e) => updateColumnTitle(e.target.value)} />
-    {DeleteButton}
-    <Button className="float-right" size="sm" variant="info" onClick={() => setEdit(false)}>
+  const EditTitle = <form onSubmit={submit}>
+    <input className="editColumnInput" type="text" autoFocus value={title} onChange={(e) => setTitle(e.target.value)} required />
+    <Button className="float-right columnButton" size="sm" variant="danger" onClick={() => deleteColumn()}>
+      <FontAwesomeIcon className="icon-thumb" icon={faTrash} />
+    </Button>
+    <Button className="float-right" size="sm" variant="info" onClick={submit}>
       <FontAwesomeIcon className="icon-thumb" icon={faPen} />
     </Button>
-  </div>
+  </form>
 
   const DisplayTitle = <div>
     <h5 className="inlineBlock">{toTitleCase(props.column.title)}</h5>
-    {DeleteButton}
     <Button className="float-right" size="sm" variant="info" onClick={() => setEdit(true)}>
       <FontAwesomeIcon className="icon-thumb" icon={faPen} />
     </Button>
