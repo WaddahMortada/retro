@@ -15,7 +15,9 @@ const Add = props => {
     props.columns.push({ title: title, cards: [] })
     props.setColumns([...props.columns])
     setTitle('')
+    props.handleClose()
   }
+
   return (
     <Modal aria-labelledby="contained-modal-title-vcenter" centered show={props.show} onHide={props.handleClose}>
       <Modal.Header className="addColumnModelTitle">
