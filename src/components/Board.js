@@ -14,8 +14,6 @@ const Board = props => {
   const ColumnComponent = []
   const [columns, setColumns] = useState([{ title: '', cards: [{ value: '', upVote: 0 }] }])
   const [show, setShow] = useState(false)
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
 
   useEffect(() => {
     const columnsTitle = props.type !== 'blank_board' ? props.type.split('_') : []
@@ -25,6 +23,9 @@ const Board = props => {
     })
     setColumns(columnsObjects)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   const updateColumn = (index, column) => {
     columns[index] = column
