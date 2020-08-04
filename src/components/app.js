@@ -12,8 +12,19 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/style.css'
 
 const App = props => {
-  const [template, setTemplate] = useState()
+  const [template, setTemplate] = useState('')
   const [votes, setVotes] = useState({ limit: 5, total: 0, disable: false })
+  const [show, setShow] = useState(true)
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+
+  const resetBoard = () => {
+    if (window.confirm('Are you sure you want to clear current board?')) {
+      setTemplate('')
+      setShow(true)
+    }
+  }
 
   const upVote = () => {
     if (votes.total < votes.limit) {
@@ -39,11 +50,7 @@ const App = props => {
     }
   }, [votes.total, votes.limit]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const resetTemplate = () => {
-    if (window.confirm('Are you sure you want to clear current board?')) setTemplate('')
-  }
-
-  const TemplateCompnent = <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} />
+  const TemplateCompnent = <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} show={show} handleClose={handleClose} handleShow={handleShow} />
 
   return (
     <Container fluid className="appContainer">
@@ -63,7 +70,7 @@ const App = props => {
             <Nav className="mr-auto">
               <h5 className="navHeader">Template: {toTitleCase(template)}</h5>
             </Nav>
-            <Button style={{ color: 'white', padding: '5px 10px' }} variant="warning" className="inlineBlock float-right" onClick={() => resetTemplate()}>
+            <Button style={{ color: 'white', padding: '5px 10px' }} variant="warning" className="inlineBlock float-right" onClick={resetBoard}>
               <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
             </Button>
           </Navbar>
