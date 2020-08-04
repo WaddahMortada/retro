@@ -45,6 +45,7 @@ const Column = props => {
       }
     })
     props.columnFunctions.delete(props.index)
+    setEdit(false)
   }
 
   const updateColumnTitle = title => {
