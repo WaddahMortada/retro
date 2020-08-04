@@ -51,9 +51,7 @@ const Board = props => {
     )
   })
 
-  const AddColumnModule = <div className="editModule">
-    <AddColumn columns={columns} setColumns={setColumns} show={show} handleClose={handleClose} handleShow={handleShow} />
-  </div>
+  const AddColumnModule = <AddColumn columns={columns} setColumns={setColumns} show={show} handleClose={handleClose} handleShow={handleShow} />
 
   return (
     <Row className="fullHeight nav">
