@@ -62,10 +62,7 @@ const App = props => {
           </Row>
         </Col>
       </Row>
-      {displayConfirm
-        ? <Row><Col><Confirm type="reset" submit={resetBoard} show={displayConfirm} handleClose={handleClose} /></Col></Row>
-        : null
-      }
+      {displayConfirm ? <Confirm type="reset" submit={resetBoard} show={displayConfirm} handleClose={handleClose} /> : null}
       <Row className="nav">
         <Col>
           <Navbar className="navBar" bg="dark" variant="dark">
