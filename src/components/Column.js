@@ -48,11 +48,6 @@ const Column = props => {
     setEdit(false)
   }
 
-  const updateColumnTitle = title => {
-    props.column.title = title
-    props.columnFunctions.update(props.index, props.column)
-  }
-
   props.column.cards.forEach((card, key) => {
     CardsComponent.push(
       <Card
