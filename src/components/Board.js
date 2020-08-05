@@ -68,11 +68,7 @@ const Board = props => {
           <Card.Body>
             <Row className="fullHeight">
               <Col>
-                <Row>
-                  <Col>
-                    {show ? AddColumnModule : null}
-                  </Col>
-                </Row>
+                {show ? AddColumnModule : null}
                 <Row className="fullHeight">
                   {ColumnComponent}
                   <Col><ActionsColumn /></Col>
