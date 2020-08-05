@@ -167,3 +167,25 @@ body {
   width: 50%;
   margin-bottom: 8px;
 }
+
+.confirmHeader {
+  background-color:rgb(171, 52, 64);
+  border: none;
+  text-align: center;
+  display: block !important;
+}
+
+.confirmBody {
+  background-color:rgb(171, 52, 64);
+  border: none;
+  text-align: center;
+}
+
+.confirmFooter {
+  background-color: rgb(30, 36, 37);
+  border: none;
+}
+
+.fa-cog {
+  color: rgb(218, 206, 206);
+}
