@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { toTitleCase } from '../lib/helpers'
 import Card from './Card'
+import Confirm from './Confirm'
 import CardBootstrap from 'react-bootstrap/Card'
 import { Row, Col, Button } from 'react-bootstrap'
 import { faPlus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
@@ -11,6 +12,10 @@ const Column = props => {
   const CardsComponent = []
   const [edit, setEdit] = useState(false)
   const [title, setTitle] = useState()
+  const [displayConfirm, setDisplayConfirm] = useState(false)
+
+  const handleClose = () => setDisplayConfirm(false)
+  const handleShow = () => setDisplayConfirm(true)
 
   useEffect(() => {
     setTitle(props.column.title)
@@ -46,6 +51,7 @@ const Column = props => {
     })
     props.columnFunctions.delete(props.index)
     setEdit(false)
+    handleClose()
   }
 
   props.column.cards.forEach((card, key) => {
@@ -63,7 +69,7 @@ const Column = props => {
 
   const EditTitle = <form onSubmit={submit}>
     <input className="editColumnInput" type="text" autoFocus value={title} onChange={(e) => setTitle(e.target.value)} required />
-    <Button className="float-right columnButton" size="sm" variant="danger" onClick={() => deleteColumn()}>
+    <Button className="float-right columnButton" size="sm" variant="danger" onClick={handleShow}>
       <FontAwesomeIcon className="icon-thumb" icon={faTrash} />
     </Button>
     <Button className="float-right" size="sm" variant="info" onClick={submit}>
@@ -86,6 +92,7 @@ const Column = props => {
           <FontAwesomeIcon className="icon-thumb" icon={faPlus} />
         </Button>
       </CardBootstrap.Header>
+      {displayConfirm ? <Confirm type="delete" submit={deleteColumn} show={displayConfirm} handleClose={handleClose} /> : null}
       <CardBootstrap.Body>
         <Row>
           <Col>
