@@ -55,20 +55,19 @@ const Board = props => {
 
   return (
     <Row className="fullHeight nav">
-      <Col className="fullHeight">
+      <Col>
         <Navbar className="secondNav navBar">
           <Nav className="mr-auto">
-            <h5 className="navHeader">Used Votes: {props.votes.total} out of {props.votes.limit}</h5>
+            <h5 className="navHeader">Used Votes: </h5>&nbsp;<p className="navHeader">{props.votes.total} out of {props.votes.limit}</p>
           </Nav>
           <Button variant="success" className="float-right" style={{ padding: '5px 10px' }} onClick={handleShow}>
             <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
           </Button>
         </Navbar>
         <Card className="boardCard fullHeight">
-          <Card.Body className="fullHeight">
+          <Card.Body>
             <Row className="fullHeight">
-              <Col className="fullHeight">
-                {/* <div className={(display) ? 'dim' : null} onClick={(display) ? () => setDisplayModule(false) : null}> */}
+              <Col>
                 <Row>
                   <Col>
                     {show ? AddColumnModule : null}
@@ -76,7 +75,7 @@ const Board = props => {
                 </Row>
                 <Row className="fullHeight">
                   {ColumnComponent}
-                  <Col className="fullHeight"><ActionsColumn /></Col>
+                  <Col><ActionsColumn /></Col>
                 </Row>
               </Col>
             </Row>
