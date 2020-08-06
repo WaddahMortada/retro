@@ -199,3 +199,9 @@ body {
   background-color: rgb(6, 45, 64);
   color: white;
 }
+
+.modal-mmd {
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+  max-width: 630px !important;
+}
