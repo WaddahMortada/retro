@@ -16,7 +16,7 @@ const Confirm = props => {
   }
 
   return (
-    <Modal aria-labelledby="contained-modal-title-vcenter" size="lg" centered show={props.show} onHide={props.handleClose}>
+    <Modal aria-labelledby="contained-modal-title-vcenter" size={(props.type === 'reset') ? 'lg' : 'md'} centered show={props.show} onHide={props.handleClose}>
       <Modal.Header className="confirmHeader">
         <Modal.Title>Are you sure you want to {msg}?</Modal.Title>
       </Modal.Header>
