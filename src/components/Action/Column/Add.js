@@ -27,8 +27,8 @@ const Add = props => {
         <form onSubmit={submit}>
           <Form.Group>
             <Form.Control className="inputModal" type="text" ref={autoFocus} onChange={(e) => setTitle(e.target.value)} value={title} required />
-            <Button className="float-right closeModalButton" variant="secondary" onClick={props.handleClose}>Close</Button>
             <Button className="float-right submitModalButton" variant="success" as="input" type="submit" value="Submit" />
+            <Button className="float-right closeModalButton" variant="secondary" onClick={props.handleClose}>Close</Button>
           </Form.Group>
         </form>
       </Modal.Body>
