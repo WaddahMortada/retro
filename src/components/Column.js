@@ -79,7 +79,7 @@ const Column = props => {
 
   const DisplayTitle = <div>
     <h5 className="inlineBlock">{toTitleCase(props.column.title)}</h5>
-    <Button className="float-right" size="sm" variant="info" onClick={() => setEdit(true)}>
+    <Button className="float-right" size="sm" variant="flat" onClick={() => setEdit(true)}>
       <FontAwesomeIcon className="icon-thumb" icon={faPen} />
     </Button>
   </div>

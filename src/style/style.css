@@ -189,3 +189,13 @@ body {
 .fa-cog {
   color: rgb(218, 206, 206);
 }
+
+.btn-flat {
+  background-color: rgb(10, 63, 88);
+  color: white;
+}
+
+.btn-flat:hover {
+  background-color: rgb(6, 45, 64);
+  color: white;
+}
