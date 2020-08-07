@@ -205,3 +205,13 @@ body {
   font-size: 1.5rem;
   max-width: 630px !important;
 }
+
+.scrollable {
+  overflow-x: scroll;
+  white-space: nowrap;
+  flex-wrap: nowrap !important;
+}
+
+.column {
+  height: 99%;
+}

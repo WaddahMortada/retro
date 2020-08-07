@@ -39,7 +39,7 @@ const Board = props => {
 
   columns.forEach((column, key) => {
     ColumnComponent.push(
-      <Col key={key}>
+      <Col key={key} md={{ span: 5 }} className="column">
         <Column
           index={key}
           column={column}
@@ -67,13 +67,13 @@ const Board = props => {
         <Card className="boardCard fullHeight">
           <Card.Body>
             <Row className="fullHeight">
-              <Col>
+              <Col md={{ span: 9 }}>
                 {show ? AddColumnModule : null}
-                <Row className="fullHeight">
+                <Row className="fullHeight scrollable">
                   {ColumnComponent}
-                  <Col><ActionsColumn /></Col>
                 </Row>
               </Col>
+              <Col className="fullHeight column" md={{ span: 3 }}><ActionsColumn /></Col>
             </Row>
           </Card.Body>
         </Card>
