@@ -4,7 +4,7 @@ import { Row, Col, Card, Button, Form } from 'react-bootstrap'
 
 const TemplateSelector = props => {
   const [voteLimit, setVoteLimit] = useState(5)
-  const [template, setTemplate] = useState()
+  const [template, setTemplate] = useState('mad_sad_glad')
 
   const create = () => {
     event.preventDefault()
@@ -27,7 +27,6 @@ const TemplateSelector = props => {
                   <Form.Group>
                     <Form.Label>Template</Form.Label>
                     <Form.Control as="select" onChange={(e) => setTemplate(e.target.value)} value={template} required>
-                      <option value=""></option>
                       <option value="blank_board">Blank Board</option>
                       <option value="mad_sad_glad">Mad Sad Glad</option>
                       <option value="start_stop_continue">Start Stop Continue</option>
