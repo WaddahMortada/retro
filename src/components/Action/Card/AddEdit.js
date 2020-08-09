@@ -49,11 +49,11 @@ const AddEdit = props => {
     <form>
       {displayConfirm ? <Confirm type="delete" submit={deleteCard} show={displayConfirm} handleClose={handleClose} /> : null}
       <textarea className="textareaInput columnInput" rows={rowsNumber} onKeyUp={updateInputSize} autoFocus value={inputText} onChange={e => setInputText(e.target.value)} />
-      <Button className="float-right deleteCardButton" size="sm" variant="danger" onClick={handleShow}>
-        <FontAwesomeIcon className="icon-thumb" icon={faTrash} />
-      </Button>
       <Button className="float-right submitCardButton" size="sm" variant="success" onClick={() => addCard()}>
         <FontAwesomeIcon className="icon-thumb" icon={faCheck} />
+      </Button>
+      <Button className="float-right deleteCardButton" size="sm" variant="danger" onClick={handleShow}>
+        <FontAwesomeIcon className="icon-thumb" icon={faTrash} />
       </Button>
     </form>
   )
