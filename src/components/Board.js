@@ -65,7 +65,7 @@ const Board = props => {
           <Button variant="flat" className="float-right" style={{ padding: '5px 10px' }} onClick={toggleShowActions}>
             <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
           </Button>
-          <Button variant="success" className="float-right" style={{ padding: '5px 10px' }} onClick={handleShow}>
+          <Button variant="success" className="float-right" style={{ padding: '5px 10px', margin: '0px 10px' }} onClick={handleShow}>
             <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
           </Button>
         </Navbar>
