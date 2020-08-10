@@ -4,7 +4,7 @@ import Column from './Column'
 import AddColumn from './Action/Column/Add'
 import ActionsColumn from './ActionsColumn'
 import { Row, Col, Button, Navbar, Nav, Card } from 'react-bootstrap'
-import { faColumns } from '@fortawesome/free-solid-svg-icons'
+import { faColumns , faListUl} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Board = props => {
@@ -14,6 +14,7 @@ const Board = props => {
   const ColumnComponent = []
   const [columns, setColumns] = useState([{ title: '', cards: [{ value: '', upVote: 0 }] }])
   const [show, setShow] = useState(false)
+  const [showActions, setShowActions] = useState(false)
 
   useEffect(() => {
     const columnsTitle = props.type !== 'blank_board' ? props.type.split('_') : []
@@ -26,6 +27,7 @@ const Board = props => {
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
+  const toggleShowActions = () => setShowActions(!showActions)
 
   const updateColumn = (index, column) => {
     columns[index] = column
@@ -39,7 +41,7 @@ const Board = props => {
 
   columns.forEach((column, key) => {
     ColumnComponent.push(
-      <Col key={key} md={{ span: 5 }} className="column">
+      <Col key={key} md={{ span: 4 }} className="column">
         <Column
           index={key}
           column={column}
@@ -60,6 +62,9 @@ const Board = props => {
           <Nav className="mr-auto">
             <h5 className="navHeader">Used Votes: </h5>&nbsp;<p className="navHeader">{props.votes.total} out of {props.votes.limit}</p>
           </Nav>
+          <Button variant="flat" className="float-right" style={{ padding: '5px 10px' }} onClick={toggleShowActions}>
+            <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
+          </Button>
           <Button variant="success" className="float-right" style={{ padding: '5px 10px' }} onClick={handleShow}>
             <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
           </Button>
@@ -67,13 +72,13 @@ const Board = props => {
         <Card className="boardCard fullHeight">
           <Card.Body>
             <Row className="fullHeight">
-              <Col md={{ span: 9 }}>
+              <Col md={{ span: showActions ? 9 : 12 }}>
                 {show ? AddColumnModule : null}
                 <Row className="fullHeight scrollable">
                   {ColumnComponent}
                 </Row>
               </Col>
-              <Col className="fullHeight column" md={{ span: 3 }}><ActionsColumn /></Col>
+              {showActions ? <Col className="fullHeight column" md={{ span: 3 }}><ActionsColumn /></Col> : null}
             </Row>
           </Card.Body>
         </Card>
