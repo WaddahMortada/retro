@@ -41,7 +41,7 @@ const Board = props => {
 
   let carouselClass = null
   if (columns.length >= 3 && showActions) {
-    carouselClass = 'carousel-48'
+    carouselClass = 'carousel-45'
   } else if (columns.length > 3) {
     carouselClass = 'carousel-32'
   }
