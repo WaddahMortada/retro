@@ -27,8 +27,12 @@ body {
 }
 
 .boardCard {
-  /* rgb(16, 92, 60) */
   background-color: rgb(30, 101, 75);
+  margin-top: 3px;
+}
+
+.columnCard {
+  background-color: rgb(32, 111, 82);
   margin-top: 3px;
 }
 
@@ -42,8 +46,7 @@ body {
 }
 
 .itemChildCard {
-  /* rgb(43 101 71) */
-  background-color:  rgb(35, 109, 82);
+  background-color:  rgb(41, 125, 95);
 }
 
 .nav {

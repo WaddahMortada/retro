@@ -85,7 +85,7 @@ const Column = props => {
   </div>
 
   return (
-    <CardBootstrap className="boardCard fullHeight">
+    <CardBootstrap className="columnCard fullHeight">
       <CardBootstrap.Header>
         {edit ? EditTitle : DisplayTitle}
         <Button variant="dark" className="addCardButton" onClick={() => addCard()}>
