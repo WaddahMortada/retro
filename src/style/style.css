@@ -46,7 +46,8 @@ body {
 }
 
 .itemChildCard {
-  background-color:  rgb(41, 125, 95);
+  background-color:  rgb(10, 61, 85);
+  border-radius: 0.40rem;
 }
 
 .nav {
