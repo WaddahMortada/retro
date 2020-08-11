@@ -78,7 +78,7 @@ const Board = props => {
         {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
         <Navbar className="navBar" bg="dark" variant="dark">
           <Nav className="mr-auto">
-            <h5 className="navHeader">Used Votes: </h5>&nbsp;<p className="navHeader">{props.votes.total} out of {props.votes.limit}</p>
+            <h5 className="navHeader">Used Votes: </h5>&nbsp;<p className={'navHeader ' + (props.votes.total === props.votes.limit ? 'danger' : null)}><b>{props.votes.total} out of {props.votes.limit}</b></p>
           </Nav>
           <Button variant="flat" className="float-right" style={{ padding: '5px 10px', fontSize: '17px' }} onClick={toggleShowActions}>
             <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />

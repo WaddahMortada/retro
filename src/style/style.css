@@ -265,3 +265,7 @@ body {
 .show{
   display: block;
 }
+
+.danger {
+  color: rgb(158, 25, 43);
+}
