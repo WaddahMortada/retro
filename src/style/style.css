@@ -209,6 +209,16 @@ textarea:focus {
   color: white;
 }
 
+.btn-flat-light {
+  background-color: rgb(16, 95, 132);
+  color: white;
+}
+
+.btn-flat-light:hover {
+  background-color: rgb(27, 114, 155);
+  color: white;
+}
+
 .btn-dark {
   background-color: rgb(30, 43, 56);
   color: white;
@@ -231,6 +241,13 @@ textarea:focus {
 
 .bg-dark {
   background-color: rgb(31, 42, 53) !important;
+}
+
+.btn-smm {
+  padding: .3rem .45rem;
+  font-size: .65rem;
+  line-height: 1.5;
+  border-radius: .2rem;
 }
 
 .modal-mmd {

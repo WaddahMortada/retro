@@ -29,7 +29,7 @@ const View = props => {
     <Row>
       <Col>
         <div className="viewCard">{props.card.value}</div>
-        <Button variant="info" size="sm" className="float-right" onClick={() => props.setEdit(true)}>
+        <Button variant="flat-light" size="smm" className="float-right" onClick={() => props.setEdit(true)}>
           <FontAwesomeIcon className="icon-thumb" icon={faPen} />
         </Button>
         <div className={'inlineBlock thumb' + ((props.votes.disable) ? ' disable' : '')} onClick={() => upVote()}>
