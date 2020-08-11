@@ -257,3 +257,11 @@ body {
 .carousel-45 {
   flex: 0 0 45%;
 }
+
+.hide {
+  display: none;
+}
+
+.show{
+  display: block;
+}
