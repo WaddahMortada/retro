@@ -69,7 +69,7 @@ const Board = props => {
           <Nav className="mr-auto">
             <h5 className="navHeader">Used Votes: </h5>&nbsp;<p className="navHeader">{props.votes.total} out of {props.votes.limit}</p>
           </Nav>
-          <Button variant="flat" className="float-right" style={{ padding: '5px 10px' }} onClick={toggleShowActions}>
+          <Button variant="flat" className="float-right" style={{ padding: '5px 10px', fontSize: '17px' }} onClick={toggleShowActions}>
             <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
           </Button>
           <Button variant="success" className="float-right" style={{ padding: '5px 10px', margin: '0px 10px' }} onClick={handleShow}>
