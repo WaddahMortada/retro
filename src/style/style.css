@@ -6,12 +6,12 @@ body {
 .appContainer {
   width: 98%;
   height: 85%;
-  padding: 25px;
+  padding: 5px 25px;
 }
 
 #app {
   height: 100vh;
-  padding-bottom: 9%;
+  padding-bottom: 5%;
 }
 
 .logoImage {
