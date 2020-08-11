@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import TemplateSelector from './TempleteSelector'
 import Board from './Board'
-import Confirm from './Confirm'
-import { toTitleCase } from '../lib/helpers'
 import { Container, Row, Col, Button, Navbar, Nav } from 'react-bootstrap'
-import { faChalkboard } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Warrimoo from '../assets/warrimoo.gif'
 import RetroooGta from '../assets/retroooo-gta-thick.png'
 import '../assets/warrimoo.png'
@@ -14,16 +10,7 @@ import '../style/style.css'
 
 const App = props => {
   const [template, setTemplate] = useState('')
-  const [displayConfirm, setDisplayConfirm] = useState(false)
   const [votes, setVotes] = useState({ limit: 5, total: 0, disable: false })
-
-  const handleClose = () => setDisplayConfirm(false)
-  const handleShow = () => setDisplayConfirm(true)
-
-  const resetBoard = () => {
-    handleClose()
-    setTemplate('')
-  }
 
   const upVote = () => {
     if (votes.total < votes.limit) {
@@ -49,36 +36,21 @@ const App = props => {
     }
   }, [votes.total, votes.limit]) // eslint-disable-line react-hooks/exhaustive-deps
 
-  const TemplateCompnent = <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} />
-
   return (
     <Container fluid className="appContainer">
       <Row>
-        <Col>
-          <Row className="justify-content-md-center">
-            <img className="logoImage" src={Warrimoo} />
-          </Row>
-          <Row className="justify-content-md-center">
-            <img className="logo" src={RetroooGta} />
-          </Row>
-        </Col>
-      </Row>
-      {displayConfirm ? <Confirm type="reset" submit={resetBoard} show={displayConfirm} handleClose={handleClose} /> : null}
-      <Row className="nav">
-        <Col>
-          <Navbar className="navBar" bg="dark" variant="dark">
-            <Nav className="mr-auto">
-              <h5 className="navHeader">Template: </h5> &nbsp; <p className="navHeader">{template ? toTitleCase(template) : 'Unset!'}</p>
-            </Nav>
-            <Button style={{ color: 'white', padding: '5px 10px' }} variant="dark-red" className="inlineBlock float-right" onClick={handleShow} disabled={(!template) ? true : false}>
-              <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
-            </Button>
-          </Navbar>
-        </Col>
+          <Col>
+            <Row className="justify-content-md-center">
+              <img className="logoImage" src={Warrimoo} />
+            </Row>
+            <Row className="justify-content-md-center">
+              <img className="logo" src={RetroooGta} />
+            </Row>
+          </Col>
       </Row>
       {!template
-        ? TemplateCompnent
-        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} />
+        ? <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} />
+        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} resetBoard={() => setTemplate('')} />
       }
     </Container>
   )

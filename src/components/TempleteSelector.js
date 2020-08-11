@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Row, Col, Card, Button, Form } from 'react-bootstrap'
+import { Row, Col, Nav, Navbar, Card, Button, Form } from 'react-bootstrap'
 
 const TemplateSelector = props => {
   const [voteLimit, setVoteLimit] = useState(5)
@@ -14,12 +14,14 @@ const TemplateSelector = props => {
   }
 
   return (
-    <Row>
+    <Row className="fullHeight nav">
       <Col>
+        <Navbar className="navBar" bg="dark" variant="dark">
+          <Nav className="mr-auto">
+            <h5 className="navHeader">Create Board</h5>
+          </Nav>
+        </Navbar>
         <Card className="boardCard">
-          <Card.Header className="secondNav">
-            <h5>Create Board</h5>
-          </Card.Header>
           <Card.Body>
             <form onSubmit={create}>
               <Row className="justify-content-md-center">
