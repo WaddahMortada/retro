@@ -230,6 +230,10 @@ body {
   color: white;
 }
 
+.bg-dark {
+  background-color: rgb(31, 42, 53) !important;
+}
+
 .modal-mmd {
   padding: 1rem 1.5rem;
   font-size: 1.5rem;
