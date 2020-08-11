@@ -32,6 +32,11 @@ body {
   margin-top: 3px;
 }
 
+.actionsBoardCard {
+  background-color: rgb(10, 63, 88);
+  margin-top: 3px;
+}
+
 .secondNav {
   background-color: rgb(9, 82, 82);
 }

@@ -30,7 +30,7 @@ const ActionsColumn = props => {
   }
 
   return (
-    <Card className="boardCard fullHeight">
+    <Card className="actionsBoardCard fullHeight">
       <Card.Header>
         <h5>Actions</h5>
       </Card.Header>
