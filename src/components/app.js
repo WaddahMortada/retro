@@ -70,7 +70,7 @@ const App = props => {
             <Nav className="mr-auto">
               <h5 className="navHeader">Template: </h5> &nbsp; <p className="navHeader">{template ? toTitleCase(template) : 'Unset!'}</p>
             </Nav>
-            <Button style={{ color: 'white', padding: '5px 10px' }} variant="warning" className="inlineBlock float-right" onClick={handleShow} disabled={(!template) ? true : false}>
+            <Button style={{ color: 'white', padding: '5px 10px' }} variant="dark-red" className="inlineBlock float-right" onClick={handleShow} disabled={(!template) ? true : false}>
               <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
             </Button>
           </Navbar>
