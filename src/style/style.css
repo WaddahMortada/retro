@@ -217,3 +217,11 @@ body {
 .column {
   height: 99%;
 }
+
+.carousel-32 {
+  flex: 0 0 32%;
+}
+
+.carousel-48 {
+  flex: 0 0 48%;
+}

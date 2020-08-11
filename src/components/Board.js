@@ -39,9 +39,16 @@ const Board = props => {
     setColumns([...columns])
   }
 
+  let carouselClass = null
+  if (columns.length >= 3 && showActions) {
+    carouselClass = 'carousel-48'
+  } else if (columns.length > 3) {
+    carouselClass = 'carousel-32'
+  }
+
   columns.forEach((column, key) => {
     ColumnComponent.push(
-      <Col key={key} md={{ span: 4 }} className="column">
+      <Col key={key} md={{ span: showActions ? 6 : 4 }} className={'column ' + carouselClass}>
         <Column
           index={key}
           column={column}
@@ -72,13 +79,13 @@ const Board = props => {
         <Card className="boardCard fullHeight">
           <Card.Body>
             <Row className="fullHeight">
-              <Col md={{ span: showActions ? 9 : 12 }}>
+              <Col md={{ span: showActions ? 8 : 12 }}>
                 {show ? AddColumnModule : null}
                 <Row className="fullHeight scrollable">
                   {ColumnComponent}
                 </Row>
               </Col>
-              {showActions ? <Col className="fullHeight column" md={{ span: 3 }}><ActionsColumn /></Col> : null}
+              {showActions ? <Col className="fullHeight column" md={{ span: 4 }}><ActionsColumn /></Col> : null}
             </Row>
           </Card.Body>
         </Card>
