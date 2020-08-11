@@ -6,7 +6,7 @@ const bulletWithSpace = `${bullet} `
 const enter = 13
 
 const ActionsColumn = props => {
-  const [actions, setActions] = useState(bullet)
+  const [actions, setActions] = useState(bulletWithSpace)
 
   const handleInput = (event) => {
     const { keyCode, target } = event
