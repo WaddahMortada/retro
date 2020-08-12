@@ -12,6 +12,11 @@ const App = props => {
   const [template, setTemplate] = useState('')
   const [votes, setVotes] = useState({ limit: 5, total: 0, disable: false })
 
+  const resetBoard = () => {
+    setTemplate('')
+    setVotes({ limit: 5, total: 0, disable: false })
+  }
+
   const upVote = () => {
     if (votes.total < votes.limit) {
       votes.total = votes.total + 1
@@ -50,7 +55,7 @@ const App = props => {
       </Row>
       {!template
         ? <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} />
-        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} resetBoard={() => setTemplate('')} />
+        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} resetBoard={resetBoard} />
       }
     </Container>
   )
