@@ -35,7 +35,7 @@ const ActionsColumn = props => {
         <h5>Actions</h5>
       </Card.Header>
       <Card.Body>
-        <textarea className="textareaInput" onBlur={() => console.log('Blur: ', actions)} onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} onClick={handleInput} rows="5" value={actions}></textarea>
+        <textarea className="textareaInput" onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} onClick={handleInput} rows="5" value={actions}></textarea>
       </Card.Body>
     </Card>
   )
