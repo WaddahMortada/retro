@@ -98,7 +98,7 @@ const Board = props => {
                   {ColumnComponent}
                 </Row>
               </Col>
-              <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 4 }}><ActionsColumn /></Col>
+              <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 4 }}><ActionsColumn showActions={showActions} /></Col>
             </Row>
           </Card.Body>
         </Card>

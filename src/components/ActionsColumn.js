@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import { Card, Button } from 'react-bootstrap'
-import { exportActionsToPdf } from '../lib/helpers'
+import { exportActionsToPdf, useFocus } from '../lib/helpers'
 import { faFileExport } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -10,8 +11,13 @@ const enter = 13
 
 const ActionsColumn = props => {
   const [actions, setActions] = useState(bulletWithSpace)
+  const [actionsRef, setActionsFocus] = useFocus()
 
-  const handleInput = (event) => {
+  useEffect(() => {
+    setActionsFocus(props.showActions)
+  }, [props.showActions])
+
+  const handleInput = event => {
     const { keyCode, target } = event
     const selectionStart = target.selectionStart
 
@@ -36,15 +42,19 @@ const ActionsColumn = props => {
     <Card className="actionsBoardCard fullHeight">
       <Card.Header>
         <h5 className="inlineBlock">Actions</h5>
-        <Button className="float-right" size="sm" variant="info" onClick={() => exportActionsToPdf(actions)}>
+        <Button className="float-right" size="sm" variant="info" title="Export to PDF" onClick={() => exportActionsToPdf(actions)}>
           <FontAwesomeIcon className="icon-thumb" icon={faFileExport} />
         </Button>
       </Card.Header>
       <Card.Body>
-        <textarea className="textareaInput" onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} onClick={handleInput} rows="5" value={actions}></textarea>
+        <textarea className="textareaInput" ref={actionsRef} autoFocus={props.showActions} onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} onClick={handleInput} value={actions}></textarea>
       </Card.Body>
     </Card>
   )
+}
+
+ActionsColumn.propTypes = {
+  showActions: PropTypes.any
 }
 
 export default ActionsColumn

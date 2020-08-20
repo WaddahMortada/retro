@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 
@@ -32,4 +33,19 @@ export const exportActionsToPdf = (actions) => {
   }
 
   pdfMake.createPdf(docDefinition).open()
+}
+
+export const useFocus = () => {
+  const htmlElRef = useRef(null)
+
+  const setFocus = () => {
+    const element = htmlElRef.current
+
+    if (element) {
+      element.focus()
+      element.setSelectionRange(element.value.length, element.value.length)
+    }
+  }
+
+  return [htmlElRef, setFocus]
 }
