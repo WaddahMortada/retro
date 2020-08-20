@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
-import Card from 'react-bootstrap/Card'
+import { Card, Button } from 'react-bootstrap'
+import { exportActionsToPdf } from '../lib/helpers'
+import { faFileExport } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const bullet = '\u2022'
 const bulletWithSpace = `${bullet} `
@@ -32,7 +35,10 @@ const ActionsColumn = props => {
   return (
     <Card className="actionsBoardCard fullHeight">
       <Card.Header>
-        <h5>Actions</h5>
+        <h5 className="inlineBlock">Actions</h5>
+        <Button className="float-right" size="sm" variant="info" onClick={() => exportActionsToPdf(actions)}>
+          <FontAwesomeIcon className="icon-thumb" icon={faFileExport} />
+        </Button>
       </Card.Header>
       <Card.Body>
         <textarea className="textareaInput" onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} onClick={handleInput} rows="5" value={actions}></textarea>
