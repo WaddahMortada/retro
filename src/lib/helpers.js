@@ -11,13 +11,7 @@ export const toTitleCase = str => {
 export const exportActionsToPdf = (actions) => {
   pdfMake.vfs = pdfFonts.pdfMake.vfs
 
-  const checkbox = '\u2610'
-  const bullet = '\u2022'
   const now = new Date().toISOString().split("T")[0]
-
-  const regex = new RegExp(bullet, 'g')
-  const actionsCheckboxed = actions.replace(regex, checkbox)
-
   const docDefinition = {
     info: {
       title: `Retro-Actions-${now}.pdf`,
@@ -25,7 +19,7 @@ export const exportActionsToPdf = (actions) => {
     },
     header: { text: 'Retro Actions', alignment: 'center', style: 'header', margin: 10 },
     footer: { text: `${now}`, alignment: 'center', style: 'footer', margin: 10 },
-    content: actionsCheckboxed,
+    content: actions,
     styles: {
       header: {
         fontSize: 22,
