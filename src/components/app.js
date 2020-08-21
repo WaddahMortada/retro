@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import TemplateSelector from './TempleteSelector'
 import Board from './Board'
-import { Container, Row, Col, Button, Navbar, Nav } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import Warrimoo from '../assets/warrimoo.gif'
 import RetroooGta from '../assets/retroooo-gta-thick.png'
 import '../assets/warrimoo.png'
