@@ -9,6 +9,11 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
+  devServer: {
+    overlay: true,
+    inline: true,
+    port: 3001
+  },
   module: {
     rules: [
       {
