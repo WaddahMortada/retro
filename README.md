@@ -1,2 +1,2 @@
 # retro
-React JS Retro Tool
+A websocket and React JS Retro Tool app
