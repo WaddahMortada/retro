@@ -10,7 +10,11 @@ const TemplateSelector = props => {
     event.preventDefault()
     props.setTemplate(template)
     props.votes.limit = voteLimit
-    props.setVotes({ ...props.votes })
+    const votes = { ...props.votes }
+    props.setVotes(votes)
+
+    props.socket.emit('setTemplate', template)
+    props.socket.emit('setVotes', votes)
   }
 
   return (
@@ -53,7 +57,8 @@ const TemplateSelector = props => {
 TemplateSelector.propTypes = {
   setTemplate: PropTypes.any,
   setVotes: PropTypes.any,
-  votes: PropTypes.any
+  votes: PropTypes.any,
+  socket: PropTypes.any
 }
 
 export default TemplateSelector

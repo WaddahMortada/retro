@@ -13,7 +13,9 @@ const Add = props => {
   const submit = (event) => {
     event.preventDefault()
     props.columns.push({ title: title, cards: [] })
-    props.setColumns([...props.columns])
+    const columns = [...props.columns]
+    props.setColumns(columns)
+    props.socket.emit('setColumns', columns)
     setTitle('')
     props.handleClose()
   }
@@ -41,7 +43,8 @@ Add.propTypes = {
   setColumns: PropTypes.any,
   show: PropTypes.any,
   handleShow: PropTypes.any,
-  handleClose: PropTypes.any
+  handleClose: PropTypes.any,
+  socket: PropTypes.any
   // closeModule: PropTypes.any
 }
 

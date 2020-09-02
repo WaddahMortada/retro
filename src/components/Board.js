@@ -25,7 +25,18 @@ const Board = props => {
       columnsObjects.push({ title: title, cards: [] })
     })
     setColumns(columnsObjects)
+    // props.socket.emit('setColumns', columnsObjects)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // props.socket.on('columnsState', (columnsState) => {
+  //   console.log('columnsState', columnsState)
+  //   setColumns(columnsState)
+  // })
+
+  props.socket.on('setColumns', (newColumns) => {
+    console.log('setColumns', newColumns)
+    setColumns(newColumns)
+  })
 
   const handleCloseConfirm = () => setShowConfirm(false)
   const handleShowConfirm = () => setShowConfirm(true)
@@ -40,12 +51,16 @@ const Board = props => {
 
   const updateColumn = (index, column) => {
     columns[index] = column
-    setColumns([...columns])
+    const updatedColumns = [...columns]
+    setColumns(updatedColumns)
+    props.socket.emit('setColumns', updatedColumns)
   }
 
   const deleteColumn = index => {
     columns.splice(index, 1)
-    setColumns([...columns])
+    const updatedColumns = [...columns]
+    setColumns(updatedColumns)
+    props.socket.emit('setColumns', updatedColumns)
   }
 
   let carouselClass = null
@@ -69,7 +84,7 @@ const Board = props => {
     )
   })
 
-  const AddColumnModule = <AddColumn columns={columns} setColumns={setColumns} show={showAddColumn} handleClose={handleCloseAddColumn} handleShow={handleShowAddColumn} />
+  const AddColumnModule = <AddColumn columns={columns} setColumns={setColumns} show={showAddColumn} handleClose={handleCloseAddColumn} handleShow={handleShowAddColumn} socket={props.socket} />
 
   return (
     <Row className="fullHeight nav">
@@ -111,7 +126,8 @@ Board.propTypes = {
   type: PropTypes.any,
   votes: PropTypes.any,
   voteFunctions: PropTypes.any,
-  resetBoard: PropTypes.any
+  resetBoard: PropTypes.any,
+  socket: PropTypes.any
 }
 
 export default Board
