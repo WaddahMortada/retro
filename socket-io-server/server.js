@@ -23,25 +23,25 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('Client disconnected')
     socket.removeAllListeners()
-    templateState = votesState = columnsState = null
+    // templateState = votesState = columnsState = null
   })
 
   socket.on('setTemplate', template => {
     console.log(template)
     socket.broadcast.emit('setTemplate', template)
-    templateState = template
+    // templateState = template
   })
 
   socket.on('setVotes', votes => {
     console.log(votes)
     socket.broadcast.emit('setVotes', votes)
-    votesState = votes
+    // votesState = votes
   })
 
   socket.on('setColumns', columns => {
     console.log(columns)
     socket.broadcast.emit('setColumns', columns)
-    columnsState = columns
+    // columnsState = columns
   })
 })
 
