@@ -10,38 +10,48 @@ app.use(index)
 const server = http.createServer(app)
 const io = socketIo(server)
 
-let templateState
-let votesState
-let columnsState
+const state = {
+  template: null,
+  votes: null,
+  columns: null
+}
+
+const ids = []
 
 io.on('connection', (socket) => {
-  console.log('New client connected')
-  // if (templateState) socket.emit('templateState', templateState)
-  // if (votesState) socket.emit('votesState', votesState)
-  // if (columnsState) socket.emit('columnsState', columnsState)
+  console.info(`New client connected [id=${socket.id}]`)
+  ids.push(socket.id)
+
+  // io.emit('join', socket.id)
+  console.log('emit state: ', state)
+  socket.emit('join', { id: socket.id, state: state })
 
   socket.on('disconnect', () => {
-    console.log('Client disconnected')
+    console.log(`Client disconnected  [id=${socket.id}]`)
     socket.removeAllListeners()
-    // templateState = votesState = columnsState = null
+    const index = ids.indexOf(socket.id)
+    if (index > -1) ids.splice(index, 1)
   })
 
   socket.on('setTemplate', template => {
-    console.log(template)
+    console.log('template: ', template)
     socket.broadcast.emit('setTemplate', template)
-    // templateState = template
+    state.template = template
+    console.log('state: ', state)
   })
 
   socket.on('setVotes', votes => {
-    console.log(votes)
+    console.log('votes: ', votes)
     socket.broadcast.emit('setVotes', votes)
-    // votesState = votes
+    state.votes = votes
+    console.log('state: ', state)
   })
 
   socket.on('setColumns', columns => {
-    console.log(columns)
+    console.log('columns: ', columns)
     socket.broadcast.emit('setColumns', columns)
-    // columnsState = columns
+    state.columns = columns
+    console.log('state: ', state)
   })
 })
 

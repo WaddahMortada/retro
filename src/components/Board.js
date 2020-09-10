@@ -13,30 +13,9 @@ const Board = props => {
   // Column: {title, cards}
   // Board: [column1, column2]
   const ColumnComponent = []
-  const [columns, setColumns] = useState([{ title: '', cards: [{ value: '', upVote: 0 }] }])
   const [showActions, setShowActions] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
   const [showAddColumn, setShowAddColumn] = useState(false)
-
-  useEffect(() => {
-    const columnsTitle = props.type !== 'blank_board' ? props.type.split('_') : []
-    const columnsObjects = []
-    columnsTitle.forEach(title => {
-      columnsObjects.push({ title: title, cards: [] })
-    })
-    setColumns(columnsObjects)
-    // props.socket.emit('setColumns', columnsObjects)
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
-
-  // props.socket.on('columnsState', (columnsState) => {
-  //   console.log('columnsState', columnsState)
-  //   setColumns(columnsState)
-  // })
-
-  props.socket.on('setColumns', (newColumns) => {
-    console.log('setColumns', newColumns)
-    setColumns(newColumns)
-  })
 
   const handleCloseConfirm = () => setShowConfirm(false)
   const handleShowConfirm = () => setShowConfirm(true)
@@ -50,27 +29,27 @@ const Board = props => {
   }
 
   const updateColumn = (index, column) => {
-    columns[index] = column
-    const updatedColumns = [...columns]
-    setColumns(updatedColumns)
+    props.columns[index] = column
+    const updatedColumns = [...props.columns]
+    props.setColumns(updatedColumns)
     props.socket.emit('setColumns', updatedColumns)
   }
 
   const deleteColumn = index => {
-    columns.splice(index, 1)
-    const updatedColumns = [...columns]
-    setColumns(updatedColumns)
+    props.columns.splice(index, 1)
+    const updatedColumns = [...props.columns]
+    props.setColumns(updatedColumns)
     props.socket.emit('setColumns', updatedColumns)
   }
 
   let carouselClass = null
-  if (columns.length >= 3 && showActions) {
+  if (props.columns.length >= 3 && showActions) {
     carouselClass = 'carousel-45'
-  } else if (columns.length > 3) {
+  } else if (props.columns.length > 3) {
     carouselClass = 'carousel-32'
   }
 
-  columns.forEach((column, key) => {
+  props.columns.forEach((column, key) => {
     ColumnComponent.push(
       <Col key={key} md={{ span: showActions ? 6 : 4 }} className={'column ' + carouselClass}>
         <Column
@@ -84,7 +63,7 @@ const Board = props => {
     )
   })
 
-  const AddColumnModule = <AddColumn columns={columns} setColumns={setColumns} show={showAddColumn} handleClose={handleCloseAddColumn} handleShow={handleShowAddColumn} socket={props.socket} />
+  const AddColumnModule = <AddColumn columns={props.columns} setColumns={props.setColumns} show={showAddColumn} handleClose={handleCloseAddColumn} handleShow={handleShowAddColumn} socket={props.socket} />
 
   return (
     <Row className="fullHeight nav">
@@ -127,7 +106,9 @@ Board.propTypes = {
   votes: PropTypes.any,
   voteFunctions: PropTypes.any,
   resetBoard: PropTypes.any,
-  socket: PropTypes.any
+  socket: PropTypes.any,
+  columns: PropTypes.any,
+  setColumns: PropTypes.any
 }
 
 export default Board
