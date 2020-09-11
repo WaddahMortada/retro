@@ -30,7 +30,7 @@ const Column = props => {
 
   const addCard = () => {
     props.column.cards.push({ value: '', upVote: 0 })
-    props.columnFunctions.update(props.index, props.column)
+    props.columnFunctions.update(props.index, props.column, false)
   }
 
   const updateCard = (index, card) => {

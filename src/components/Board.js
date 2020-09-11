@@ -28,11 +28,11 @@ const Board = props => {
     props.resetBoard()
   }
 
-  const updateColumn = (index, column) => {
+  const updateColumn = (index, column, broadcastUpdate = true) => {
     props.columns[index] = column
     const updatedColumns = [...props.columns]
     props.setColumns(updatedColumns)
-    props.socket.emit('setColumns', updatedColumns)
+    if (broadcastUpdate) props.socket.emit('setColumns', updatedColumns)
   }
 
   const deleteColumn = index => {
