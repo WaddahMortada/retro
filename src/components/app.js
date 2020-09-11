@@ -6,7 +6,7 @@ const App = props => {
   const socket = socketIOClient('http://localhost:8080')
 
   useEffect(() => {
-    socket.on('connect', (data) => {
+    socket.on('connect', () => {
       console.log('connected')
     })
   }, [])
