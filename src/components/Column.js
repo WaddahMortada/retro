@@ -29,7 +29,7 @@ const Column = props => {
   }
 
   const addCard = () => {
-    props.column.cards.push({ value: '', upVote: 0 })
+    props.column.cards.push({ value: '', upVote: 0, id: props.id })
     props.columnFunctions.update(props.index, props.column, false)
   }
 
@@ -63,6 +63,7 @@ const Column = props => {
         cardFunctions={{ update: updateCard, delete: deleteCard }}
         voteFunctions={props.voteFunctions}
         votes={props.votes}
+        id={props.id}
       />
     )
   })
@@ -110,7 +111,8 @@ Column.propTypes = {
   voteFunctions: PropTypes.any,
   votes: PropTypes.any,
   setColumnTitle: PropTypes.any,
-  columnFunctions: PropTypes.any
+  columnFunctions: PropTypes.any,
+  id: PropTypes.any,
 }
 
 export default Column

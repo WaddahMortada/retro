@@ -20,7 +20,7 @@ const Card = props => {
     props.cardFunctions.delete(props.index)
   }
 
-  const ViewCardModule = <ViewCard updateCard={updateCard} card={props.card} setEdit={setEdit} voteFunctions={props.voteFunctions} votes={props.votes} />
+  const ViewCardModule = <ViewCard updateCard={updateCard} card={props.card} setEdit={setEdit} voteFunctions={props.voteFunctions} votes={props.votes} id={props.id} />
   const AddEditCardModule = <AddEditCard index={props.index} card={props.card} cardFunctions={{ update: updateCard, delete: deleteCard }} />
 
   return (
@@ -37,7 +37,8 @@ Card.propTypes = {
   index: PropTypes.any,
   cardFunctions: PropTypes.any,
   voteFunctions: PropTypes.any,
-  votes: PropTypes.any
+  votes: PropTypes.any,
+  id: PropTypes.any
 }
 
 export default Card

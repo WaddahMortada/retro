@@ -58,6 +58,7 @@ const Board = props => {
           votes={props.votes}
           voteFunctions={props.voteFunctions}
           columnFunctions={{ update: updateColumn, delete: deleteColumn }}
+          id={props.id}
         />
       </Col>
     )
@@ -109,6 +110,7 @@ Board.propTypes = {
   socket: PropTypes.any,
   columns: PropTypes.any,
   setColumns: PropTypes.any
+  id: PropTypes.any
 }
 
 export default Board

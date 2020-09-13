@@ -25,13 +25,15 @@ const View = props => {
     <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsDown} />
   </div>
 
+  const EditButton = <Button variant="flat-light" size="smm" className="float-right" onClick={() => props.setEdit(true)}>
+    <FontAwesomeIcon className="icon-thumb" icon={faPen} />
+  </Button>
+
   return (
     <Row>
       <Col>
         <div className="viewCard">{props.card.value}</div>
-        <Button variant="flat-light" size="smm" className="float-right" onClick={() => props.setEdit(true)}>
-          <FontAwesomeIcon className="icon-thumb" icon={faPen} />
-        </Button>
+        {props.id === props.card.id ? EditButton : null}
         <div className={'inlineBlock thumb' + ((props.votes.disable) ? ' disable' : '')} onClick={() => upVote()}>
           <FontAwesomeIcon className="icon-thumb" icon={faThumbsUp} />
           <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsUp} />
@@ -48,7 +50,8 @@ View.propTypes = {
   setEdit: PropTypes.any,
   updateCard: PropTypes.any,
   voteFunctions: PropTypes.any,
-  votes: PropTypes.any
+  votes: PropTypes.any,
+  id: PropTypes.any
 }
 
 export default View
