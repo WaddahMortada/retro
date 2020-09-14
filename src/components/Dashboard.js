@@ -13,7 +13,7 @@ const Dashboard = props => {
   const [id, setId] = useState()
   const [template, setTemplate] = useState('')
   const [votes, setVotes] = useState({ limit: 5, total: 0, disable: false })
-  const [columns, setColumns] = useState([{ title: '', cards: [{ value: '', upVote: 0, id: ''  }] }])
+  const [columns, setColumns] = useState([{ title: '', cards: [{ value: '', totalCardVotes: 0, id: ''  }] }])
 
   // Handling Socket Events
   props.socket.on('join', data => {

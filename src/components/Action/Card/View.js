@@ -8,14 +8,14 @@ import { Row, Col, Button } from 'react-bootstrap'
 const View = props => {
   const upVote = () => {
     if (!props.votes.disable) {
-      props.card.upVote++
+      props.card.totalCardVotes++
       props.updateCard(props.card)
       props.voteFunctions.upVote()
     }
   }
 
   const downVote = () => {
-    props.card.upVote--
+    props.card.totalCardVotes--
     props.updateCard(props.card)
     props.voteFunctions.downVote()
   }
@@ -37,9 +37,9 @@ const View = props => {
         <div className={'inlineBlock thumb' + ((props.votes.disable) ? ' disable' : '')} onClick={() => upVote()}>
           <FontAwesomeIcon className="icon-thumb" icon={faThumbsUp} />
           <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsUp} />
-          {props.card.upVote ? props.card.upVote : null}
+          {props.card.totalCardVotes ? props.card.totalCardVotes : null}
         </div>
-        { props.card.upVote ? DownVote : null }
+        {props.card.totalCardVotes ? DownVote : null }
       </Col>
     </Row>
   )
