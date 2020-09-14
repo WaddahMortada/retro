@@ -109,7 +109,7 @@ Board.propTypes = {
   resetBoard: PropTypes.any,
   socket: PropTypes.any,
   columns: PropTypes.any,
-  setColumns: PropTypes.any
+  setColumns: PropTypes.any,
   id: PropTypes.any
 }
 
