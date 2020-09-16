@@ -11,6 +11,7 @@ import '../style/style.css'
 
 const Dashboard = props => {
   const [id, setId] = useState()
+  // const [template, setTemplate] = useState('mad_sad_glad')
   const [template, setTemplate] = useState('')
   const [votes, setVotes] = useState({ limit: 5, total: 0, disable: false })
   const [columns, setColumns] = useState([{ title: '', cards: [{ value: '', totalCardVotes: 0, id: ''  }] }])
@@ -52,9 +53,9 @@ const Dashboard = props => {
     if (newVotes !== votes) setVotes(newVotes)
   })
 
-  props.socket.on('setColumns', (newColumns) => {
-    if (newColumns !== columns) setColumns(newColumns)
-  })
+  // props.socket.on('setColumns', (newColumns) => {
+  //   if (newColumns !== columns) setColumns(newColumns)
+  // })
 
   const resetBoard = () => {
     setTemplate('')
@@ -88,6 +89,10 @@ const Dashboard = props => {
     })
     setColumns(columnsObjects)
   }, [template])
+
+  // useEffect(() => {
+  //   props.socket.emit('setColumns', columns)
+  // }, [columns])
 
   return (
     <Container fluid className="appContainer">

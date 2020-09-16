@@ -19,6 +19,8 @@ const state = {
 const ids = []
 
 io.on('connection', (socket) => {
+  // const address = socket.handshake.address
+  // const clientIp = socket.request.connection.remoteAddress
   console.info(`New client connected [id=${socket.id}]`)
   ids.push(socket.id)
 
@@ -33,6 +35,7 @@ io.on('connection', (socket) => {
     if (index > -1) ids.splice(index, 1)
   })
 
+  // Set App State
   socket.on('setTemplate', template => {
     console.log('template: ', template)
     socket.broadcast.emit('setTemplate', template)
@@ -49,9 +52,35 @@ io.on('connection', (socket) => {
 
   socket.on('setColumns', columns => {
     console.log('columns: ', columns)
-    socket.broadcast.emit('setColumns', columns)
+    // socket.broadcast.emit('setColumns', columns)
     state.columns = columns
     console.log('state: ', state)
+  })
+
+  // Column Actions
+  socket.on('AddColumn', column => {
+    socket.broadcast.emit('AddColumn', column)
+  })
+
+  socket.on('updateColummnTitle', column => {
+    socket.broadcast.emit('updateColummnTitle', column)
+  })
+
+  socket.on('deleteColumn', index => {
+    socket.broadcast.emit('deleteColumn', index)
+  })
+
+  // Card Actions
+  socket.on('addCard', data => {
+    socket.broadcast.emit('addCard', data)
+  })
+
+  socket.on('updateCard', data => {
+    socket.broadcast.emit('updateCard', data)
+  })
+
+  socket.on('deleteCard', data => {
+    socket.broadcast.emit('deleteCard', data)
   })
 })
 
