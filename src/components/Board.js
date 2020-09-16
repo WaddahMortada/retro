@@ -23,6 +23,11 @@ const Board = props => {
   const handleShowAddColumn = () => setShowAddColumn(true)
   const toggleShowActions = () => setShowActions(!showActions)
 
+  props.socket.on('AddColumn', (column) => {
+    props.columns.push(column)
+    props.setColumns([...props.columns])
+  })
+
   const resetBoard = () => {
     handleCloseConfirm()
     props.resetBoard()
@@ -32,14 +37,14 @@ const Board = props => {
     props.columns[index] = column
     const updatedColumns = [...props.columns]
     props.setColumns(updatedColumns)
-    if (broadcastUpdate) props.socket.emit('setColumns', updatedColumns)
+    // if (broadcastUpdate) props.socket.emit('setColumns', updatedColumns)
   }
 
   const deleteColumn = index => {
     props.columns.splice(index, 1)
     const updatedColumns = [...props.columns]
     props.setColumns(updatedColumns)
-    props.socket.emit('setColumns', updatedColumns)
+    // props.socket.emit('setColumns', updatedColumns)
   }
 
   let carouselClass = null
@@ -59,6 +64,7 @@ const Board = props => {
           voteFunctions={props.voteFunctions}
           columnFunctions={{ update: updateColumn, delete: deleteColumn }}
           id={props.id}
+          socket={props.socket}
         />
       </Col>
     )

@@ -12,10 +12,12 @@ const Add = props => {
 
   const submit = (event) => {
     event.preventDefault()
+
     props.columns.push({ title: title, cards: [] })
-    const columns = [...props.columns]
-    props.setColumns(columns)
-    props.socket.emit('setColumns', columns)
+    props.setColumns([...props.columns])
+
+    props.socket.emit('AddColumn', { title: title, cards: [] })
+
     setTitle('')
     props.handleClose()
   }

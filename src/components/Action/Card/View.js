@@ -9,14 +9,14 @@ const View = props => {
   const upVote = () => {
     if (!props.votes.disable) {
       props.card.totalCardVotes++
-      props.updateCard(props.card)
+      props.updateCard(props.card, props.localVotes + 1)
       props.voteFunctions.upVote()
     }
   }
 
   const downVote = () => {
     props.card.totalCardVotes--
-    props.updateCard(props.card)
+    props.updateCard(props.card, props.localVotes - 1)
     props.voteFunctions.downVote()
   }
 
@@ -39,7 +39,7 @@ const View = props => {
           <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsUp} />
           {props.card.totalCardVotes ? props.card.totalCardVotes : null}
         </div>
-        {props.card.totalCardVotes ? DownVote : null }
+        {props.localVotes ? DownVote : null }
       </Col>
     </Row>
   )
@@ -51,7 +51,8 @@ View.propTypes = {
   updateCard: PropTypes.any,
   voteFunctions: PropTypes.any,
   votes: PropTypes.any,
-  id: PropTypes.any
+  id: PropTypes.any,
+  localVotes: PropTypes.any
 }
 
 export default View
