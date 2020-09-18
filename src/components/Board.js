@@ -9,7 +9,7 @@ import { faChalkboard, faColumns, faListUl } from '@fortawesome/free-solid-svg-i
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Board = props => {
-  // Card: { value: null, totalCardVotes: 0 }
+  // Card: { value: null, totalVotes: 0 }
   // Column: {title, cards}
   // Board: [column1, column2]
   const ColumnComponent = []

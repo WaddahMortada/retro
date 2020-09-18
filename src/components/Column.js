@@ -29,7 +29,7 @@ const Column = props => {
   }
 
   const addCard = () => {
-    props.column.cards.push({ value: '', totalCardVotes: 0, id: props.id })
+    props.column.cards.push({ value: '', totalVotes: 0, id: props.id })
     props.columnFunctions.update(props.index, props.column, false)
   }
 
@@ -45,7 +45,7 @@ const Column = props => {
 
   const deleteColumn = () => {
     props.column.cards.map(card => {
-      for (let index = card.totalCardVotes; index > 0; index--) {
+      for (let index = card.totalVotes; index > 0; index--) {
         props.voteFunctions.downVote()
       }
     })

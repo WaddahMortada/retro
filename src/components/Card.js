@@ -14,7 +14,7 @@ const Card = props => {
 
   const deleteCard = () => {
     setEdit(false)
-    for (let index = props.card.totalCardVotes; index > 0; index--) {
+    for (let index = props.card.totalVotes; index > 0; index--) {
       props.voteFunctions.downVote()
     }
     props.cardFunctions.delete(props.index)
