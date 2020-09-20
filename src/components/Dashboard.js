@@ -10,10 +10,12 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/style.css'
 
 const Dashboard = props => {
+  const defaultVotes = { limit: 5, total: 0, disable: false }
+  const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {} }] }] // votes: { [userId]: 0 }
   const [id, setId] = useState()
   const [template, setTemplate] = useState('')
-  const [votes, setVotes] = useState({ limit: 5, total: 0, disable: false })
-  const [columns, setColumns] = useState([{ title: '', cards: [{ value: '', totalVotes: 0, id: '' }] }])
+  const [votes, setVotes] = useState(defaultVotes)
+  const [columns, setColumns] = useState(defaultColumns)
 
   // Handling Socket Events
   props.socket.on('join', data => {

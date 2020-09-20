@@ -6,8 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Row, Col, Button } from 'react-bootstrap'
 
 const View = props => {
+  // votes: { [props.id]: 0 }
   const upVote = () => {
     if (!props.votes.disable) {
+      if (!props.card.votes.hasOwnProperty(props.id)) props.card.votes[props.id] = 0
+      props.card.votes[props.id]++
       props.card.totalVotes++
       props.updateCard(props.card)
       props.voteFunctions.upVote()
@@ -15,6 +18,7 @@ const View = props => {
   }
 
   const downVote = () => {
+    if (props.card.votes.hasOwnProperty(props.id)) props.card.votes[props.id]--
     props.card.totalVotes--
     props.updateCard(props.card)
     props.voteFunctions.downVote()
@@ -39,7 +43,7 @@ const View = props => {
           <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsUp} />
           {props.card.totalVotes ? props.card.totalVotes : null}
         </div>
-        {props.card.totalVotes ? DownVote : null }
+        {props.card.votes[props.id] ? DownVote : null }
       </Col>
     </Row>
   )
