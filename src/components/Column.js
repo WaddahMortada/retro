@@ -33,7 +33,7 @@ const Column = props => {
     props.columnFunctions.update(props.index, props.column, false)
   }
 
-  const updateCard = (index, card) => {
+  const updateCard = (card, index) => {
     props.column.cards[index] = card
     props.columnFunctions.update(props.index, props.column)
   }

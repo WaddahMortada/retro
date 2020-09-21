@@ -8,7 +8,7 @@ const Card = props => {
   const [edit, setEdit] = useState(false)
 
   const updateCard = card => {
-    props.cardFunctions.update(props.index, card)
+    props.cardFunctions.update(card, props.index)
     if (edit) setEdit(false)
   }
 
