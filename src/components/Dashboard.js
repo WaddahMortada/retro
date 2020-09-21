@@ -56,6 +56,7 @@ const Dashboard = props => {
   const resetBoard = () => {
     setTemplate('')
     setVotes(defaultVotes)
+    setActions()
   }
 
   const upVote = () => {
@@ -88,7 +89,6 @@ const Dashboard = props => {
         columnsObjects.push({ title: title, cards: [] })
       })
       setColumns(columnsObjects)
-      if (props.resetBoard) props.setResetBoard(false)
       props.socket.emit('setColumns', columnsObjects)
     } else {
       props.setJoin()
@@ -117,9 +117,11 @@ const Dashboard = props => {
   }, [props.columnsData])
 
   useEffect(() => {
-    if (props.actionsData && (props.actionsData !== actions)) {
+    console.log('props.resetBoard', props.resetBoard)
+    if ((props.actionsData && (props.actionsData !== actions)) || props.resetBoard) {
       console.log('props.actionsData', props.actionsData)
       setActions(props.actionsData)
+      if (props.resetBoard) props.setResetBoard(false)
     }
   }, [props.actionsData])
 
