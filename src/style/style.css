@@ -236,6 +236,17 @@ textarea:focus {
   color: white;
 }
 
+.btn-success {
+  background-color: rgb(40, 167, 69);
+  border-color: rgb(40, 167, 69);
+  color: white;
+}
+
+.btn-success:hover {
+  background-color: rgb(33, 136, 56);
+  color: white;
+}
+
 .bg-dark {
   background-color: rgb(31, 42, 53) !important;
 }
