@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const bullet = '\u2022'
 const bulletWithSpace = `${bullet} `
 const enter = 13
+const backspace = 8
 
 const ActionsColumn = props => {
   const [actionsRef, setActionsFocus] = useFocus()
@@ -25,11 +26,13 @@ const ActionsColumn = props => {
     const selectionStart = target.selectionStart
 
     target.value = target.value.split('\n').map(row => {
-      if (row === '') {
-        return bulletWithSpace
-      }
-      if (!row.includes(bullet)) {
-        return bulletWithSpace + row
+      if (keyCode !== backspace) {
+        if (row === '') {
+          return bulletWithSpace
+        }
+        if (!row.includes(bullet)) {
+          return bulletWithSpace + row
+        }
       }
       return row
     }).join('\n')
