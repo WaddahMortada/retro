@@ -28,7 +28,6 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', () => {
     console.log(`Client disconnected  [id=${socket.id}]`)
-    socket.removeAllListeners()
     const index = ids.indexOf(socket.id)
     if (index > -1) ids.splice(index, 1)
     socket.removeAllListeners()
