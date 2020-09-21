@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import Confirm from '../../Confirm'
 import { Form, Button } from 'react-bootstrap'
@@ -6,8 +6,9 @@ import { faTrash, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const AddEdit = props => {
+  const cardValue = (props.tempCard && props.tempCardValue) ? props.tempCardValue : ''
   const isEdit = props.card && props.card.value
-  const [inputText, setInputText] = useState(isEdit ? props.card.value : '')
+  const [inputText, setInputText] = useState(isEdit ? props.card.value : cardValue)
   const [displayConfirm, setDisplayConfirm] = useState(false)
 
   const handleClose = () => setDisplayConfirm(false)
@@ -32,6 +33,12 @@ const AddEdit = props => {
     e.target.style.height = `${e.target.scrollHeight}px`
   }
 
+  useEffect(() => {
+    if (props.tempCard) {
+      props.setTempCardValue(inputText)
+    }
+  }, [inputText])
+
   return (
     <form>
       {displayConfirm ? <Confirm type="delete" submit={deleteCard} show={displayConfirm} handleClose={handleClose} /> : null}
@@ -51,7 +58,10 @@ const AddEdit = props => {
 AddEdit.propTypes = {
   card: PropTypes.any,
   index: PropTypes.any,
-  cardFunctions: PropTypes.any
+  cardFunctions: PropTypes.any,
+  tempCard: PropTypes.any,
+  tempCardValue: PropTypes.any,
+  setTempCardValue: PropTypes.any
 }
 
 export default AddEdit

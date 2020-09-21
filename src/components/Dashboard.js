@@ -164,7 +164,7 @@ const Dashboard = props => {
       </Row>
       {!template
         ? <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} socket={props.socket} />
-        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} resetBoard={resetBoard} socket={props.socket} columns={columns} setColumns={setColumns} id={id} />
+        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} resetBoard={resetBoard} socket={props.socket} columns={columns} setColumns={setColumns} id={id} deleteColumn={props.deleteColumn} />
       }
     </Container>
   )

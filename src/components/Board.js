@@ -59,6 +59,7 @@ const Board = props => {
           columnFunctions={{ update: updateColumn, delete: deleteColumn }}
           id={props.id}
           socket={props.socket}
+          deleteColumn={props.deleteColumn}
         />
       </Col>
     )
@@ -110,7 +111,8 @@ Board.propTypes = {
   socket: PropTypes.any,
   columns: PropTypes.any,
   setColumns: PropTypes.any,
-  id: PropTypes.any
+  id: PropTypes.any,
+  deleteColumn: PropTypes.any
 }
 
 export default Board

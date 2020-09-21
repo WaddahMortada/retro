@@ -10,6 +10,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Column = props => {
   const CardsComponent = []
+  const [tempCard, setTempCard] = useState()
+  const [tempCardValue, setTempCardValue] = useState()
   const [edit, setEdit] = useState(false)
   const [title, setTitle] = useState()
   const [displayConfirm, setDisplayConfirm] = useState(false)
@@ -29,8 +31,18 @@ const Column = props => {
   }
 
   const addCard = () => {
-    props.column.cards.push({ value: '', totalVotes: 0, id: props.id, votes: {} })
-    props.columnFunctions.update(props.index, props.column, false)
+    setTempCard({ value: '', totalVotes: 0, id: props.id, votes: {} })
+  }
+
+  const updateTempCard = card => {
+    deleteTempCard()
+    props.column.cards.push(card)
+    props.columnFunctions.update(props.index, props.column)
+  }
+
+  const deleteTempCard = index => {
+    setTempCard()
+    setTempCardValue()
   }
 
   const updateCard = (card, index) => {
@@ -68,6 +80,29 @@ const Column = props => {
       />
     )
   })
+
+  if (tempCard) {
+    CardsComponent.push(
+      <Card
+        key={CardsComponent.length}
+        index={CardsComponent.length}
+        card={tempCard}
+        cardFunctions={{ update: updateTempCard, delete: deleteTempCard }}
+        voteFunctions={props.voteFunctions}
+        votes={props.votes}
+        id={props.id}
+        tempCard={true}
+        tempCardValue={tempCardValue}
+        setTempCardValue={setTempCardValue}
+      />
+    )
+  }
+
+  useEffect(() => {
+    if (props.deleteColumn && props.deleteColumn.id === props.index) {
+      deleteTempCard()
+    }
+  }, [props.deleteColumn])
 
   const EditTitle = <form onSubmit={submit}>
     <input className="editColumnInput" type="text" autoFocus value={title} onChange={(e) => setTitle(e.target.value)} required />
@@ -114,7 +149,8 @@ Column.propTypes = {
   setColumnTitle: PropTypes.any,
   columnFunctions: PropTypes.any,
   id: PropTypes.any,
-  socket: PropTypes.any
+  socket: PropTypes.any,
+  deleteColumn: PropTypes.any
 }
 
 export default Column

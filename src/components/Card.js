@@ -19,7 +19,7 @@ const Card = props => {
   }
 
   const ViewCardModule = <ViewCard updateCard={updateCard} card={props.card} setEdit={setEdit} voteFunctions={props.voteFunctions} votes={props.votes} id={props.id} />
-  const AddEditCardModule = <AddEditCard index={props.index} card={props.card} cardFunctions={{ update: updateCard, delete: deleteCard }} />
+  const AddEditCardModule = <AddEditCard index={props.index} card={props.card} cardFunctions={{ update: updateCard, delete: deleteCard }} tempCard={props.tempCard} tempCardValue={props.tempCardValue} setTempCardValue={props.setTempCardValue} />
 
   return (
     <CardBootstrap className="itemChildCard">
@@ -36,7 +36,10 @@ Card.propTypes = {
   cardFunctions: PropTypes.any,
   voteFunctions: PropTypes.any,
   votes: PropTypes.any,
-  id: PropTypes.any
+  id: PropTypes.any,
+  tempCard: PropTypes.any,
+  tempCardValue: PropTypes.any,
+  setTempCardValue: PropTypes.any
 }
 
 export default Card
