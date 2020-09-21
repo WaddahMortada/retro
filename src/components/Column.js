@@ -21,7 +21,7 @@ const Column = props => {
     setTitle(props.column.title)
   }, [props.column.title])
 
-  const submit = (event) => {
+  const submit = event => {
     event.preventDefault()
     props.column.title = title
     props.columnFunctions.update(props.index, props.column)
@@ -38,7 +38,7 @@ const Column = props => {
     props.columnFunctions.update(props.index, props.column)
   }
 
-  const deleteCard = (index) => {
+  const deleteCard = index => {
     const id = props.column.cards[index].id
     props.column.cards.splice(index, 1)
     props.columnFunctions.update(props.index, props.column, false)
