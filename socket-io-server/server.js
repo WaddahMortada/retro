@@ -57,6 +57,23 @@ io.on('connection', (socket) => {
     state.columns = columns
     console.log('state: ', state)
   })
+
+  socket.on('deleteCard', data => {
+    console.log('deleteCard: ', data)
+    socket.broadcast.emit('deleteCard', data)
+  })
+
+  socket.on('deleteColumn', column => {
+    console.log('deleteColumn: ', column)
+    socket.broadcast.emit('deleteColumn', column)
+  })
+
+  socket.on('updateColumns', columns => {
+    console.log('updateColumns: ', columns)
+    // socket.broadcast.emit('setColumns', columns)
+    state.columns = columns
+    console.log('state: ', state)
+  })
 })
 
 server.listen(port, () => console.log(`Listening on port ${port}`))

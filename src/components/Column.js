@@ -39,8 +39,10 @@ const Column = props => {
   }
 
   const deleteCard = (index) => {
+    const id = props.column.cards[index].id
     props.column.cards.splice(index, 1)
-    props.columnFunctions.update(props.index, props.column)
+    props.columnFunctions.update(props.index, props.column, false)
+    props.socket.emit('deleteCard', { column: props.index, card: index, id: id })
   }
 
   const deleteColumn = () => {
@@ -48,6 +50,7 @@ const Column = props => {
       props.voteFunctions.downVote(card.votes[props.id])
     })
     props.columnFunctions.delete(props.index)
+    props.socket.emit('deleteColumn', { id: props.index, title: props.column.title })
     setEdit(false)
     handleClose()
   }

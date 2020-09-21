@@ -8,6 +8,8 @@ const SocketsEventsHandler = props => {
   const [templateData, setTemplateData] = useState()
   const [votesData, setVotesData] = useState()
   const [columnsData, setColumnsData] = useState()
+  const [deleteCard, setDeleteCard] = useState()
+  const [deleteColumn, setDeleteColumn] = useState()
 
   useEffect(() => {
     props.socket.on('join', data => {
@@ -30,6 +32,14 @@ const SocketsEventsHandler = props => {
     props.socket.on('setColumns', columns => {
       setColumnsData(columns)
     })
+
+    props.socket.on('deleteCard', data => {
+      setDeleteCard(data)
+    })
+
+    props.socket.on('deleteColumn', data => {
+      setDeleteColumn(data)
+    })
   }, [])
 
   return (
@@ -42,6 +52,8 @@ const SocketsEventsHandler = props => {
       templateData={templateData}
       votesData={votesData}
       columnsData={columnsData}
+      deleteCard={deleteCard}
+      deleteColumn={deleteColumn}
     />
   )
 }

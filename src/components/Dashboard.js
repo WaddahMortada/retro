@@ -111,6 +111,45 @@ const Dashboard = props => {
     }
   }, [props.columnsData])
 
+  useEffect(() => {
+    if (props.deleteCard) {
+      const data = props.deleteCard
+      const column = columns[data.column]
+      if (column) {
+        const card = column.cards[data.card]
+        if (card && card.id === data.id) {
+          if (card.votes[id]) {
+            votes.total -= card.votes[id]
+            setVotes({ ...votes })
+          }
+          column.cards.splice(data.card, 1)
+          columns[data.column] = column
+          setColumns([...columns])
+          props.socket.emit('updateColumns', columns)
+        }
+      }
+    }
+  }, [props.deleteCard])
+
+  useEffect(() => {
+    if (props.deleteColumn) {
+      const data = props.deleteColumn
+      const column = columns[data.id]
+      if (column && column.title === data.title) {
+        let count = 0
+        column.cards.forEach(card => {
+          count += (card.votes[id]) ? card.votes[id] : 0
+        })
+        votes.total -= count
+        setVotes({ ...votes })
+        columns.splice(data.id, 1)
+        const updatedColumns = [...columns]
+        setColumns(updatedColumns)
+        props.socket.emit('updateColumns', updatedColumns)
+      }
+    }
+  }, [props.deleteColumn])
+
   return (
     <Container fluid className="appContainer">
       <Row>
@@ -140,6 +179,8 @@ Dashboard.propTypes = {
   templateData: PropTypes.any,
   votesData: PropTypes.any,
   columnsData: PropTypes.any,
+  deleteCard: PropTypes.any,
+  deleteColumn: PropTypes.any
 }
 
 export default Dashboard
