@@ -45,9 +45,7 @@ const Column = props => {
 
   const deleteColumn = () => {
     props.column.cards.map(card => {
-      for (let index = card.votes[props.id]; index > 0; index--) {
-        props.voteFunctions.downVote()
-      }
+      props.voteFunctions.downVote(card.votes[props.id])
     })
     props.columnFunctions.delete(props.index)
     setEdit(false)

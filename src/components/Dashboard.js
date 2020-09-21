@@ -70,9 +70,9 @@ const Dashboard = props => {
     }
   }
 
-  const downVote = () => {
+  const downVote = (downVotes = 1) => {
     if (votes.total > 0) {
-      votes.total = votes.total - 1
+      votes.total -= downVotes
       setVotes({ ...votes })
     }
   }
