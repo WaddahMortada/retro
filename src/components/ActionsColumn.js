@@ -10,8 +10,11 @@ const bulletWithSpace = `${bullet} `
 const enter = 13
 
 const ActionsColumn = props => {
-  const [actions, setActions] = useState(bulletWithSpace)
   const [actionsRef, setActionsFocus] = useFocus()
+
+  useEffect(() => {
+    if (!props.actions) props.setActions(bulletWithSpace)
+  }, [])
 
   useEffect(() => {
     setActionsFocus(props.showActions)
@@ -38,23 +41,32 @@ const ActionsColumn = props => {
     }
   }
 
+  const updateActions = newActions => {
+    props.setActions(newActions)
+    props.socket.emit('setActions', newActions)
+  }
+
   return (
     <Card className="actionsBoardCard fullHeight">
       <Card.Header>
         <h5 className="inlineBlock">Actions</h5>
-        <Button className="float-right" size="sm" variant="info" title="Export to PDF" onClick={() => exportActionsToPdf(actions)}>
+        <Button className="float-right" size="sm" variant="info" title="Export to PDF" onClick={() => exportActionsToPdf(props.actions)}>
           <FontAwesomeIcon className="icon-thumb" icon={faFileExport} />
         </Button>
       </Card.Header>
       <Card.Body>
-        <textarea className="textareaInput" ref={actionsRef} autoFocus={props.showActions} onChange={(e) => setActions(e.target.value)} onKeyUp={handleInput} onClick={handleInput} value={actions}></textarea>
+        <textarea className="textareaInput" ref={actionsRef} autoFocus={props.showActions} onChange={(e) => updateActions(e.target.value)} onKeyUp={handleInput} onClick={handleInput} value={props.actions}></textarea>
       </Card.Body>
     </Card>
   )
 }
 
 ActionsColumn.propTypes = {
-  showActions: PropTypes.any
+  showActions: PropTypes.any,
+  socket: PropTypes.any,
+  actionsData: PropTypes.any,
+  actions: PropTypes.any,
+  setActions: PropTypes.any
 }
 
 export default ActionsColumn

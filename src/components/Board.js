@@ -94,7 +94,7 @@ const Board = props => {
                   {ColumnComponent}
                 </Row>
               </Col>
-              <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 4 }}><ActionsColumn showActions={showActions} /></Col>
+              <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 4 }}><ActionsColumn showActions={showActions} socket={props.socket} actionsData={props.actionsData} actions={props.actions} setActions={props.setActions} /></Col>
             </Row>
           </Card.Body>
         </Card>
@@ -112,7 +112,10 @@ Board.propTypes = {
   columns: PropTypes.any,
   setColumns: PropTypes.any,
   id: PropTypes.any,
-  deleteColumn: PropTypes.any
+  deleteColumn: PropTypes.any,
+  actionsData: PropTypes.any,
+  actions: PropTypes.any,
+  setActions: PropTypes.any
 }
 
 export default Board

@@ -17,6 +17,7 @@ const Dashboard = props => {
   const [template, setTemplate] = useState('')
   const [votes, setVotes] = useState(defaultVotes)
   const [columns, setColumns] = useState(defaultColumns)
+  const [actions, setActions] = useState()
 
   // Handling Socket Join Events
   useEffect(() => {
@@ -37,6 +38,10 @@ const Dashboard = props => {
 
       if (data.state.columns && data.state.columns !== columns) {
         setColumns(data.state.columns)
+      }
+
+      if (data.state.actions && data.state.actions !== actions) {
+        setActions(data.state.actions)
       }
 
       // Sending current state to server
@@ -112,6 +117,13 @@ const Dashboard = props => {
   }, [props.columnsData])
 
   useEffect(() => {
+    if (props.actionsData && (props.actionsData !== actions)) {
+      console.log('props.actionsData', props.actionsData)
+      setActions(props.actionsData)
+    }
+  }, [props.actionsData])
+
+  useEffect(() => {
     if (props.deleteCard) {
       const data = props.deleteCard
       const column = columns[data.column]
@@ -164,7 +176,7 @@ const Dashboard = props => {
       </Row>
       {!template
         ? <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} socket={props.socket} />
-        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} resetBoard={resetBoard} socket={props.socket} columns={columns} setColumns={setColumns} id={id} deleteColumn={props.deleteColumn} />
+        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} resetBoard={resetBoard} socket={props.socket} actionsData={props.actionsData} actions={actions} setActions={setActions} columns={columns} setColumns={setColumns} id={id} deleteColumn={props.deleteColumn} />
       }
     </Container>
   )
@@ -174,6 +186,7 @@ Dashboard.propTypes = {
   socket: PropTypes.any,
   join: PropTypes.any,
   setJoin: PropTypes.any,
+  actionsData: PropTypes.any,
   resetBoard: PropTypes.any,
   setResetBoard: PropTypes.any,
   templateData: PropTypes.any,

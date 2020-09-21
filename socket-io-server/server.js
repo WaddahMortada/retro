@@ -13,7 +13,8 @@ const io = socketIo(server)
 const state = {
   template: null,
   votes: null,
-  columns: null
+  columns: null,
+  actions: null
 }
 
 const ids = []
@@ -58,6 +59,13 @@ io.on('connection', (socket) => {
     console.log('state: ', state)
   })
 
+  socket.on('setActions', actions => {
+    console.log('actions', actions)
+    socket.broadcast.emit('setActions', actions)
+    state.actions = actions
+    console.log('state: ', state)
+  })
+
   socket.on('deleteCard', data => {
     console.log('deleteCard: ', data)
     socket.broadcast.emit('deleteCard', data)
@@ -70,7 +78,6 @@ io.on('connection', (socket) => {
 
   socket.on('updateColumns', columns => {
     console.log('updateColumns: ', columns)
-    // socket.broadcast.emit('setColumns', columns)
     state.columns = columns
     console.log('state: ', state)
   })
