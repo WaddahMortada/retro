@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import Dashboard from './Dashboard'
+import React, { useEffect } from 'react'
+import SocketsEventsHandler from './SocketsEventsHandler'
 import socketIOClient from 'socket.io-client'
 
 const App = props => {
@@ -12,7 +12,7 @@ const App = props => {
   }, [])
 
   return (
-    <Dashboard socket={socket} />
+    <SocketsEventsHandler socket={socket} />
   )
 }
 

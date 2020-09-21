@@ -39,7 +39,6 @@ const Board = props => {
     props.columns.splice(index, 1)
     const updatedColumns = [...props.columns]
     props.setColumns(updatedColumns)
-    props.socket.emit('setColumns', updatedColumns)
   }
 
   let carouselClass = null
@@ -59,6 +58,7 @@ const Board = props => {
           voteFunctions={props.voteFunctions}
           columnFunctions={{ update: updateColumn, delete: deleteColumn }}
           id={props.id}
+          socket={props.socket}
         />
       </Col>
     )

@@ -111,6 +111,7 @@ Column.propTypes = {
   setColumnTitle: PropTypes.any,
   columnFunctions: PropTypes.any,
   id: PropTypes.any,
+  socket: PropTypes.any
 }
 
 export default Column

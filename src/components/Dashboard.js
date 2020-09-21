@@ -12,60 +12,50 @@ import '../style/style.css'
 const Dashboard = props => {
   const defaultVotes = { limit: 5, total: 0, disable: false }
   const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {} }] }] // votes: { [userId]: 0 }
+
   const [id, setId] = useState()
   const [template, setTemplate] = useState('')
   const [votes, setVotes] = useState(defaultVotes)
   const [columns, setColumns] = useState(defaultColumns)
 
-  // Handling Socket Events
-  props.socket.on('join', data => {
-    console.log('join', data)
-    setId(data.id)
+  // Handling Socket Join Events
+  useEffect(() => {
+    if (props.join) {
+      const data = props.join
 
-    // Getting state from server
-    if (data.state.template && data.state.template !== template) {
-      setTemplate(data.state.template)
+      setId(data.id)
+
+      // Getting state from server
+      if (data.state.template && data.state.template !== template) {
+        setTemplate(data.state.template)
+      }
+
+      if (data.state.votes && data.state.votes.limit !== votes.limit) {
+        data.state.votes.total = votes.total
+        setVotes(data.state.votes)
+      }
+
+      if (data.state.columns && data.state.columns !== columns) {
+        setColumns(data.state.columns)
+      }
+
+      // Sending current state to server
+      if (!data.state.template && template) {
+        props.socket.emit('setTemplate', template)
+        props.socket.emit('setVotes', votes)
+      }
     }
+  }, [props.join])
 
-    if (data.state.votes && data.state.votes.limit !== votes.limit) {
-      data.state.votes.total = votes.total
-      setVotes(data.state.votes)
-    }
-
-    if (data.state.columns && data.state.columns !== columns) {
-      setColumns(data.state.columns)
-    }
-
-    // Sending current state to server
-    if (!data.state.template && template) {
-      props.socket.emit('setTemplate', template)
-      props.socket.emit('setVotes', votes)
-    }
-  })
-
-  props.socket.on('setTemplate', (newTemplate) => {
-    if (newTemplate !== template) {
-      setTemplate('')
-      setTemplate(newTemplate)
-    }
-  })
-
-  props.socket.on('setVotes', (newVotes) => {
-    if (newVotes !== votes) setVotes(newVotes)
-  })
-
-  props.socket.on('setColumns', (newColumns) => {
-    if (newColumns !== columns) setColumns(newColumns)
-  })
-
+  // Dashboard Functions
   const resetBoard = () => {
     setTemplate('')
-    setVotes({ limit: 5, total: 0, disable: false })
+    setVotes(defaultVotes)
   }
 
   const upVote = () => {
     if (votes.total < votes.limit) {
-      votes.total = votes.total + 1
+      votes.total += 1
       setVotes({ ...votes })
     }
   }
@@ -77,19 +67,49 @@ const Dashboard = props => {
     }
   }
 
+  // Handling Votes Changes
   useEffect(() => {
     votes.disable = votes.total >= votes.limit
     setVotes({ ...votes })
   }, [votes.total, votes.limit]) // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Handling Templates Changes
   useEffect(() => {
     const columnsTitle = template !== 'blank_board' ? template.split('_') : []
-    const columnsObjects = []
-    columnsTitle.forEach(title => {
-      columnsObjects.push({ title: title, cards: [] })
-    })
-    setColumns(columnsObjects)
+    const isJoinColumn = props.join && props.join.state.columns
+    if ((template && !isJoinColumn) || (template && props.resetBoard)) {
+      const columnsObjects = []
+      columnsTitle.forEach(title => {
+        columnsObjects.push({ title: title, cards: [] })
+      })
+      setColumns(columnsObjects)
+      if (props.resetBoard) props.setResetBoard(false)
+      props.socket.emit('setColumns', columnsObjects)
+    } else {
+      props.setJoin()
+    }
   }, [template])
+
+  // Handling Socket Events //
+  ////////////////////////////
+  useEffect(() => {
+    if (props.templateData) {
+      setTemplate('')
+      setTemplate(props.templateData)
+    }
+  }, [props.templateData])
+
+  useEffect(() => {
+    if (props.votesData && (props.votesData !== votes)) {
+      setVotes(props.votesData)
+    }
+  }, [props.votesData])
+
+  useEffect(() => {
+    if (props.columnsData && (props.columnsData !== columns)) {
+      setColumns(props.columnsData)
+    }
+  }, [props.columnsData])
 
   return (
     <Container fluid className="appContainer">
@@ -112,7 +132,14 @@ const Dashboard = props => {
 }
 
 Dashboard.propTypes = {
-  socket: PropTypes.any
+  socket: PropTypes.any,
+  join: PropTypes.any,
+  setJoin: PropTypes.any,
+  resetBoard: PropTypes.any,
+  setResetBoard: PropTypes.any,
+  templateData: PropTypes.any,
+  votesData: PropTypes.any,
+  columnsData: PropTypes.any,
 }
 
 export default Dashboard

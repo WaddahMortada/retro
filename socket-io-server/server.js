@@ -31,6 +31,11 @@ io.on('connection', (socket) => {
     socket.removeAllListeners()
     const index = ids.indexOf(socket.id)
     if (index > -1) ids.splice(index, 1)
+    socket.removeAllListeners()
+  })
+
+  socket.on('resetBoard', resetBoard => {
+    socket.broadcast.emit('resetBoard', resetBoard)
   })
 
   socket.on('setTemplate', template => {

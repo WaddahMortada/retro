@@ -13,6 +13,7 @@ const TemplateSelector = props => {
     const votes = { ...props.votes }
     props.setVotes(votes)
 
+    props.socket.emit('resetBoard', true)
     props.socket.emit('setTemplate', template)
     props.socket.emit('setVotes', votes)
   }
