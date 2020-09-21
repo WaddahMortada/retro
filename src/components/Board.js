@@ -58,6 +58,7 @@ const Board = props => {
           voteFunctions={props.voteFunctions}
           columnFunctions={{ update: updateColumn, delete: deleteColumn }}
           id={props.id}
+          admin={props.admin}
           socket={props.socket}
           deleteColumn={props.deleteColumn}
         />
@@ -78,10 +79,10 @@ const Board = props => {
           <Button variant="flat" className="float-right" style={{ padding: '5px 10px', fontSize: '17px' }} onClick={toggleShowActions}>
             <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
           </Button>
-          <Button variant="success" className="float-right" style={{ padding: '5px 10px', margin: '0px 10px' }} onClick={handleShowAddColumn}>
+          <Button variant="success" className="float-right" style={{ padding: '5px 10px', margin: '0px 10px' }} onClick={handleShowAddColumn} disabled={!props.admin}>
             <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
           </Button>
-          <Button style={{ color: 'white', padding: '5px 10px' }} variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm}>
+          <Button style={{ padding: '5px 10px' }} variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm} disabled={!props.admin}>
             <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
           </Button>
         </Navbar>
@@ -112,6 +113,7 @@ Board.propTypes = {
   columns: PropTypes.any,
   setColumns: PropTypes.any,
   id: PropTypes.any,
+  admin: PropTypes.any,
   deleteColumn: PropTypes.any,
   actionsData: PropTypes.any,
   actions: PropTypes.any,

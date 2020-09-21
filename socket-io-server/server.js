@@ -25,7 +25,7 @@ io.on('connection', (socket) => {
 
   // io.emit('join', socket.id)
   console.log('emit state: ', state)
-  socket.emit('join', { id: socket.id, state: state })
+  socket.emit('join', { id: socket.id, state: state, admin: ids.length === 1 })
 
   socket.on('disconnect', () => {
     console.log(`Client disconnected  [id=${socket.id}]`)

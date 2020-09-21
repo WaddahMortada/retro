@@ -14,6 +14,7 @@ const Dashboard = props => {
   const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {} }] }] // votes: { [userId]: 0 }
 
   const [id, setId] = useState()
+  const [admin, setAdmin] = useState(true)
   const [template, setTemplate] = useState('')
   const [votes, setVotes] = useState(defaultVotes)
   const [columns, setColumns] = useState(defaultColumns)
@@ -25,6 +26,7 @@ const Dashboard = props => {
       const data = props.join
 
       setId(data.id)
+      setAdmin(data.admin)
 
       // Getting state from server
       if (data.state.template && data.state.template !== template) {
@@ -176,7 +178,7 @@ const Dashboard = props => {
       </Row>
       {!template
         ? <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} socket={props.socket} />
-        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} resetBoard={resetBoard} socket={props.socket} actionsData={props.actionsData} actions={actions} setActions={setActions} columns={columns} setColumns={setColumns} id={id} deleteColumn={props.deleteColumn} />
+        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} resetBoard={resetBoard} socket={props.socket} actionsData={props.actionsData} actions={actions} setActions={setActions} columns={columns} setColumns={setColumns} id={id} admin={admin} deleteColumn={props.deleteColumn} />
       }
     </Container>
   )

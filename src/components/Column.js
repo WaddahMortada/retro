@@ -77,6 +77,7 @@ const Column = props => {
         voteFunctions={props.voteFunctions}
         votes={props.votes}
         id={props.id}
+        admin={props.admin}
       />
     )
   })
@@ -114,11 +115,13 @@ const Column = props => {
     </Button>
   </form>
 
+  const EditButton = <Button className="float-right" size="sm" variant="flat" onClick={() => setEdit(true)}>
+    <FontAwesomeIcon className="icon-thumb" icon={faPen} />
+  </Button>
+
   const DisplayTitle = <div>
     <h5 className="inlineBlock">{toTitleCase(props.column.title)}</h5>
-    <Button className="float-right" size="sm" variant="flat" onClick={() => setEdit(true)}>
-      <FontAwesomeIcon className="icon-thumb" icon={faPen} />
-    </Button>
+    {props.admin ? EditButton : null}
   </div>
 
   return (
@@ -149,6 +152,7 @@ Column.propTypes = {
   setColumnTitle: PropTypes.any,
   columnFunctions: PropTypes.any,
   id: PropTypes.any,
+  admin: PropTypes.any,
   socket: PropTypes.any,
   deleteColumn: PropTypes.any
 }
