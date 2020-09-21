@@ -117,9 +117,7 @@ const Dashboard = props => {
   }, [props.columnsData])
 
   useEffect(() => {
-    console.log('props.resetBoard', props.resetBoard)
     if ((props.actionsData && (props.actionsData !== actions)) || props.resetBoard) {
-      console.log('props.actionsData', props.actionsData)
       setActions(props.actionsData)
       if (props.resetBoard) props.setResetBoard(false)
     }
