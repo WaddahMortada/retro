@@ -236,6 +236,16 @@ textarea:focus {
   color: white;
 }
 
+.btn-copy {
+  background-color: rgb(10, 97, 97);
+  color: white;
+}
+
+.btn-copy:hover {
+  background-color: rgb(8, 66, 66);
+  color: white;
+}
+
 .btn-success {
   background-color: rgb(40, 167, 69);
   border-color: rgb(40, 167, 69);
@@ -292,4 +302,16 @@ textarea:focus {
 
 .danger {
   color: rgb(158, 25, 43);
+}
+
+.actionsToasts {
+  z-index: 10;
+  position: absolute;
+  top: 8%;
+  right: 0px;
+}
+
+.copy-button {
+  margin-right: 5px;
+  padding-right: 11px;
 }
