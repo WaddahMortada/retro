@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col, Nav, Navbar, Card, Button, Form } from 'react-bootstrap'
+import AdminSelector from './AdminSelector'
 
 const TemplateSelector = props => {
   const [voteLimit, setVoteLimit] = useState(5)
@@ -26,6 +27,7 @@ const TemplateSelector = props => {
           <Nav className="mr-auto">
             <h5 className="navHeader">Create Board</h5>
           </Nav>
+          <AdminSelector admin={props.admin} setAdmin={props.setAdmin} />
         </Navbar>
         <Card className="boardCard">
           <Card.Body>
@@ -60,7 +62,9 @@ TemplateSelector.propTypes = {
   setTemplate: PropTypes.any,
   setVotes: PropTypes.any,
   votes: PropTypes.any,
-  socket: PropTypes.any
+  socket: PropTypes.any,
+  admin: PropTypes.any,
+  setAdmin: PropTypes.any
 }
 
 export default TemplateSelector

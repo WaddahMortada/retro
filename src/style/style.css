@@ -246,6 +246,16 @@ textarea:focus {
   color: white;
 }
 
+.btn-admin {
+  background-color: rgb(148, 29, 73);
+  color: white;
+}
+
+.btn-admin:hover {
+  background-color: rgb(97, 15, 45);
+  color: white;
+}
+
 .btn-success {
   background-color: rgb(40, 167, 69);
   border-color: rgb(40, 167, 69);

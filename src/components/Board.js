@@ -4,9 +4,12 @@ import Confirm from './Confirm'
 import Column from './Column'
 import AddColumn from './Action/Column/Add'
 import ActionsColumn from './ActionsColumn'
+import AdminSelector from './AdminSelector'
 import { Row, Col, Button, Navbar, Nav, Card } from 'react-bootstrap'
 import { faChalkboard, faColumns, faListUl } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Warrimoo from '../assets/warrimoo.gif'
+import RetroooGta from '../assets/retroooo-gta-thick.png'
 
 const Board = props => {
   // Card: { value: null, totalVotes: 0 }
@@ -85,6 +88,7 @@ const Board = props => {
           <Button style={{ padding: '5px 10px' }} variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm} disabled={!props.admin}>
             <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
           </Button>
+          <AdminSelector admin={props.admin} setAdmin={props.setAdmin} />
         </Navbar>
         <Card className="boardCard fullHeight">
           <Card.Body>
@@ -114,6 +118,7 @@ Board.propTypes = {
   setColumns: PropTypes.any,
   id: PropTypes.any,
   admin: PropTypes.any,
+  setAdmin: PropTypes.any,
   deleteColumn: PropTypes.any,
   actionsData: PropTypes.any,
   actions: PropTypes.any,

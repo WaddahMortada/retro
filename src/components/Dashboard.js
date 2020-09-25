@@ -126,6 +126,12 @@ const Dashboard = props => {
   }, [props.actionsData])
 
   useEffect(() => {
+    if (props.adminData !== admin) {
+      setAdmin(props.adminData)
+    }
+  }, [props.adminData])
+
+  useEffect(() => {
     if (props.deleteCard) {
       const data = props.deleteCard
       const column = columns[data.column]
@@ -177,8 +183,8 @@ const Dashboard = props => {
         </Col>
       </Row>
       {!template
-        ? <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} socket={props.socket} />
-        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} resetBoard={resetBoard} socket={props.socket} actionsData={props.actionsData} actions={actions} setActions={setActions} columns={columns} setColumns={setColumns} id={id} admin={admin} deleteColumn={props.deleteColumn} />
+        ? <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} socket={props.socket} admin={admin} setAdmin={setAdmin} />
+        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} resetBoard={resetBoard} socket={props.socket} actionsData={props.actionsData} actions={actions} setActions={setActions} columns={columns} setColumns={setColumns} id={id} admin={admin} setAdmin={setAdmin} deleteColumn={props.deleteColumn} />
       }
     </Container>
   )
@@ -187,6 +193,7 @@ const Dashboard = props => {
 Dashboard.propTypes = {
   socket: PropTypes.any,
   join: PropTypes.any,
+  adminData: PropTypes.any,
   setJoin: PropTypes.any,
   actionsData: PropTypes.any,
   resetBoard: PropTypes.any,
