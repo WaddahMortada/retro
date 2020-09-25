@@ -172,16 +172,6 @@ const Dashboard = props => {
 
   return (
     <Container fluid className="appContainer">
-      <Row>
-        <Col>
-          <Row className="justify-content-md-center">
-            <img className="logoImage" src={Warrimoo} />
-          </Row>
-          <Row className="justify-content-md-center">
-            <img className="logo" src={RetroooGta} />
-          </Row>
-        </Col>
-      </Row>
       {!template
         ? <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} socket={props.socket} admin={admin} setAdmin={setAdmin} />
         : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} resetBoard={resetBoard} socket={props.socket} actionsData={props.actionsData} actions={actions} setActions={setActions} columns={columns} setColumns={setColumns} id={id} admin={admin} setAdmin={setAdmin} deleteColumn={props.deleteColumn} />

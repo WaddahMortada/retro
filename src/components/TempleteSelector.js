@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col, Nav, Navbar, Card, Button, Form } from 'react-bootstrap'
+import Logo from './Logo'
 import AdminSelector from './AdminSelector'
 
 const TemplateSelector = props => {
@@ -24,10 +25,13 @@ const TemplateSelector = props => {
     <Row className="fullHeight nav">
       <Col>
         <Navbar className="navBar" bg="dark" variant="dark">
-          <Nav className="mr-auto">
-            <h5 className="navHeader">Create Board</h5>
-          </Nav>
-          <AdminSelector admin={props.admin} setAdmin={props.setAdmin} />
+          <Col xs={5}>
+            <Nav className="mr-auto">
+              <h5 className="navHeader">Create Board</h5>
+            </Nav>
+          </Col>
+          <Logo templateSelector={true} />
+          {/* <AdminSelector admin={props.admin} setAdmin={props.setAdmin} /> */}
         </Navbar>
         <Card className="boardCard">
           <Card.Body>

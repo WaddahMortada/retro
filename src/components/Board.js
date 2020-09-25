@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
+import Logo from './Logo'
 import Confirm from './Confirm'
 import Column from './Column'
 import AddColumn from './Action/Column/Add'
@@ -8,8 +9,6 @@ import AdminSelector from './AdminSelector'
 import { Row, Col, Button, Navbar, Nav, Card } from 'react-bootstrap'
 import { faChalkboard, faColumns, faListUl } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Warrimoo from '../assets/warrimoo.gif'
-import RetroooGta from '../assets/retroooo-gta-thick.png'
 
 const Board = props => {
   // Card: { value: null, totalVotes: 0 }
@@ -76,19 +75,24 @@ const Board = props => {
       <Col>
         {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
         <Navbar className="navBar" bg="dark" variant="dark">
-          <Nav className="mr-auto">
-            <h5 className="navHeader">Used Votes: </h5>&nbsp;<p className={'navHeader ' + (props.votes.total === props.votes.limit ? 'danger' : null)}><b>{props.votes.total} out of {props.votes.limit}</b></p>
-          </Nav>
-          <Button variant="flat" className="float-right" style={{ padding: '5px 10px', fontSize: '17px' }} onClick={toggleShowActions}>
-            <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
-          </Button>
-          <Button variant="success" className="float-right" style={{ padding: '5px 10px', margin: '0px 10px' }} onClick={handleShowAddColumn} disabled={!props.admin}>
-            <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
-          </Button>
-          <Button style={{ padding: '5px 10px' }} variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm} disabled={!props.admin}>
-            <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
-          </Button>
-          <AdminSelector admin={props.admin} setAdmin={props.setAdmin} />
+          <Col xs={5}>
+            <Nav className="mr-auto">
+              <h5 className="navHeader">Used Votes: </h5>&nbsp;<p className={'navHeader ' + (props.votes.total === props.votes.limit ? 'danger' : null)}><b>{props.votes.total} out of {props.votes.limit}</b></p>
+            </Nav>
+          </Col>
+          <Logo />
+          <Col xs={4}>
+            {/* <AdminSelector admin={props.admin} setAdmin={props.setAdmin} /> */}
+            <Button style={{ padding: '5px 10px' }} variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm} disabled={!props.admin}>
+              <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
+            </Button>
+            <Button variant="success" className="float-right" style={{ padding: '5px 10px', margin: '0px 10px' }} onClick={handleShowAddColumn} disabled={!props.admin}>
+              <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
+            </Button>
+            <Button variant="flat" className="float-right" style={{ padding: '5px 10px', fontSize: '17px' }} onClick={toggleShowActions}>
+              <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
+            </Button>
+          </Col>
         </Navbar>
         <Card className="boardCard fullHeight">
           <Card.Body>
