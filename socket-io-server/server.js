@@ -18,19 +18,24 @@ const state = {
 }
 
 const ids = []
+let admin
 
 io.on('connection', (socket) => {
   console.info(`New client connected [id=${socket.id}]`)
   ids.push(socket.id)
+  if (ids.length === 1) admin = socket.id
 
   // io.emit('join', socket.id)
   console.log('emit state: ', state)
   socket.emit('join', { id: socket.id, state: state, admin: ids.length === 1 })
+  // TODO Fix Admin connect and disconnect issues (Admin selector)
 
   socket.on('disconnect', () => {
     console.log(`Client disconnected  [id=${socket.id}]`)
     const index = ids.indexOf(socket.id)
     if (index > -1) ids.splice(index, 1)
+    if (admin === socket.id) admin = ids[0]
+    io.to(admin).emit('setAdmin', true)
     socket.removeAllListeners()
   })
 
