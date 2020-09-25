@@ -133,7 +133,7 @@ const Column = props => {
         </Button>
       </CardBootstrap.Header>
       {displayConfirm ? <Confirm type="delete" submit={deleteColumn} show={displayConfirm} handleClose={handleClose} /> : null}
-      <CardBootstrap.Body>
+      <CardBootstrap.Body className="cardBody">
         <Row>
           <Col>
             {CardsComponent}

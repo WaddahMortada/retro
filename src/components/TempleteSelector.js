@@ -33,7 +33,7 @@ const TemplateSelector = props => {
           <Logo templateSelector={true} />
           {/* <AdminSelector admin={props.admin} setAdmin={props.setAdmin} /> */}
         </Navbar>
-        <Card className="boardCard">
+        <Card className="templateCard">
           <Card.Body>
             <form onSubmit={create}>
               <Row className="justify-content-md-center">

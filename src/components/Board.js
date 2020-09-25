@@ -7,7 +7,7 @@ import AddColumn from './Action/Column/Add'
 import ActionsColumn from './ActionsColumn'
 import AdminSelector from './AdminSelector'
 import { Row, Col, Button, Navbar, Nav, Card } from 'react-bootstrap'
-import { faChalkboard, faColumns, faListUl } from '@fortawesome/free-solid-svg-icons'
+import { faChalkboard, faColumns, faListUl, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Board = props => {
@@ -53,7 +53,7 @@ const Board = props => {
 
   props.columns.forEach((column, key) => {
     ColumnComponent.push(
-      <Col key={key}>
+      <Col key={key} className="column">
         <Column
           index={key}
           column={column}
@@ -91,14 +91,14 @@ const Board = props => {
               <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
             </Button>
             <Button variant="flat" className="float-right" style={{ padding: '5px 10px', fontSize: '17px' }} onClick={toggleShowActions}>
-              <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
+              <small><FontAwesomeIcon className="icon-thumb" icon={showActions ? faMinus : faPlus} /></small> <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
             </Button>
           </Col>
         </Navbar>
         <Card className="boardCard fullHeight">
-          <Card.Body>
+          <Card.Body className="mainCardBody">
             <Row className="fullHeight">
-              <Col md={{ span: showActions ? 9 : 12 }}>
+            <Col md={{ span: showActions ? 9 : 12 }}>
                 {showAddColumn ? AddColumnModule : null}
                 <Row className="fullHeight">
                   {ColumnComponent}
