@@ -34,7 +34,11 @@ const Board = props => {
     props.columns[index] = column
     const updatedColumns = [...props.columns]
     props.setColumns(updatedColumns)
-    if (broadcastUpdate) props.socket.emit('setColumns', updatedColumns)
+    if (broadcastUpdate) {
+      props.socket.emit('setColumns', updatedColumns)
+    } else {
+      props.socket.emit('updateSocketColumnState', updatedColumns)
+    }
   }
 
   const deleteColumn = index => {
@@ -48,6 +52,7 @@ const Board = props => {
     carouselClass = 'carousel-45'
   } else if (props.columns.length > 3) {
     carouselClass = 'carousel-32'
+    props.socket.emit('updateSocketColumnState', updatedColumns)
   }
 
   props.columns.forEach((column, key) => {

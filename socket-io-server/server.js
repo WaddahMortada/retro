@@ -64,6 +64,12 @@ io.on('connection', (socket) => {
     console.log('state: ', state)
   })
 
+  socket.on('updateSocketColumnState', columns => {
+    console.log('columns: ', columns)
+    state.columns = columns
+    console.log('state: ', state)
+  })
+
   socket.on('setActions', actions => {
     console.log('actions', actions)
     socket.broadcast.emit('setActions', actions)
