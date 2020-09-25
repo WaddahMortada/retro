@@ -26,7 +26,7 @@ const Dashboard = props => {
       const data = props.join
 
       setId(data.id)
-      setAdmin(data.admin)
+      // setAdmin(data.admin)
 
       // Getting state from server
       if (data.state.template && data.state.template !== template) {
@@ -125,11 +125,11 @@ const Dashboard = props => {
     }
   }, [props.actionsData])
 
-  useEffect(() => {
-    if (props.adminData !== admin) {
-      setAdmin(props.adminData)
-    }
-  }, [props.adminData])
+  // useEffect(() => {
+  //   if (props.adminData !== admin) {
+  //     setAdmin(props.adminData)
+  //   }
+  // }, [props.adminData])
 
   useEffect(() => {
     if (props.deleteCard) {
