@@ -45,19 +45,15 @@ const Board = props => {
     props.columns.splice(index, 1)
     const updatedColumns = [...props.columns]
     props.setColumns(updatedColumns)
-  }
-
-  let carouselClass = null
-  if (props.columns.length >= 3 && showActions) {
-    carouselClass = 'carousel-45'
-  } else if (props.columns.length > 3) {
-    carouselClass = 'carousel-32'
     props.socket.emit('updateSocketColumnState', updatedColumns)
   }
 
+  let disableAddColumn = props.columns.length >= 5
+  if (!props.admin) disableAddColumn = true
+
   props.columns.forEach((column, key) => {
     ColumnComponent.push(
-      <Col key={key} md={{ span: showActions ? 6 : 4 }} className={'column ' + carouselClass}>
+      <Col key={key}>
         <Column
           index={key}
           column={column}
@@ -91,7 +87,7 @@ const Board = props => {
             <Button style={{ padding: '5px 10px' }} variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm} disabled={!props.admin}>
               <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
             </Button>
-            <Button variant="success" className="float-right" style={{ padding: '5px 10px', margin: '0px 10px' }} onClick={handleShowAddColumn} disabled={!props.admin}>
+            <Button variant="success" className="float-right" style={{ padding: '5px 10px', margin: '0px 10px' }} onClick={handleShowAddColumn} disabled={disableAddColumn}>
               <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
             </Button>
             <Button variant="flat" className="float-right" style={{ padding: '5px 10px', fontSize: '17px' }} onClick={toggleShowActions}>
@@ -102,13 +98,13 @@ const Board = props => {
         <Card className="boardCard fullHeight">
           <Card.Body>
             <Row className="fullHeight">
-              <Col md={{ span: showActions ? 8 : 12 }}>
+              <Col md={{ span: showActions ? 9 : 12 }}>
                 {showAddColumn ? AddColumnModule : null}
-                <Row className="fullHeight scrollable">
+                <Row className="fullHeight">
                   {ColumnComponent}
                 </Row>
               </Col>
-              <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 4 }}><ActionsColumn showActions={showActions} socket={props.socket} actionsData={props.actionsData} actions={props.actions} setActions={props.setActions} /></Col>
+              <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}><ActionsColumn showActions={showActions} socket={props.socket} actionsData={props.actionsData} actions={props.actions} setActions={props.setActions} /></Col>
             </Row>
           </Card.Body>
         </Card>

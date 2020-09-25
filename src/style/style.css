@@ -291,17 +291,17 @@ textarea:focus {
   flex-wrap: nowrap !important;
 }
 
-.column {
+/* .column {
   height: 99%;
-}
+} */
 
-.carousel-32 {
+/* .carousel-32 {
   flex: 0 0 32%;
 }
 
 .carousel-45 {
   flex: 0 0 45%;
-}
+} */
 
 .hide {
   display: none;
