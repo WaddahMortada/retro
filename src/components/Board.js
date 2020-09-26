@@ -84,13 +84,13 @@ const Board = props => {
           <Logo />
           <Col xs={4}>
             {/* <AdminSelector admin={props.admin} setAdmin={props.setAdmin} /> */}
-            <Button style={{ padding: '5px 10px' }} variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm} disabled={!props.admin}>
+            <Button style={{ padding: '5px 10px' }} size="sm" variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm} disabled={!props.admin}>
               <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
             </Button>
-            <Button variant="success" className="float-right" style={{ padding: '5px 10px', margin: '0px 10px' }} onClick={handleShowAddColumn} disabled={disableAddColumn}>
+            <Button variant="success" size="sm" className="float-right" style={{ padding: '5px 10px', margin: '0px 10px' }} onClick={handleShowAddColumn} disabled={disableAddColumn}>
               <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
             </Button>
-            <Button variant="flat" className="float-right" style={{ padding: '5px 10px', fontSize: '17px' }} onClick={toggleShowActions}>
+            <Button variant="flat" size="sm" className="float-right" style={{ padding: '5px 10px' }} onClick={toggleShowActions}>
               <small><FontAwesomeIcon className="icon-thumb" icon={showActions ? faMinus : faPlus} /></small> <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
             </Button>
           </Col>
