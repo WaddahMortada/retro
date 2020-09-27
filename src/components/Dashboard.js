@@ -168,11 +168,28 @@ const Dashboard = props => {
     }
   }, [props.deleteColumn])
 
+  const BoardComponent = <Board
+    type={template}
+    votes={votes}
+    voteFunctions={{ upVote: upVote, downVote: downVote }}
+    resetBoard={resetBoard}
+    socket={props.socket}
+    actionsData={props.actionsData}
+    actions={actions}
+    setActions={setActions}
+    columns={columns}
+    setColumns={setColumns}
+    id={id}
+    admin={admin}
+    setAdmin={setAdmin}
+    deleteColumn={props.deleteColumn}
+  />
+
   return (
     <Container fluid className="appContainer">
       {!template
         ? <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} socket={props.socket} admin={admin} setAdmin={setAdmin} />
-        : <Board type={template} votes={votes} voteFunctions={{ upVote: upVote, downVote: downVote }} resetBoard={resetBoard} socket={props.socket} actionsData={props.actionsData} actions={actions} setActions={setActions} columns={columns} setColumns={setColumns} id={id} admin={admin} setAdmin={setAdmin} deleteColumn={props.deleteColumn} />
+        : BoardComponent
       }
     </Container>
   )
