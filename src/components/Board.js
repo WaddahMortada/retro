@@ -87,10 +87,10 @@ const Board = props => {
             <Button style={{ padding: '5px 10px' }} size="sm" variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm} disabled={!props.admin}>
               <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
             </Button>
-            <Button variant="success" size="sm" className="float-right" style={{ padding: '5px 10px', margin: '0px 10px' }} onClick={handleShowAddColumn} disabled={disableAddColumn}>
               <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
+            <Button variant="success" size="sm" className="float-right add-column-btn" onClick={handleShowAddColumn} disabled={disableAddColumn}>
             </Button>
-            <Button variant="flat" size="sm" className="float-right" style={{ padding: '5px 10px' }} onClick={toggleShowActions}>
+            <Button variant="flat" size="sm" className="float-right actions-btn" onClick={toggleShowActions}>
               <small><FontAwesomeIcon className="icon-thumb" icon={showActions ? faMinus : faPlus} /></small> <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
             </Button>
           </Col>

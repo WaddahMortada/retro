@@ -110,7 +110,7 @@ const Column = props => {
     <Button className="float-right columnButton" size="sm" variant="danger" onClick={handleShow}>
       <FontAwesomeIcon className="icon-thumb" icon={faTrash} />
     </Button>
-    <Button className="float-right" size="sm" variant="info" onClick={submit}>
+    <Button className="float-right" size="sm" variant="edit" onClick={submit}>
       <FontAwesomeIcon className="icon-thumb" icon={faPen} />
     </Button>
   </form>

@@ -276,6 +276,17 @@ textarea:focus {
   color: white;
 }
 
+.btn-edit {
+  background-color: rgb(241, 250, 238);
+  border-color: rgb(241, 250, 238);
+  color: black;
+}
+
+.btn-edit:hover {
+  background-color: rgb(213, 238, 204);
+  color: black;
+}
+
 .bg-dark {
   background-color: rgb(31, 42, 53) !important;
 }
@@ -346,4 +357,13 @@ textarea:focus {
 .center {
   width: 100%;
   text-align: center
+}
+
+.add-column-btn {
+  padding: 5px 10px;
+  margin: 0px 10px;
+}
+
+.actions-btn {
+  padding: 5px 10px;
 }
