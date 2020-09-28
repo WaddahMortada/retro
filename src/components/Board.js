@@ -18,6 +18,15 @@ const Board = props => {
   const [showActions, setShowActions] = useState(false)
   const [showConfirm, setShowConfirm] = useState(false)
   const [showAddColumn, setShowAddColumn] = useState(false)
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth)
+
+  const updateInnerWidth = () => {
+    setInnerWidth(window.innerWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', updateInnerWidth)
+  }, [])
 
   const handleCloseConfirm = () => setShowConfirm(false)
   const handleShowConfirm = () => setShowConfirm(true)
@@ -85,10 +94,10 @@ const Board = props => {
           <Col md={4}>
             {/* <AdminSelector admin={props.admin} setAdmin={props.setAdmin} /> */}
             <Button style={{ padding: '5px 10px' }} size="sm" variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm} disabled={!props.admin}>
-              <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
+              <b>New {innerWidth > 1252 ? 'Board' : null}</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
             </Button>
-              <b>Add Column</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
             <Button variant="success" size="sm" className="float-right add-column-btn" onClick={handleShowAddColumn} disabled={disableAddColumn}>
+              <b>Add {innerWidth > 1252 ? 'Column' : null}</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
             </Button>
             <Button variant="flat" size="sm" className="float-right actions-btn" onClick={toggleShowActions}>
               <small><FontAwesomeIcon className="icon-thumb" icon={showActions ? faMinus : faPlus} /></small> <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
