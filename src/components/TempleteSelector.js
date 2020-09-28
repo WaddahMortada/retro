@@ -25,7 +25,7 @@ const TemplateSelector = props => {
     <Row className="fullHeight nav">
       <Col>
         <Navbar className="navBar" bg="dark" variant="dark">
-          <Col xs={5}>
+          <Col md={4}>
             <Nav className="mr-auto">
               <h5 className="navHeader">Create Board</h5>
             </Nav>

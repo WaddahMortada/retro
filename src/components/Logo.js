@@ -6,9 +6,11 @@ import RetroooGta from '../assets/retroooo-gta-thick.png'
 
 const Logo = props => {
   return (
-    <Col className="justify-content-md-center" xs={ props.templateSelector ? 0 : 3 }>
-      <img className="logo" src={RetroooGta} />
-      <img className="logoImage" src={Warrimoo} />
+    <Col md={4} >
+      <div className="center">
+        <img className="logo" src={RetroooGta} />
+        <img className="logoImage" src={Warrimoo} />
+      </div>
     </Col>
   )
 }

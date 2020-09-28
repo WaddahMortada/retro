@@ -76,13 +76,13 @@ const Board = props => {
       <Col>
         {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
         <Navbar className="navBar" bg="dark" variant="dark">
-          <Col xs={5}>
+          <Col md={4}>
             <Nav className="mr-auto">
               <h5 className="navHeader">Used Votes: </h5>&nbsp;<p className={'navHeader ' + (props.votes.total === props.votes.limit ? 'danger' : null)}><b>{props.votes.total} out of {props.votes.limit}</b></p>
             </Nav>
           </Col>
           <Logo />
-          <Col xs={4}>
+          <Col md={4}>
             {/* <AdminSelector admin={props.admin} setAdmin={props.setAdmin} /> */}
             <Button style={{ padding: '5px 10px' }} size="sm" variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm} disabled={!props.admin}>
               <b>New Board</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
