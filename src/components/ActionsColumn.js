@@ -13,6 +13,15 @@ const backspace = 8
 const ActionsColumn = props => {
   const [actionsRef, setActionsFocus] = useFocus()
   const [showNotification, setShowNotification] = useState(false)
+  const [innerWidth, setInnerWidth] = useState(window.innerWidth)
+
+  const updateInnerWidth = () => {
+    setInnerWidth(window.innerWidth)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', updateInnerWidth)
+  }, [])
 
   const toggleShowNotification = () => setShowNotification(!showNotification)
 
@@ -69,10 +78,10 @@ const ActionsColumn = props => {
       <Card.Header>
         <h5 className="inlineBlock">Actions</h5>
         <Button className="float-right" size="sm" variant="info" title="Export to PDF" onClick={() => exportActionsToPdf(props.actions)}>
-          <FontAwesomeIcon className="icon-thumb" icon={faFileExport} />
+          {innerWidth > 1498 ? <small>Export PDF</small> : null} <FontAwesomeIcon className="icon-thumb" icon={faFileExport} />
         </Button>
         <Button className="float-right copy-button" size="sm" variant="copy" title="Copy to Clipboard" onClick={copyToClipboard}>
-          <FontAwesomeIcon className="icon-thumb" icon={faCopy} />
+          {innerWidth > 1498 ? <small>Copy to Clipboard</small> : null} <FontAwesomeIcon className="icon-thumb" icon={faCopy} />
         </Button>
       </Card.Header>
       <Card.Body>
