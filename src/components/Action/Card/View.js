@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons'
-import { faThumbsUp as solidFaThumbsUp, faThumbsDown as solidFaThumbsDown, faPen } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+import { faThumbsUp as solidFaThumbsUp, faTimes, faPen } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Row, Col, Button } from 'react-bootstrap'
 
@@ -25,8 +25,8 @@ const View = props => {
   }
 
   const DownVote = <div className="inlineBlock thumb" onClick={() => downVote()}>
-    <FontAwesomeIcon className="icon-thumb" icon={faThumbsDown} />
-    <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsDown} />
+    <FontAwesomeIcon className="icon-thumb" icon={faTimes} />
+    <FontAwesomeIcon className="icon-thumb-solid" icon={faTimes} />
   </div>
 
   const EditButton = <Button variant="flat-light" size="smm" className="float-right" onClick={() => props.setEdit(true)}>
@@ -41,7 +41,7 @@ const View = props => {
         <div className={'inlineBlock thumb' + ((props.votes.disable) ? ' disable' : '')} onClick={() => upVote()}>
           <FontAwesomeIcon className="icon-thumb" icon={faThumbsUp} />
           <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsUp} />
-          {props.card.totalVotes ? props.card.totalVotes : null}
+          <span className="card-votes-total">{props.card.totalVotes ? props.card.totalVotes : null}</span>
         </div>
         {props.card.votes[props.id] ? DownVote : null }
       </Col>

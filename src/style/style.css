@@ -367,3 +367,8 @@ textarea:focus {
 .actions-btn {
   padding: 5px 10px;
 }
+
+.card-votes-total {
+  cursor: pointer;
+  user-select: none;
+}
