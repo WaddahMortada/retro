@@ -48,7 +48,7 @@ const AddEdit = props => {
       <Button className="float-right submitCardButton" size="sm" variant="success" onClick={() => addCard()}>
         <FontAwesomeIcon className="icon-thumb" icon={faCheck} />
       </Button>
-      <Button className="float-right deleteCardButton" size="sm" variant="danger" onClick={handleShow}>
+      <Button className="float-right deleteCardButton" size="sm" variant="danger" onClick={props.tempCard ? deleteCard : handleShow}>
         <FontAwesomeIcon className="icon-thumb" icon={faTrash} />
       </Button>
     </form>
