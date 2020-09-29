@@ -23,6 +23,7 @@ let admin
 io.on('connection', (socket) => {
   console.info(`New client connected [id=${socket.id}]`)
   ids.push(socket.id)
+  console.info(`Total connected clients: ${ids.length}`)
   if (ids.length === 1) admin = socket.id
 
   // io.emit('join', socket.id)
