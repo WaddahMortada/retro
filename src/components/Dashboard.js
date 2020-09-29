@@ -183,12 +183,13 @@ const Dashboard = props => {
     admin={admin}
     setAdmin={setAdmin}
     deleteColumn={props.deleteColumn}
+    onlineUsers={props.onlineUsers}
   />
 
   return (
     <Container fluid className="appContainer">
       {!template
-        ? <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} socket={props.socket} admin={admin} setAdmin={setAdmin} />
+        ? <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} socket={props.socket} admin={admin} setAdmin={setAdmin} onlineUsers={props.onlineUsers} />
         : BoardComponent
       }
     </Container>
@@ -207,7 +208,8 @@ Dashboard.propTypes = {
   votesData: PropTypes.any,
   columnsData: PropTypes.any,
   deleteCard: PropTypes.any,
-  deleteColumn: PropTypes.any
+  deleteColumn: PropTypes.any,
+  onlineUsers: PropTypes.any
 }
 
 export default Dashboard

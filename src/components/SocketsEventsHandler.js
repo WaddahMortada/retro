@@ -12,7 +12,7 @@ const SocketsEventsHandler = props => {
   const [columnsData, setColumnsData] = useState()
   const [deleteCard, setDeleteCard] = useState()
   const [deleteColumn, setDeleteColumn] = useState()
-  const [users, setUsers] = useState()
+  const [onlineUsers, setOnlineUsers] = useState(0)
 
   useEffect(() => {
     props.socket.on('join', data => {
@@ -55,7 +55,8 @@ const SocketsEventsHandler = props => {
     })
 
     props.socket.on('updateUsers', data => {
-      console.log('Users:', data)
+      console.log('OnlineUsers:', data)
+      setOnlineUsers(data.totalUsers)
     })
   }, [])
 
@@ -73,6 +74,7 @@ const SocketsEventsHandler = props => {
       columnsData={columnsData}
       deleteCard={deleteCard}
       deleteColumn={deleteColumn}
+      onlineUsers={onlineUsers}
     />
   )
 }

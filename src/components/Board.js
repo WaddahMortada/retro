@@ -7,7 +7,7 @@ import AddColumn from './Action/Column/Add'
 import ActionsColumn from './ActionsColumn'
 import AdminSelector from './AdminSelector'
 import { Row, Col, Button, Navbar, Nav, Card } from 'react-bootstrap'
-import { faChalkboard, faColumns, faListUl, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faChalkboard, faColumns, faListUl, faPlus, faMinus, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Board = props => {
@@ -87,7 +87,9 @@ const Board = props => {
         <Navbar className="navBar" bg="dark" variant="dark">
           <Col md={4}>
             <Nav className="mr-auto">
-              <h5 className="navHeader">Used Votes: </h5>&nbsp;<p className={'navHeader ' + (props.votes.total === props.votes.limit ? 'danger' : null)}><b>{props.votes.total} out of {props.votes.limit}</b></p>
+              <h5 className="navHeader navText" title="Number of Online Users" style={{ color: (props.onlineUsers > 0) ? '#0eb90e' : '#9e192a' }}><FontAwesomeIcon className="icon-thumb" icon={faUsers} /> {props.onlineUsers}</h5>
+              <p className="navText">&nbsp; &nbsp;</p>
+              <h5 className="navHeader navText">Used Votes: </h5><p className={'navHeader navText ' + (props.votes.total === props.votes.limit ? 'danger' : null)}>&nbsp;<b>{props.votes.total} out of {props.votes.limit}</b></p>
             </Nav>
           </Col>
           <Logo />

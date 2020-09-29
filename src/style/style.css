@@ -372,3 +372,7 @@ textarea:focus {
   cursor: pointer;
   user-select: none;
 }
+
+.navText {
+  cursor: default;
+}

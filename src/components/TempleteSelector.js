@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import { Row, Col, Nav, Navbar, Card, Button, Form } from 'react-bootstrap'
 import Logo from './Logo'
 import AdminSelector from './AdminSelector'
+import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 const TemplateSelector = props => {
   const [voteLimit, setVoteLimit] = useState(5)
@@ -27,7 +30,9 @@ const TemplateSelector = props => {
         <Navbar className="navBar" bg="dark" variant="dark">
           <Col md={4}>
             <Nav className="mr-auto">
-              <h5 className="navHeader">Create Board</h5>
+              <h5 className="navHeader navText" title="Number of Online Users" style={{ color: (props.onlineUsers > 0) ? '#0eb90e' : '#9e192a' }}><FontAwesomeIcon className="icon-thumb" icon={faUsers} /> {props.onlineUsers}</h5>
+              <p className="navText">&nbsp; &nbsp;</p>
+              <h5 className="navHeader navText">Create Board</h5>
             </Nav>
           </Col>
           <Logo templateSelector={true} />
@@ -68,7 +73,8 @@ TemplateSelector.propTypes = {
   votes: PropTypes.any,
   socket: PropTypes.any,
   admin: PropTypes.any,
-  setAdmin: PropTypes.any
+  setAdmin: PropTypes.any,
+  onlineUsers: PropTypes.any
 }
 
 export default TemplateSelector
