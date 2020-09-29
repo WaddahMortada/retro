@@ -59,7 +59,7 @@ const Column = props => {
 
   const deleteColumn = () => {
     props.column.cards.map(card => {
-      props.voteFunctions.downVote(card.votes[props.id])
+      if (card.votes[props.id]) props.voteFunctions.downVote(card.votes[props.id])
     })
     props.columnFunctions.delete(props.index)
     props.socket.emit('deleteColumn', { id: props.index, title: props.column.title })
