@@ -18,17 +18,25 @@ const state = {
 }
 
 const ids = []
+const uniqueUsers = []
 let admin
 
 io.on('connection', (socket) => {
   console.info(`New client connected [id=${socket.id}]`)
   ids.push(socket.id)
   console.info(`Total connected clients: ${ids.length}`)
+
+  let ip = (socket.handshake.address.address) ? socket.handshake.address.address : socket.handshake.address
+  console.log(`New Client IP Address: ${ip}`)
+
+  if (!uniqueUsers.includes(ip)) uniqueUsers.push(ip)
+  console.info(`Total unique connected clients: ${uniqueUsers.length}`)
+
   if (ids.length === 1) admin = socket.id
 
-  // io.emit('join', socket.id)
   console.log('emit state: ', state)
   socket.emit('join', { id: socket.id, state: state, admin: ids.length === 1 })
+  io.sockets.emit('updateUsers', { totalUsers: ids.length, totalUniqueUsers: uniqueUsers.length })
   // TODO Fix Admin connect and disconnect issues (Admin selector)
 
   socket.on('disconnect', () => {
@@ -38,6 +46,13 @@ io.on('connection', (socket) => {
     if (admin === socket.id) admin = ids[0]
     io.to(admin).emit('setAdmin', true)
     socket.removeAllListeners()
+
+    let ip = (socket.handshake.address.address) ? socket.handshake.address.address : socket.handshake.address
+    const key = uniqueUsers.indexOf(ip)
+    if (key > -1) uniqueUsers.splice(key, 1)
+
+    io.sockets.emit('updateUsers', { totalUsers: ids.length })
+    console.info(`Total connected clients: ${ids.length}`)
   })
 
   socket.on('resetBoard', resetBoard => {
@@ -95,4 +110,4 @@ io.on('connection', (socket) => {
   })
 })
 
-server.listen(port, () => console.log(`Listening on port ${port}`))
+server.listen(port, '0.0.0.0', () => console.log(`Listening on port ${port}`))
