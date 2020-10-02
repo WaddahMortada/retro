@@ -63,10 +63,6 @@ body {
   border-radius: 5px;
 }
 
-.navHeader {
-  padding-top: 10px;
-}
-
 .columnButton {
   margin-left: 5px;
   width: 33px;
@@ -375,4 +371,5 @@ textarea:focus {
 
 .navText {
   cursor: default;
+  font-size: 14px;
 }

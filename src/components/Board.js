@@ -87,9 +87,15 @@ const Board = props => {
         <Navbar className="navBar" bg="dark" variant="dark">
           <Col md={4}>
             <Nav className="mr-auto">
-              <h5 className="navHeader navText" title="Number of Online Users" style={{ color: (props.onlineUsers > 0) ? '#0eb90e' : '#9e192a' }}><FontAwesomeIcon className="icon-thumb" icon={faUsers} /> {props.onlineUsers}</h5>
-              <p className="navText">&nbsp; &nbsp;</p>
-              <h5 className="navHeader navText">Used Votes: </h5><p className={'navHeader navText ' + (props.votes.total === props.votes.limit ? 'danger' : null)}>&nbsp;<b>{props.votes.total} out of {props.votes.limit}</b></p>
+              <div className="navText">
+                <span title="Number of Online Users" style={{ color: (props.onlineUsers > 0) ? '#0eb90e' : '#9e192a' }}>
+                  <FontAwesomeIcon className="icon-thumb" icon={faUsers} style={{ fontSize: 'medium' }} /> {props.onlineUsers}
+                </span>
+                &nbsp;&nbsp; Votes:&nbsp;
+                <span className={(props.votes.total === props.votes.limit ? 'danger' : null)}>
+                  <b>{props.votes.total} out of {props.votes.limit}</b>
+                </span>
+              </div>
             </Nav>
           </Col>
           <Logo />

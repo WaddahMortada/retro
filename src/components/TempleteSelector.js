@@ -30,9 +30,12 @@ const TemplateSelector = props => {
         <Navbar className="navBar" bg="dark" variant="dark">
           <Col md={4}>
             <Nav className="mr-auto">
-              <h5 className="navHeader navText" title="Number of Online Users" style={{ color: (props.onlineUsers > 0) ? '#0eb90e' : '#9e192a' }}><FontAwesomeIcon className="icon-thumb" icon={faUsers} /> {props.onlineUsers}</h5>
-              <p className="navText">&nbsp; &nbsp;</p>
-              <h5 className="navHeader navText">Create Board</h5>
+              <div className="navText">
+                <span title="Number of Online Users" style={{ color: (props.onlineUsers > 0) ? '#0eb90e' : '#9e192a' }}>
+                  <FontAwesomeIcon className="icon-thumb" icon={faUsers} style={{ fontSize: 'medium' }} /> {props.onlineUsers}
+                </span>
+                &nbsp; &nbsp; Create Board
+              </div>
             </Nav>
           </Col>
           <Logo templateSelector={true} />
