@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import TemplateSelector from './TempleteSelector'
 import Board from './Board'
+import { toTitleCase } from '../lib/helpers'
 import { Container, Row, Col } from 'react-bootstrap'
 import '../assets/warrimoo.png'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -86,7 +87,7 @@ const Dashboard = props => {
     if ((template && !isJoinColumn) || (template && props.resetBoard)) {
       const columnsObjects = []
       columnsTitle.forEach(title => {
-        columnsObjects.push({ title: title, cards: [] })
+        columnsObjects.push({ title: toTitleCase(title), cards: [] })
       })
       setColumns(columnsObjects)
       props.socket.emit('setColumns', columnsObjects)

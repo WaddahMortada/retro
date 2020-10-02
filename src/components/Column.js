@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
-import { toTitleCase } from '../lib/helpers'
 import Card from './Card'
 import Confirm from './Confirm'
 import CardBootstrap from 'react-bootstrap/Card'
@@ -120,7 +119,7 @@ const Column = props => {
   </Button>
 
   const DisplayTitle = <div>
-    <h5 className="inlineBlock">{toTitleCase(props.column.title)}</h5>
+    <h5 className="inlineBlock">{props.column.title}</h5>
     {props.admin ? EditButton : null}
   </div>
 
