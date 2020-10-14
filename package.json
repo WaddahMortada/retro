@@ -18,7 +18,7 @@
     "build": "webpack",
     "prestart": "npm run build",
     "start": "webpack-dev-server --open",
-    "start-server": "cd /socket-io-server && node server.js",
+    "start-server": "cd socket-io-server && node server.js",
     "start-prod": "npm run start & npm run start-server",
     "build-production": "webpack --config webpack-production.config.js",
     "start-production": "http-server",
