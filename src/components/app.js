@@ -3,7 +3,10 @@ import SocketsEventsHandler from './SocketsEventsHandler'
 import socketIOClient from 'socket.io-client'
 
 const App = props => {
-  const socket = socketIOClient('http://localhost:8080')
+  const socket = socketIOClient('http://localhost:8080', {
+    transports: ['websocket'],
+    upgrade: false
+  })
 
   useEffect(() => {
     socket.on('connect', () => {
