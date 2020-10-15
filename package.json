@@ -1,6 +1,6 @@
 {
   "name": "retro",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "React JS Retro Tool",
   "main": "index.js",
   "author": "Waddah.Mortada",
@@ -23,6 +23,12 @@
     "build-production": "webpack --config webpack-production.config.js",
     "start-production": "http-server",
     "lint": "eslint ./src"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-react",
+      "@babel/preset-env"
+    ]
   },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
