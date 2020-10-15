@@ -24,12 +24,6 @@
     "start-production": "http-server",
     "lint": "eslint ./src"
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-react",
-      "@babel/preset-env"
-    ]
-  },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",
