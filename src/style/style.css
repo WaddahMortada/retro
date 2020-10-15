@@ -1,6 +1,7 @@
 body {
   background-color: rgb(33, 78, 59);
-  color: rgb(241, 234, 234);
+  /* color: rgb(241, 234, 234); */
+  color: #faf6db;
 }
 
 .appContainer {
@@ -216,73 +217,73 @@ textarea:focus {
 
 .btn-flat {
   background-color: rgb(10, 63, 88);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-flat:hover {
   background-color: rgb(6, 45, 64);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-flat-light {
   background-color: rgb(16, 95, 132);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-flat-light:hover {
   background-color: rgb(27, 114, 155);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-dark {
   background-color: rgb(30, 43, 56);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-dark:hover {
   background-color: rgb(21, 34, 47);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-dark-red {
   background-color: rgb(158, 25, 43);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-dark-red:hover {
   background-color: rgb(136, 15, 32);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-copy {
   background-color: rgb(10, 97, 97);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-copy:hover {
   background-color: rgb(8, 66, 66);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-admin {
   background-color: rgb(148, 29, 73);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-admin:hover {
   background-color: rgb(97, 15, 45);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-success {
   background-color: rgb(40, 167, 69);
   border-color: rgb(40, 167, 69);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-success:hover {
   background-color: rgb(33, 136, 56);
-  color: white;
+  color: #faf6db;
 }
 
 .btn-edit {
