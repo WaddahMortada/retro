@@ -49,3 +49,7 @@ export const useFocus = () => {
 
   return [htmlElRef, setFocus]
 }
+
+export const didUserVote = (id, votes) => {
+  return votes.hasOwnProperty(id) && (votes[id].upVote || votes[id].downVote)
+}

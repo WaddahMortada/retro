@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import Card from './Card'
 import Confirm from './Confirm'
+import { didUserVote } from '../lib/helpers'
 import CardBootstrap from 'react-bootstrap/Card'
 import { Row, Col, Button } from 'react-bootstrap'
 import { faPlus, faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
@@ -58,7 +59,7 @@ const Column = props => {
 
   const deleteColumn = () => {
     props.column.cards.map(card => {
-      if (card.votes[props.id]) props.voteFunctions.downVote(card.votes[props.id])
+      if (didUserVote(props.id, card.votes)) props.voteFunctions.downVote()
     })
     props.columnFunctions.delete(props.index)
     props.socket.emit('deleteColumn', { id: props.index, title: props.column.title })

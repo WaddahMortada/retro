@@ -109,16 +109,29 @@ textarea:focus {
 
 .thumb:hover .icon-thumb,
 .thumb .icon-thumb-solid {
-    display: none;
+  display: none;
+  color: #faf6db;
 }
 .thumb:hover .icon-thumb-solid {
-    display: inline;
-    cursor: pointer;
+  display: inline;
+  cursor: pointer;
+  color: #faf6db;
+}
+
+.up-voted {
+  color: #8ACED0 !important;
+  cursor: pointer;
+}
+
+.down-voted {
+  color: #e63946 !important;
+  cursor: pointer;
 }
 
 .disable {
   cursor: not-allowed;
   pointer-events:none;
+  cursor: none;
   color: gray;
 }
 

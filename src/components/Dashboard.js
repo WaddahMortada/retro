@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import TemplateSelector from './TempleteSelector'
 import Board from './Board'
-import { toTitleCase } from '../lib/helpers'
+import { toTitleCase, didUserVote } from '../lib/helpers'
 import { Container, Row, Col } from 'react-bootstrap'
 import '../assets/warrimoo.png'
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -67,9 +67,9 @@ const Dashboard = props => {
     }
   }
 
-  const downVote = (downVotes = 1) => {
+  const downVote = () => {
     if (votes.total > 0) {
-      votes.total -= downVotes
+      votes.total -= 1
       setVotes({ ...votes })
     }
   }
@@ -137,8 +137,8 @@ const Dashboard = props => {
       if (column) {
         const card = column.cards[data.card]
         if (card && card.id === data.id) {
-          if (card.votes[id]) {
-            votes.total -= card.votes[id]
+          if (didUserVote(id, card.votes)) {
+            votes.total--
             setVotes({ ...votes })
           }
           column.cards.splice(data.card, 1)
@@ -157,7 +157,7 @@ const Dashboard = props => {
       if (column && column.title === data.title) {
         let count = 0
         column.cards.forEach(card => {
-          count += (card.votes[id]) ? card.votes[id] : 0
+          if (didUserVote(id, card.votes)) count++
         })
         votes.total -= count
         setVotes({ ...votes })

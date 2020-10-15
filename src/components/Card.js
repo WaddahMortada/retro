@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import AddEditCard from './Action/Card/AddEdit'
 import ViewCard from './Action/Card/View'
+import { didUserVote } from '../lib/helpers'
 import CardBootstrap from 'react-bootstrap/Card'
 
 const Card = props => {
@@ -14,7 +15,7 @@ const Card = props => {
 
   const deleteCard = () => {
     setEdit(false)
-    props.voteFunctions.downVote(props.card.votes[props.id])
+    if (didUserVote(props.id,  props.card.votes)) props.voteFunctions.downVote()
     props.cardFunctions.delete(props.index)
   }
 
