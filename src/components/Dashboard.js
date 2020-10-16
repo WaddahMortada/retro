@@ -187,12 +187,19 @@ const Dashboard = props => {
     onlineUsers={props.onlineUsers}
   />
 
+  const TemplateSelectorComponent = <TemplateSelector
+    setTemplate={setTemplate}
+    votes={votes}
+    setVotes={setVotes}
+    socket={props.socket}
+    admin={admin}
+    setAdmin={setAdmin}
+    onlineUsers={props.onlineUsers}
+  />
+
   return (
     <Container fluid className="appContainer">
-      {!template
-        ? <TemplateSelector setTemplate={setTemplate} votes={votes} setVotes={setVotes} socket={props.socket} admin={admin} setAdmin={setAdmin} onlineUsers={props.onlineUsers} />
-        : BoardComponent
-      }
+      {!template ? TemplateSelectorComponent : BoardComponent}
     </Container>
   )
 }
