@@ -18,10 +18,13 @@ const TemplateSelector = props => {
     const votes = { ...props.votes }
     props.setVotes(votes)
 
-    props.socket.emit('resetBoard', true)
-    props.socket.emit('setTemplate', template)
-    props.socket.emit('setVotes', votes)
-    props.socket.emit('setActions', '')
+    // create a new board here? 🤷‍♂️
+    props.socket.emit('createBoard', props.board)
+
+    props.socket.emit('resetBoard', { board: props.board, reset: true })
+    props.socket.emit('setTemplate', { board: props.board,  template: template })
+    props.socket.emit('setVotes', { board: props.board, votes: votes })
+    props.socket.emit('setActions', { board: props.board, actions: '' })
   }
 
   return (
@@ -77,7 +80,8 @@ TemplateSelector.propTypes = {
   socket: PropTypes.any,
   admin: PropTypes.any,
   setAdmin: PropTypes.any,
-  onlineUsers: PropTypes.any
+  onlineUsers: PropTypes.any,
+  board: PropTypes.any
 }
 
 export default TemplateSelector

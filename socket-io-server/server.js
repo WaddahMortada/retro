@@ -21,6 +21,8 @@ const ids = []
 const uniqueUsers = []
 let admin
 
+const boards = {}
+
 io.on('connection', (socket) => {
   console.info(`New client connected [id=${socket.id}]`)
   ids.push(socket.id)
@@ -34,8 +36,28 @@ io.on('connection', (socket) => {
 
   if (ids.length === 1) admin = socket.id
 
-  console.log('emit state: ', state)
-  socket.emit('join', { id: socket.id, state: state, admin: ids.length === 1 })
+  // console.log('emit state: ', state)
+
+  socket.on('createBoard', newBoard => {
+    socket.join(newBoard)
+    boards[newBoard] = {
+      socket: io.sockets.in(newBoard),
+      state: {
+        template: null,
+        votes: null,
+        columns: null,
+        actions: null
+      }
+    }
+    console.log(boards)
+  })
+
+  socket.on('getStateByBoard', board => {
+    if (boards[board]) boards[board].socket.emit('setStateByBoard', boards[board].state)
+  })
+
+  // socket.emit('join', { id: socket.id, state: state, admin: ids.length === 1 })
+  socket.emit('join', { id: socket.id })
   io.sockets.emit('updateUsers', { totalUsers: ids.length, totalUniqueUsers: uniqueUsers.length })
   // TODO Fix Admin connect and disconnect issues (Admin selector)
 
@@ -55,58 +77,58 @@ io.on('connection', (socket) => {
     console.info(`Total connected clients: ${ids.length}`)
   })
 
-  socket.on('resetBoard', resetBoard => {
-    socket.broadcast.emit('resetBoard', resetBoard)
+  socket.on('resetBoard', data => {
+    boards[data.board].socket.emit('resetBoard', data.reset)
   })
 
-  socket.on('setTemplate', template => {
-    console.log('template: ', template)
-    socket.broadcast.emit('setTemplate', template)
-    state.template = template
-    console.log('state: ', state)
+  socket.on('setTemplate', data => {
+    console.log('template: ', data)
+    boards[data.board].socket.emit('setTemplate', data.template)
+    boards[data.board].state.template = data.template
+    console.log('state: ', boards[data.board].state)
   })
 
-  socket.on('setVotes', votes => {
-    console.log('votes: ', votes)
-    socket.broadcast.emit('setVotes', votes)
-    state.votes = votes
-    console.log('state: ', state)
+  socket.on('setVotes', data => {
+    console.log('votes: ', data)
+    boards[data.board].socket.emit('setVotes', data.votes)
+    boards[data.board].state.votes = data.votes
+    console.log('state: ', boards[data.board].state)
   })
 
-  socket.on('setColumns', columns => {
-    console.log('columns: ', columns)
-    socket.broadcast.emit('setColumns', columns)
-    state.columns = columns
-    console.log('state: ', state)
+  socket.on('setColumns', data => {
+    console.log('columns: ', data)
+    boards[data.board].socket.emit('setColumns', data.columns)
+    boards[data.board].state.columns = data.columns
+    console.log('state: ', boards[data.board].state)
   })
 
-  socket.on('updateSocketColumnState', columns => {
-    console.log('columns: ', columns)
-    state.columns = columns
-    console.log('state: ', state)
+  socket.on('updateSocketColumnState', data => {
+    console.log('columns: ', data)
+    boards[data.board].state.columns = data.columns
+    console.log('state: ', boards[data.board].state)
   })
 
-  socket.on('setActions', actions => {
-    console.log('actions', actions)
-    socket.broadcast.emit('setActions', actions)
-    state.actions = actions
-    console.log('state: ', state)
+  socket.on('setActions', data => {
+    console.log('actions', data)
+    boards[data.board].socket.emit('setActions', data.actions)
+    boards[data.board].state.actions = data.actions
+    console.log('state: ', boards[data.board].state)
   })
 
   socket.on('deleteCard', data => {
     console.log('deleteCard: ', data)
-    socket.broadcast.emit('deleteCard', data)
+    boards[data.board].socket.emit('deleteCard', data)
   })
 
-  socket.on('deleteColumn', column => {
-    console.log('deleteColumn: ', column)
-    socket.broadcast.emit('deleteColumn', column)
+  socket.on('deleteColumn', data => {
+    console.log('deleteColumn: ', data)
+    boards[data.board].socket.emit('deleteColumn', data)
   })
 
-  socket.on('updateColumns', columns => {
-    console.log('updateColumns: ', columns)
-    state.columns = columns
-    console.log('state: ', state)
+  socket.on('updateColumns', data => {
+    console.log('updateColumns: ', data)
+    boards[data.board].state.columns = data.columns
+    console.log('state: ', boards[data.board].state)
   })
 })
 

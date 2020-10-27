@@ -15,7 +15,7 @@ const Add = props => {
     props.columns.push({ title: title, cards: [] })
     const columns = [...props.columns]
     props.setColumns(columns)
-    props.socket.emit('setColumns', columns)
+    props.socket.emit('setColumns', { board: props.board, columns: columns })
     setTitle('')
     props.handleClose()
   }
@@ -44,7 +44,8 @@ Add.propTypes = {
   show: PropTypes.any,
   handleShow: PropTypes.any,
   handleClose: PropTypes.any,
-  socket: PropTypes.any
+  socket: PropTypes.any,
+  board: PropTypes.any
   // closeModule: PropTypes.any
 }
 

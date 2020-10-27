@@ -45,9 +45,10 @@ const Board = props => {
     const updatedColumns = [...props.columns]
     props.setColumns(updatedColumns)
     if (broadcastUpdate) {
-      props.socket.emit('setColumns', updatedColumns)
+      console.log({ board: props.board, columns: updatedColumns })
+      props.socket.emit('setColumns', { board: props.board, columns: updatedColumns })
     } else {
-      props.socket.emit('updateSocketColumnState', updatedColumns)
+      props.socket.emit('updateSocketColumnState', { board: props.board, columns: updatedColumns })
     }
   }
 
@@ -55,7 +56,7 @@ const Board = props => {
     props.columns.splice(index, 1)
     const updatedColumns = [...props.columns]
     props.setColumns(updatedColumns)
-    props.socket.emit('updateSocketColumnState', updatedColumns)
+    props.socket.emit('updateSocketColumnState', { board: props.board, columns: updatedColumns })
   }
 
   let disableAddColumn = props.columns.length >= 5
@@ -74,12 +75,13 @@ const Board = props => {
           admin={props.admin}
           socket={props.socket}
           deleteColumn={props.deleteColumn}
+          board={props.board}
         />
       </Col>
     )
   })
 
-  const AddColumnModule = <AddColumn columns={props.columns} setColumns={props.setColumns} show={showAddColumn} handleClose={handleCloseAddColumn} handleShow={handleShowAddColumn} socket={props.socket} />
+  const AddColumnModule = <AddColumn columns={props.columns} setColumns={props.setColumns} show={showAddColumn} handleClose={handleCloseAddColumn} handleShow={handleShowAddColumn} socket={props.socket} board={props.board} />
 
   return (
     <Row className="fullHeight nav">
@@ -122,7 +124,7 @@ const Board = props => {
                   {ColumnComponent}
                 </Row>
               </Col>
-              <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}><ActionsColumn showActions={showActions} socket={props.socket} actionsData={props.actionsData} actions={props.actions} setActions={props.setActions} /></Col>
+              <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}><ActionsColumn showActions={showActions} socket={props.socket} actionsData={props.actionsData} actions={props.actions} setActions={props.setActions} board={props.board} /></Col>
             </Row>
           </Card.Body>
         </Card>
@@ -145,7 +147,8 @@ Board.propTypes = {
   deleteColumn: PropTypes.any,
   actionsData: PropTypes.any,
   actions: PropTypes.any,
-  setActions: PropTypes.any
+  setActions: PropTypes.any,
+  board: PropTypes.any
 }
 
 export default Board

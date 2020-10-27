@@ -12,6 +12,7 @@ const Dashboard = props => {
   const defaultVotes = { limit: 5, total: 0, disable: false }
   const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {} }] }] // votes: { [userId]: 0 }
 
+  const [board, setBoard] = useState('1111')
   const [id, setId] = useState()
   const [admin, setAdmin] = useState(true)
   const [template, setTemplate] = useState('')
@@ -25,33 +26,40 @@ const Dashboard = props => {
       const data = props.join
 
       setId(data.id)
+      props.socket.emit('getStateByBoard', board)
+    }
+  }, [props.join])
+
+  useEffect(() => {
+    if (props.stateByBoard) {
+      const data = props.stateByBoard
       // setAdmin(data.admin)
 
       // Getting state from server
-      if (data.state.template && data.state.template !== template) {
-        setTemplate(data.state.template)
+      if (data.template && data.template !== template) {
+        setTemplate(data.template)
       }
 
-      if (data.state.votes && data.state.votes.limit !== votes.limit) {
-        data.state.votes.total = votes.total
-        setVotes(data.state.votes)
+      if (data.votes && data.votes.limit !== votes.limit) {
+        data.votes.total = votes.total
+        setVotes(data.votes)
       }
 
-      if (data.state.columns && data.state.columns !== columns) {
-        setColumns(data.state.columns)
+      if (data.columns && data.columns !== columns) {
+        setColumns(data.columns)
       }
 
-      if (data.state.actions && data.state.actions !== actions) {
-        setActions(data.state.actions)
+      if (data.actions && data.actions !== actions) {
+        setActions(data.actions)
       }
 
       // Sending current state to server
-      if (!data.state.template && template) {
-        props.socket.emit('setTemplate', template)
-        props.socket.emit('setVotes', votes)
+      if (!data.template && template) {
+        props.socket.emit('setTemplate', { board: board, template: template })
+        props.socket.emit('setVotes', { board: board, votes: votes })
       }
     }
-  }, [props.join])
+  }, [props.stateByBoard])
 
   // Dashboard Functions
   const resetBoard = () => {
@@ -83,14 +91,14 @@ const Dashboard = props => {
   // Handling Templates Changes
   useEffect(() => {
     const columnsTitle = template !== 'blank_board' ? template.split('_') : []
-    const isJoinColumn = props.join && props.join.state.columns
+    const isJoinColumn = props.stateByBoard && props.stateByBoard.columns
     if ((template && !isJoinColumn) || (template && props.resetBoard)) {
       const columnsObjects = []
       columnsTitle.forEach(title => {
         columnsObjects.push({ title: toTitleCase(title), cards: [] })
       })
       setColumns(columnsObjects)
-      props.socket.emit('setColumns', columnsObjects)
+      props.socket.emit('setColumns', { board: board, columns: columnsObjects })
     } else {
       props.setJoin()
     }
@@ -144,7 +152,7 @@ const Dashboard = props => {
           column.cards.splice(data.card, 1)
           columns[data.column] = column
           setColumns([...columns])
-          props.socket.emit('updateColumns', columns)
+          props.socket.emit('updateColumns', { board: board, columns: columns })
         }
       }
     }
@@ -164,7 +172,7 @@ const Dashboard = props => {
         columns.splice(data.id, 1)
         const updatedColumns = [...columns]
         setColumns(updatedColumns)
-        props.socket.emit('updateColumns', updatedColumns)
+        props.socket.emit('updateColumns', { board: board, columns: updatedColumns })
       }
     }
   }, [props.deleteColumn])
@@ -185,6 +193,7 @@ const Dashboard = props => {
     setAdmin={setAdmin}
     deleteColumn={props.deleteColumn}
     onlineUsers={props.onlineUsers}
+    board={board}
   />
 
   const TemplateSelectorComponent = <TemplateSelector
@@ -195,6 +204,7 @@ const Dashboard = props => {
     admin={admin}
     setAdmin={setAdmin}
     onlineUsers={props.onlineUsers}
+    board={board}
   />
 
   return (
@@ -207,6 +217,7 @@ const Dashboard = props => {
 Dashboard.propTypes = {
   socket: PropTypes.any,
   join: PropTypes.any,
+  stateByBoard: PropTypes.any,
   adminData: PropTypes.any,
   setJoin: PropTypes.any,
   actionsData: PropTypes.any,

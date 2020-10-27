@@ -54,7 +54,7 @@ const Column = props => {
     const id = props.column.cards[index].id
     props.column.cards.splice(index, 1)
     props.columnFunctions.update(props.index, props.column, false)
-    props.socket.emit('deleteCard', { column: props.index, card: index, id: id })
+    props.socket.emit('deleteCard', { board: props.board, column: props.index, card: index, id: id })
   }
 
   const deleteColumn = () => {
@@ -62,7 +62,7 @@ const Column = props => {
       if (didUserVote(props.id, card.votes)) props.voteFunctions.downVote()
     })
     props.columnFunctions.delete(props.index)
-    props.socket.emit('deleteColumn', { id: props.index, title: props.column.title })
+    props.socket.emit('deleteColumn', { board: props.board, id: props.index, title: props.column.title })
     setEdit(false)
     handleClose()
   }
@@ -154,7 +154,8 @@ Column.propTypes = {
   id: PropTypes.any,
   admin: PropTypes.any,
   socket: PropTypes.any,
-  deleteColumn: PropTypes.any
+  deleteColumn: PropTypes.any,
+  board: PropTypes.any
 }
 
 export default Column

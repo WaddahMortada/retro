@@ -4,6 +4,7 @@ import Dashboard from './Dashboard'
 
 const SocketsEventsHandler = props => {
   const [join, setJoin] = useState()
+  const [stateByBoard, setStateByBoard] = useState()
   const [adminData, setAdminData] = useState()
   const [actionsData, setActionsData] = useState()
   const [resetBoard, setResetBoard] = useState()
@@ -18,6 +19,11 @@ const SocketsEventsHandler = props => {
     props.socket.on('join', data => {
       console.log('join', data)
       setJoin(data)
+    })
+
+    props.socket.on('setStateByBoard', data => {
+      console.log('setStateByBoard', data)
+      setStateByBoard(data)
     })
 
     props.socket.on('setAdmin', admin => {
@@ -64,6 +70,7 @@ const SocketsEventsHandler = props => {
     <Dashboard
       socket={props.socket}
       join={join}
+      stateByBoard={stateByBoard}
       adminData={adminData}
       setJoin={setJoin}
       actionsData={actionsData}

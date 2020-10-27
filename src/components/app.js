@@ -4,8 +4,8 @@ import socketIOClient from 'socket.io-client'
 
 const App = props => {
   const socket = socketIOClient('http://localhost:8080', {
-    transports: ['websocket'],
-    upgrade: false
+    // transports: ['websocket'],
+    // upgrade: false
   })
 
   useEffect(() => {

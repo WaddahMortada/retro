@@ -58,7 +58,7 @@ const ActionsColumn = props => {
 
   const updateActions = newActions => {
     props.setActions(newActions)
-    props.socket.emit('setActions', newActions)
+    props.socket.emit('setActions', { board: props.board, actions: newActions })
   }
 
   const copyToClipboard = (e) => {
@@ -96,7 +96,8 @@ ActionsColumn.propTypes = {
   socket: PropTypes.any,
   actionsData: PropTypes.any,
   actions: PropTypes.any,
-  setActions: PropTypes.any
+  setActions: PropTypes.any,
+  board: PropTypes.any
 }
 
 export default ActionsColumn
