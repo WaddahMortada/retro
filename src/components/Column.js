@@ -40,7 +40,7 @@ const Column = props => {
     props.columnFunctions.update(props.index, props.column)
   }
 
-  const deleteTempCard = index => {
+  const deleteTempCard = () => {
     setTempCard()
     setTempCardValue()
   }
