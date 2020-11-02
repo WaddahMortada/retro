@@ -45,6 +45,11 @@ body {
   /* margin-top: 3px; */
 }
 
+.columnCardHeader {
+  background-color: rgb(31, 42, 53);
+  /* margin-top: 3px; */
+}
+
 .actionsBoardCard {
   background-color: rgb(10, 63, 88);
   margin-top: 3px;
@@ -236,12 +241,12 @@ textarea:focus {
 }
 
 .btn-dark {
-  background-color: rgb(30, 43, 56);
+  background-color: rgb(37, 53, 66);
   color: #faf6db;
 }
 
 .btn-dark:hover {
-  background-color: rgb(21, 34, 47);
+  background-color: rgb(37, 52, 63);
   color: #faf6db;
 }
 

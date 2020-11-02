@@ -126,7 +126,7 @@ const Column = props => {
 
   return (
     <CardBootstrap className="columnCard fullHeight">
-      <CardBootstrap.Header>
+      <CardBootstrap.Header className="columnCardHeader">
         {edit ? EditTitle : DisplayTitle}
         <Button variant="dark" className="addCardButton" onClick={() => addCard()}>
           <FontAwesomeIcon className="icon-thumb" icon={faPlus} />
