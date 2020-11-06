@@ -1,5 +1,6 @@
 body {
   background-color: rgb(33, 78, 59);
+  /* background-color: rgb(31, 36, 43); */
   /* color: rgb(241, 234, 234); */
   color: #faf6db;
 }
@@ -32,6 +33,7 @@ body {
 
 .boardCard {
   background-color: rgb(33, 78, 59);
+  border-color: rgb(33, 78, 59);
   /* margin-top: 3px; */
 }
 
