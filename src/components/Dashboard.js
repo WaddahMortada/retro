@@ -36,8 +36,8 @@ const Dashboard = props => {
 
       setId(data.id)
       setBoards(data.boards)
-      console.log(board, props.board)
-      if (board) props.socket.emit('getStateByBoard', board)
+      console.log(board, data.boards)
+      if (data.boards.includes(board)) props.socket.emit('getStateByBoard', board)
     }
   }, [props.join])
 
