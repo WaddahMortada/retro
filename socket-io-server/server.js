@@ -10,13 +10,6 @@ app.use(index)
 const server = http.createServer(app)
 const io = socketIo(server)
 
-const state = {
-  template: null,
-  votes: null,
-  columns: null,
-  actions: null
-}
-
 const ids = []
 const uniqueUsers = []
 let admin
@@ -25,8 +18,8 @@ const boards = {}
 
 io.sockets.on('connection', (socket) => {
   console.info(`New client connected [id=${socket.id}]`)
-  // ids.push(socket.id)
-  // console.info(`Total connected clients: ${ids.length}`)
+  ids.push(socket.id)
+  console.info(`Total connected clients: ${ids.length}`)
 
   // let ip = (socket.handshake.address.address) ? socket.handshake.address.address : socket.handshake.address
   // console.log(`New Client IP Address: ${ip}`)
@@ -36,19 +29,23 @@ io.sockets.on('connection', (socket) => {
 
   // if (ids.length === 1) admin = socket.id
 
-  // console.log('emit state: ', state)
-
   socket.on('createBoard', newBoard => {
     socket.join(newBoard)
     console.log('createBoard', newBoard)
+    console.log('socket.id', socket.id)
     boards[newBoard] = {
       state: {
         template: null,
         votes: null,
         columns: null,
         actions: null
-      }
+      },
+      onlineClients: [
+        socket.id
+      ]
     }
+    // add to online users
+    io.in(newBoard).emit('updateUsers', { totalUsers: boards[newBoard].onlineClients.length })
     // console.log(boards)
   })
 
@@ -67,33 +64,48 @@ io.sockets.on('connection', (socket) => {
       io.in(board).clients((error, clients) => {
         if (error) throw error
         // Returns an array of client IDs like ["Anw2LatarvGVVXEIAAAD"]
-        console.log('numClients: ', Object.keys(clients).length)
+        const numberOfClients = Object.keys(clients).length
+        console.log('numberOfClients: ', numberOfClients)
         console.log(clients)
       })
+      // add to online users
+      boards[board].onlineClients.push(socket.id)
+      io.in(board).emit('updateUsers', { totalUsers: boards[board].onlineClients.length })
 
       io.in(board).emit('setStateByBoard', boards[board].state)
     }
   })
 
-  // socket.emit('join', { id: socket.id, state: state, admin: ids.length === 1 })
   socket.emit('join', { id: socket.id, boards: Object.keys(boards) })
-  // io.sockets.emit('updateUsers', { totalUsers: ids.length, totalUniqueUsers: uniqueUsers.length })
   // TODO Fix Admin connect and disconnect issues (Admin selector)
+  // socket.emit('join', { id: socket.id, state: state, admin: ids.length === 1 })
+
+  socket.on('disconnecting', reason => {
+    console.log('disconnecting')
+    Object.keys(socket.rooms).forEach(board => {
+      if (boards[board]) {
+        console.log('board', board)
+        console.log('socket.id', socket.id)
+
+        const index = boards[board].onlineClients.indexOf(socket.id)
+        if (index > -1) boards[board].onlineClients.splice(index, 1)
+        io.in(board).emit('updateUsers', { totalUsers: boards[board].onlineClients.length })
+      }
+    })
+  })
 
   socket.on('disconnect', () => {
     console.log(`Client disconnected  [id=${socket.id}]`)
-    // const index = ids.indexOf(socket.id)
-    // if (index > -1) ids.splice(index, 1)
+    const index = ids.indexOf(socket.id)
+    if (index > -1) ids.splice(index, 1)
     // if (admin === socket.id) admin = ids[0]
     // io.to(admin).emit('setAdmin', true)
-    // socket.removeAllListeners()
+    socket.removeAllListeners()
 
     // let ip = (socket.handshake.address.address) ? socket.handshake.address.address : socket.handshake.address
     // const key = uniqueUsers.indexOf(ip)
     // if (key > -1) uniqueUsers.splice(key, 1)
-
-    // io.sockets.emit('updateUsers', { totalUsers: ids.length })
-    // console.info(`Total connected clients: ${ids.length}`)
+    console.info(`Total connected clients: ${ids.length}`)
   })
 
   socket.on('resetBoard', data => {
