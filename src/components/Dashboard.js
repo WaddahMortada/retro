@@ -8,11 +8,17 @@ import '../assets/warrimoo.png'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/style.css'
 
+// const isEmpty = obj => {
+//   return Object.keys(obj).length === 0
+// }
+
 const Dashboard = props => {
   const defaultVotes = { limit: 5, total: 0, disable: false }
   const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {} }] }] // votes: { [userId]: 0 }
 
-  const [board, setBoard] = useState('1111')
+  // const [board, setBoard] = useState(isEmpty(props.urlParams.board) ? '' : props.urlParams.board)
+  const [board, setBoard] = useState(props.board)
+  const [boards, setBoards] = useState()
   const [id, setId] = useState()
   const [admin, setAdmin] = useState(true)
   const [template, setTemplate] = useState('')
@@ -20,17 +26,24 @@ const Dashboard = props => {
   const [columns, setColumns] = useState(defaultColumns)
   const [actions, setActions] = useState()
 
+  console.log('board', board)
+  console.log('props.board', props.board)
+
   // Handling Socket Join Events
   useEffect(() => {
+    console.log('join', props.join)
     if (props.join) {
       const data = props.join
 
       setId(data.id)
-      props.socket.emit('getStateByBoard', board)
+      setBoards(data.boards)
+      console.log(board, data.boards)
+      if (data.boards.includes(board)) props.socket.emit('getStateByBoard', board)
     }
   }, [props.join])
 
   useEffect(() => {
+    console.log('stateByBoard', props.stateByBoard)
     if (props.stateByBoard) {
       const data = props.stateByBoard
       // setAdmin(data.admin)
@@ -92,15 +105,19 @@ const Dashboard = props => {
   useEffect(() => {
     const columnsTitle = template !== 'blank_board' ? template.split('_') : []
     const isJoinColumn = props.stateByBoard && props.stateByBoard.columns
-    if ((template && !isJoinColumn) || (template && props.resetBoard)) {
+    const reset = (props.resetBoard === undefined) ? false : props.resetBoard
+    if ((template && !isJoinColumn) || (template && reset)) {
       const columnsObjects = []
       columnsTitle.forEach(title => {
         columnsObjects.push({ title: toTitleCase(title), cards: [] })
       })
       setColumns(columnsObjects)
-      props.socket.emit('setColumns', { board: board, columns: columnsObjects })
+      if (board) {
+        props.socket.emit('setColumns', { board: board, columns: columnsObjects })
+      }
     } else {
       props.setJoin()
+      props.setStateByBoard()
     }
   }, [template])
 
@@ -126,9 +143,8 @@ const Dashboard = props => {
   }, [props.columnsData])
 
   useEffect(() => {
-    if ((props.actionsData && (props.actionsData !== actions)) || props.resetBoard) {
+    if (props.actionsData !== actions) {
       setActions(props.actionsData)
-      if (props.resetBoard) props.setResetBoard(false)
     }
   }, [props.actionsData])
 
@@ -137,6 +153,12 @@ const Dashboard = props => {
   //     setAdmin(props.adminData)
   //   }
   // }, [props.adminData])
+
+  useEffect(() => {
+    if (board !== props.board) {
+      setBoard(props.board)
+    }
+  }, [props.board])
 
   useEffect(() => {
     if (props.deleteCard) {
@@ -203,8 +225,9 @@ const Dashboard = props => {
     socket={props.socket}
     admin={admin}
     setAdmin={setAdmin}
-    onlineUsers={props.onlineUsers}
     board={board}
+    boards={boards}
+    routerHistroy={props.routerHistroy}
   />
 
   return (
@@ -215,9 +238,11 @@ const Dashboard = props => {
 }
 
 Dashboard.propTypes = {
+  board: PropTypes.any,
   socket: PropTypes.any,
   join: PropTypes.any,
   stateByBoard: PropTypes.any,
+  setStateByBoard: PropTypes.any,
   adminData: PropTypes.any,
   setJoin: PropTypes.any,
   actionsData: PropTypes.any,
@@ -228,7 +253,8 @@ Dashboard.propTypes = {
   columnsData: PropTypes.any,
   deleteCard: PropTypes.any,
   deleteColumn: PropTypes.any,
-  onlineUsers: PropTypes.any
+  onlineUsers: PropTypes.any,
+  routerHistroy: PropTypes.any
 }
 
 export default Dashboard
