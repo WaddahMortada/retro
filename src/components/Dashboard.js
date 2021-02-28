@@ -26,7 +26,8 @@ const Dashboard = props => {
   const [columns, setColumns] = useState(defaultColumns)
   const [actions, setActions] = useState()
 
-  console.log(props.board)
+  console.log('board', board)
+  console.log('props.board', props.board)
 
   // Handling Socket Join Events
   useEffect(() => {
@@ -105,22 +106,15 @@ const Dashboard = props => {
     const columnsTitle = template !== 'blank_board' ? template.split('_') : []
     const isJoinColumn = props.stateByBoard && props.stateByBoard.columns
     const reset = (props.resetBoard === undefined) ? false : props.resetBoard
-    console.log('Dashboard (Template.useEffect)')
-    console.log((template && !isJoinColumn) || (template && reset))
-    console.log((template && !isJoinColumn))
-    console.log((template && reset))
-    console.log(template)
-    console.log(isJoinColumn)
-    console.log(reset)
     if ((template && !isJoinColumn) || (template && reset)) {
-      console.log('yup')
       const columnsObjects = []
       columnsTitle.forEach(title => {
         columnsObjects.push({ title: toTitleCase(title), cards: [] })
       })
       setColumns(columnsObjects)
-      console.log('template Board Effect', board)
-      props.socket.emit('setColumns', { board: board, columns: columnsObjects })
+      if (board) {
+        props.socket.emit('setColumns', { board: board, columns: columnsObjects })
+      }
     } else {
       props.setJoin()
       props.setStateByBoard()
@@ -149,15 +143,9 @@ const Dashboard = props => {
   }, [props.columnsData])
 
   useEffect(() => {
-    console.log('useEffect Actions')
-    // if ((props.actionsData && (props.actionsData !== actions)) || props.resetBoard) {
     if (props.actionsData !== actions) {
-      console.log(props.actionsData)
-      console.log(actions)
       setActions(props.actionsData)
     }
-    // console.log(props.resetBoard)
-    // if (props.resetBoard) props.setResetBoard(false)
   }, [props.actionsData])
 
   // useEffect(() => {
@@ -165,6 +153,12 @@ const Dashboard = props => {
   //     setAdmin(props.adminData)
   //   }
   // }, [props.adminData])
+
+  useEffect(() => {
+    if (board !== props.board) {
+      setBoard(props.board)
+    }
+  }, [props.board])
 
   useEffect(() => {
     if (props.deleteCard) {
@@ -231,7 +225,6 @@ const Dashboard = props => {
     socket={props.socket}
     admin={admin}
     setAdmin={setAdmin}
-    onlineUsers={props.onlineUsers}
     board={board}
     boards={boards}
     routerHistroy={props.routerHistroy}
