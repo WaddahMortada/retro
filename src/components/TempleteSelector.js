@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Row, Col, Nav, Navbar, Card, Button, Form } from 'react-bootstrap'
 import Logo from './Logo'
 import AdminSelector from './AdminSelector'
-import { faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faChalkboard } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const randomNumber = (min, max) => {
@@ -18,15 +18,13 @@ const TemplateSelector = props => {
   const [voteLimit, setVoteLimit] = useState(5)
   const [template, setTemplate] = useState('mad_sad_glad')
 
-  // console.log(generateBoardNumber())
-
   const create = () => {
     event.preventDefault()
     props.setTemplate(template)
     props.votes.limit = voteLimit
     const votes = { ...props.votes }
     props.setVotes(votes)
-    const board = props.board || '1111' //generateBoardNumber()
+    const board = props.board || generateBoardNumber()
 
     // create a new board here? 🤷‍♂️
     if (props.boards && !props.boards[props.board]) props.socket.emit('createBoard', board)
@@ -47,10 +45,8 @@ const TemplateSelector = props => {
         <Navbar className="navBar" bg="dark" variant="dark">
           <Col md={4}>
             <Nav className="mr-auto">
-              <div className="navText">
-                <span title="Number of Online Users" style={{ color: (props.onlineUsers > 0) ? '#0eb90e' : '#9e192a' }}>
-                  <FontAwesomeIcon className="icon-thumb" icon={faUsers} style={{ fontSize: 'medium' }} /> {props.onlineUsers}
-                </span>
+              <div className="navText" style={{ color: '#ccc23f' }}>
+                <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
                 &nbsp; &nbsp; Create Board
               </div>
             </Nav>
@@ -94,7 +90,6 @@ TemplateSelector.propTypes = {
   socket: PropTypes.any,
   admin: PropTypes.any,
   setAdmin: PropTypes.any,
-  onlineUsers: PropTypes.any,
   board: PropTypes.any,
   boards: PropTypes.any,
   routerHistroy: PropTypes.any
