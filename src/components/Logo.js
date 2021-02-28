@@ -8,8 +8,10 @@ const Logo = props => {
   return (
     <Col md={4} >
       <div className="center">
-        <img className="logo" src={RetroooGta} />
-        <img className="logoImage" src={Warrimoo} />
+        <a href="/">
+          <img className="logo" src={RetroooGta} />
+          <img className="logoImage" src={Warrimoo} />
+        </a>
       </div>
     </Col>
   )

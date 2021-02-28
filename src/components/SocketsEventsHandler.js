@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import QueryString from 'query-string'
 import PropTypes from 'prop-types'
 import Dashboard from './Dashboard'
 
 const SocketsEventsHandler = props => {
+  // const [urlParams, setUrlParams] = useState(QueryString.parse(props.location.search))
   const [join, setJoin] = useState()
   const [stateByBoard, setStateByBoard] = useState()
   const [adminData, setAdminData] = useState()
@@ -14,6 +16,19 @@ const SocketsEventsHandler = props => {
   const [deleteCard, setDeleteCard] = useState()
   const [deleteColumn, setDeleteColumn] = useState()
   const [onlineUsers, setOnlineUsers] = useState(0)
+
+  const urlParams = QueryString.parse(props.location.search)
+
+  // console.log(props.location)
+  // console.log(props.history)
+  // props.history.push({
+  //   // pathname: `${process.env.PUBLIC_URL}/index.html`,
+  //   search: '?test=test'
+  // })
+  // useEffect(() => {
+  //   const params = QueryString.parse(props.location.search)
+  //   if (params !== urlParams) setUrlParams(params)
+  // }, [urlParams])
 
   useEffect(() => {
     props.socket.on('join', data => {
@@ -36,27 +51,33 @@ const SocketsEventsHandler = props => {
       setActionsData(actions)
     })
 
-    props.socket.on('resetBoard', resetBoard => {
-      setResetBoard(resetBoard)
+    props.socket.on('resetBoard', reset => {
+      console.log('On resetBoard Data:', reset)
+      setResetBoard(reset)
     })
 
     props.socket.on('setTemplate', template => {
+      console.log('On setTemplate Data:', template)
       setTemplateData(template)
     })
 
     props.socket.on('setVotes', votes => {
+      console.log('On setVotes Data:', votes)
       setVotesData(votes)
     })
 
     props.socket.on('setColumns', columns => {
+      console.log('On setColumns Data:', columns)
       setColumnsData(columns)
     })
 
     props.socket.on('deleteCard', data => {
+      console.log('On deleteCard Data:', data)
       setDeleteCard(data)
     })
 
     props.socket.on('deleteColumn', data => {
+      console.log('On deleteColumn Data:', data)
       setDeleteColumn(data)
     })
 
@@ -68,9 +89,11 @@ const SocketsEventsHandler = props => {
 
   return (
     <Dashboard
+      board={urlParams.board || null}
       socket={props.socket}
       join={join}
       stateByBoard={stateByBoard}
+      setStateByBoard={setStateByBoard}
       adminData={adminData}
       setJoin={setJoin}
       actionsData={actionsData}
@@ -82,6 +105,7 @@ const SocketsEventsHandler = props => {
       deleteCard={deleteCard}
       deleteColumn={deleteColumn}
       onlineUsers={onlineUsers}
+      routerHistroy={props.history}
     />
   )
 }
