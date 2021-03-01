@@ -128,7 +128,7 @@ textarea:focus {
 }
 
 .up-voted {
-  color: #8ACED0 !important;
+  color: #ffd500 !important;
   cursor: pointer;
 }
 
