@@ -119,26 +119,24 @@ const Board = props => {
       </Row>
       <Row className="fullHeight">
         <Col md={{ span: showActions ? 9 : 12 }}>
-          <Container fluid className="appContainer">
-            <Row className="fullHeight nav">
-              <Col>
-                {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
-                <Card className="boardCard fullHeight">
-                  <Card.Body className="mainCardBody">
-                    <Row className="fullHeight">
-                      <Col>
-                        {showAddColumn ? AddColumnModule : null}
-                        <Row className="fullHeight">
-                          {ColumnComponent}
-                        </Row>
-                      </Col>
-                      {/* <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}></Col> */}
-                    </Row>
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
+          <Row className="fullHeight nav">
+            <Col>
+              {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
+              <Card className="boardCard fullHeight">
+                <Card.Body className="mainCardBody">
+                  <Row className="fullHeight">
+                    <Col className={' ' + (showActions ? 'showCol' : null)}>
+                      {showAddColumn ? AddColumnModule : null}
+                      <Row className="fullHeight">
+                        {ColumnComponent}
+                      </Row>
+                    </Col>
+                    {/* <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}></Col> */}
+                  </Row>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
         </Col>
         <Col className={' ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}>
           {showActions ? <ActionsColumn showActions={showActions} socket={props.socket} actionsData={props.actionsData} actions={props.actions} setActions={props.setActions} board={props.board} /> : null}
