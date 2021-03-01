@@ -231,9 +231,7 @@ const Dashboard = props => {
   />
 
   return (
-    <Container fluid className="appContainer">
-      {!template ? TemplateSelectorComponent : BoardComponent}
-    </Container>
+    !template ? TemplateSelectorComponent : BoardComponent
   )
 }
 

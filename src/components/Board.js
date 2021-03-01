@@ -6,7 +6,7 @@ import Column from './Column'
 import AddColumn from './Action/Column/Add'
 import ActionsColumn from './ActionsColumn'
 import AdminSelector from './AdminSelector'
-import { Row, Col, Button, Navbar, Nav, Card } from 'react-bootstrap'
+import { Container, Row, Col, Button, Navbar, Nav, Card } from 'react-bootstrap'
 import { faChalkboard, faColumns, faListUl, faPlus, faMinus, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -84,52 +84,65 @@ const Board = props => {
   const AddColumnModule = <AddColumn columns={props.columns} setColumns={props.setColumns} show={showAddColumn} handleClose={handleCloseAddColumn} handleShow={handleShowAddColumn} socket={props.socket} board={props.board} />
 
   return (
-    <Row className="fullHeight nav">
-      <Col>
-        {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
-        <Navbar className="navBar" bg="dark" variant="dark">
-          <Col md={4}>
-            <Nav className="mr-auto">
-              <div className="navText">
-                <span title="Number of Online Users" style={{ color: (props.onlineUsers > 0) ? '#0eb90e' : '#9e192a' }}>
-                  <FontAwesomeIcon className="icon-thumb" icon={faUsers} style={{ fontSize: 'medium' }} /> {props.onlineUsers}
-                </span>
-                &nbsp;&nbsp; Votes:&nbsp;
-                <span className={(props.votes.total === props.votes.limit ? 'danger' : null)}>
-                  <b>{props.votes.total} out of {props.votes.limit}</b>
-                </span>
-              </div>
-            </Nav>
-          </Col>
-          <Logo />
-          <Col md={4}>
-            {/* <AdminSelector admin={props.admin} setAdmin={props.setAdmin} /> */}
-            <Button style={{ padding: '5px 10px' }} size="sm" variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm} disabled={!props.admin}>
-              <b>New {innerWidth > 1252 ? 'Board' : null}</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
-            </Button>
-            <Button variant="success" size="sm" className="float-right add-column-btn" onClick={handleShowAddColumn} disabled={disableAddColumn}>
-              <b>Add {innerWidth > 1252 ? 'Column' : null}</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
-            </Button>
-            <Button variant="flat" size="sm" className="float-right actions-btn" onClick={toggleShowActions}>
-              <small><FontAwesomeIcon className="icon-thumb" icon={showActions ? faMinus : faPlus} /></small> <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
-            </Button>
-          </Col>
-        </Navbar>
-        <Card className="boardCard fullHeight">
-          <Card.Body className="mainCardBody">
-            <Row className="fullHeight">
-            <Col md={{ span: showActions ? 9 : 12 }}>
-                {showAddColumn ? AddColumnModule : null}
-                <Row className="fullHeight">
-                  {ColumnComponent}
-                </Row>
-              </Col>
-              <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}><ActionsColumn showActions={showActions} socket={props.socket} actionsData={props.actionsData} actions={props.actions} setActions={props.setActions} board={props.board} /></Col>
-            </Row>
-          </Card.Body>
-        </Card>
-      </Col>
-    </Row>
+    <div style={{ height: '100%' }}>
+      <Row>
+        <Col style={{ width: '100%' }}>
+          <Navbar className="navBar" bg="dark" variant="dark">
+            <Col md={4}>
+              <Nav className="mr-auto">
+                <div className="navText">
+                  <span title="Number of Online Users" style={{ color: (props.onlineUsers > 0) ? '#0eb90e' : '#9e192a' }}>
+                    <FontAwesomeIcon className="icon-thumb" icon={faUsers} style={{ fontSize: 'medium' }} /> {props.onlineUsers}
+                  </span>
+                      &nbsp;&nbsp; Votes:&nbsp;
+                      <span className={(props.votes.total === props.votes.limit ? 'danger' : null)}>
+                    <b>{props.votes.total} out of {props.votes.limit}</b>
+                  </span>
+                </div>
+              </Nav>
+            </Col>
+            <Logo />
+            <Col md={4}>
+              {/* <AdminSelector admin={props.admin} setAdmin={props.setAdmin} /> */}
+              <Button style={{ padding: '5px 10px' }} size="sm" variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm} disabled={!props.admin}>
+                <b>New {innerWidth > 1252 ? 'Board' : null}</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
+              </Button>
+              <Button variant="success" size="sm" className="float-right add-column-btn" onClick={handleShowAddColumn} disabled={disableAddColumn}>
+                <b>Add {innerWidth > 1252 ? 'Column' : null}</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
+              </Button>
+              <Button variant="flat" size="sm" className="float-right actions-btn" onClick={toggleShowActions}>
+                <small><FontAwesomeIcon className="icon-thumb" icon={showActions ? faMinus : faPlus} /></small> <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
+              </Button>
+            </Col>
+          </Navbar>
+        </Col>
+      </Row>
+      <Row className="fullHeight">
+        <Col md={{ span: showActions ? 9 : 12 }}>
+          <Row className="fullHeight nav">
+            <Col>
+              {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
+              <Card className="boardCard fullHeight">
+                <Card.Body className="mainCardBody">
+                  <Row className="fullHeight">
+                    <Col className={' ' + (showActions ? 'showCol' : null)}>
+                      {showAddColumn ? AddColumnModule : null}
+                      <Row className="fullHeight">
+                        {ColumnComponent}
+                      </Row>
+                    </Col>
+                    {/* <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}></Col> */}
+                  </Row>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Row>
+        </Col>
+        <Col className={' ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}>
+          {showActions ? <ActionsColumn showActions={showActions} socket={props.socket} actionsData={props.actionsData} actions={props.actions} setActions={props.setActions} board={props.board} /> : null}
+        </Col>
+      </Row>
+    </div>
   )
 }
 
