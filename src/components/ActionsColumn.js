@@ -70,10 +70,13 @@ const ActionsColumn = props => {
 
   return (
     <Card className="actionsBoardCard fullHeight">
-      <Toast className="actionsToasts" animation={true} show={showNotification} onClose={toggleShowNotification} delay={3000} autohide>
+      <Toast className="actionsToasts" animation={false} show={showNotification} onClose={toggleShowNotification} delay={3000} autohide>
         <Toast.Header>
-          <strong className="mr-auto">Copied to clipboard!</strong>
+          <strong className="mr-auto">Notification</strong>
         </Toast.Header>
+        <Toast.Body style={{ backgroundColor: '#3e6679', color: 'white' }}>
+          Copied to clipboard!
+        </Toast.Body>
       </Toast>
       <Card.Header>
         <h5 className="inlineBlock">Actions</h5>

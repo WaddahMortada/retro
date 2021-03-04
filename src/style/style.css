@@ -370,6 +370,7 @@ textarea:focus {
   position: absolute;
   top: 8%;
   right: 0px;
+  width: 250px;
 }
 
 .copy-button {
