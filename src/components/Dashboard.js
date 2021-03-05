@@ -25,6 +25,7 @@ const Dashboard = props => {
   const [votes, setVotes] = useState(defaultVotes)
   const [columns, setColumns] = useState(defaultColumns)
   const [actions, setActions] = useState()
+  const [copyUrlMessage, setCopyUrlMessage] = useState()
 
   console.log('board', board)
   console.log('props.board', props.board)
@@ -216,6 +217,8 @@ const Dashboard = props => {
     deleteColumn={props.deleteColumn}
     onlineUsers={props.onlineUsers}
     board={board}
+    copyUrlMessage={copyUrlMessage}
+    setCopyUrlMessage={setCopyUrlMessage}
   />
 
   const TemplateSelectorComponent = <TemplateSelector
@@ -228,6 +231,7 @@ const Dashboard = props => {
     board={board}
     boards={boards}
     routerHistroy={props.routerHistroy}
+    setCopyUrlMessage={setCopyUrlMessage}
   />
 
   return (

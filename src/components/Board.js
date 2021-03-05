@@ -6,7 +6,7 @@ import Column from './Column'
 import AddColumn from './Action/Column/Add'
 import ActionsColumn from './ActionsColumn'
 import AdminSelector from './AdminSelector'
-import { Container, Row, Col, Button, Navbar, Nav, Card } from 'react-bootstrap'
+import { Container, Row, Col, Button, Navbar, Nav, Card, Toast } from 'react-bootstrap'
 import { faChalkboard, faColumns, faListUl, faPlus, faMinus, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -19,6 +19,7 @@ const Board = props => {
   const [showConfirm, setShowConfirm] = useState(false)
   const [showAddColumn, setShowAddColumn] = useState(false)
   const [innerWidth, setInnerWidth] = useState(window.innerWidth)
+  const [showNotification, setShowNotification] = useState(false)
 
   const updateInnerWidth = () => {
     setInnerWidth(window.innerWidth)
@@ -28,11 +29,16 @@ const Board = props => {
     window.addEventListener('resize', updateInnerWidth)
   }, [])
 
+  useEffect(() => {
+    props.copyUrlMessage ? setShowNotification(true) : setShowNotification(false)
+  }, [props.copyUrlMessage])
+
   const handleCloseConfirm = () => setShowConfirm(false)
   const handleShowConfirm = () => setShowConfirm(true)
   const handleCloseAddColumn = () => setShowAddColumn(false)
   const handleShowAddColumn = () => setShowAddColumn(true)
   const toggleShowActions = () => setShowActions(!showActions)
+  const hideNotification = () => props.setCopyUrlMessage(null)
 
   const resetBoard = () => {
     handleCloseConfirm()
@@ -117,6 +123,16 @@ const Board = props => {
           </Navbar>
         </Col>
       </Row>
+      <div className="boardToastContainer">
+        <Toast className="boardToast" animation={false} show={showNotification} onClose={hideNotification} delay={5000} autohide>
+          <Toast.Header>
+            <strong className="mr-auto">Notification</strong>
+          </Toast.Header>
+          <Toast.Body style={{ backgroundColor: '#3e6679', color: 'white' }}>
+            {props.copyUrlMessage}
+          </Toast.Body>
+        </Toast>
+      </div>
       <Row className="fullHeight">
         <Col md={{ span: showActions ? 9 : 12 }}>
           <Row className="fullHeight nav">
@@ -161,7 +177,9 @@ Board.propTypes = {
   actionsData: PropTypes.any,
   actions: PropTypes.any,
   setActions: PropTypes.any,
-  board: PropTypes.any
+  board: PropTypes.any,
+  copyUrlMessage: PropTypes.any,
+  setCopyUrlMessage: PropTypes.any
 }
 
 export default Board

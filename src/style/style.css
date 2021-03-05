@@ -401,3 +401,18 @@ textarea:focus {
   cursor: default;
   font-size: 14px;
 }
+
+.boardToastContainer {
+  position: absolute;
+  left: 32%;
+  top: 33%;
+  width: 500px;
+}
+
+.boardToast {
+  z-index: 10;
+  position: absolute;
+  top: 8%;
+  right: 0px;
+  width: 500px;
+}

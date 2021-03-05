@@ -34,8 +34,28 @@ const TemplateSelector = props => {
     props.socket.emit('setVotes', { board: board, votes: votes })
     props.socket.emit('setActions', { board: board, actions: '' })
 
+    const fullUrl = getFullUrl(board)
+    writeToClipboard(fullUrl)
+
     props.routerHistroy.push({
       search: '?board=' + board
+    })
+  }
+
+  const getFullUrl = board => {
+    const currentHref = window.location.href
+    const path = props.routerHistroy.location.search
+    if (path.includes(board) && currentHref.includes(path)) {
+      return currentHref
+    }
+    return window.location.href + '?board=' + board
+  }
+
+  const writeToClipboard = fullUrl => {
+    navigator.clipboard.writeText(fullUrl).then(() => {
+      props.setCopyUrlMessage('The board URL copied to clipboard successfully!')
+    }, (error) => {
+      console.log('clipboard write failed', error)
     })
   }
 
@@ -92,7 +112,8 @@ TemplateSelector.propTypes = {
   setAdmin: PropTypes.any,
   board: PropTypes.any,
   boards: PropTypes.any,
-  routerHistroy: PropTypes.any
+  routerHistroy: PropTypes.any,
+  setCopyUrlMessage: PropTypes.any
 }
 
 export default TemplateSelector
