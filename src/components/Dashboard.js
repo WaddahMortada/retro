@@ -219,6 +219,7 @@ const Dashboard = props => {
     board={board}
     copyUrlMessage={copyUrlMessage}
     setCopyUrlMessage={setCopyUrlMessage}
+    routerHistroy={props.routerHistroy}
   />
 
   const TemplateSelectorComponent = <TemplateSelector

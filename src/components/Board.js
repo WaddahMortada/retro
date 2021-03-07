@@ -15,7 +15,7 @@ const Board = props => {
   // Column: {title, cards}
   // Board: [column1, column2]
   const ColumnComponent = []
-  const [showActions, setShowActions] = useState(false)
+  const [showActions, setShowActions] = useState(props.routerHistroy.location.hash === '#showActions')
   const [showConfirm, setShowConfirm] = useState(false)
   const [showAddColumn, setShowAddColumn] = useState(false)
   const [innerWidth, setInnerWidth] = useState(window.innerWidth)
@@ -37,7 +37,11 @@ const Board = props => {
   const handleShowConfirm = () => setShowConfirm(true)
   const handleCloseAddColumn = () => setShowAddColumn(false)
   const handleShowAddColumn = () => setShowAddColumn(true)
-  const toggleShowActions = () => setShowActions(!showActions)
+  const toggleShowActions = () => {
+    setShowActions(!showActions)
+    const hash = !showActions ? '#showActions' : '#hideActions'
+    props.routerHistroy.push(props.routerHistroy.location.search + hash)
+  }
   const hideNotification = () => props.setCopyUrlMessage(null)
 
   const resetBoard = () => {
@@ -179,7 +183,8 @@ Board.propTypes = {
   setActions: PropTypes.any,
   board: PropTypes.any,
   copyUrlMessage: PropTypes.any,
-  setCopyUrlMessage: PropTypes.any
+  setCopyUrlMessage: PropTypes.any,
+  routerHistroy: PropTypes.any
 }
 
 export default Board
