@@ -14,7 +14,11 @@ import '../style/style.css'
 
 const Dashboard = props => {
   const defaultVotes = { limit: 5, total: 0, disable: false }
-  const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {} }] }] // votes: { [userId]: 0 }
+  const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {}, group: '' }] }] // votes: { [userId]: 0 }
+
+  // Cards (2D array)
+  // [[group 0][group 1][group z]]
+  // group z: [card 1, card 2...]
 
   // const [board, setBoard] = useState(isEmpty(props.urlParams.board) ? '' : props.urlParams.board)
   const [board, setBoard] = useState(props.board)
@@ -25,9 +29,11 @@ const Dashboard = props => {
   const [votes, setVotes] = useState(defaultVotes)
   const [columns, setColumns] = useState(defaultColumns)
   const [actions, setActions] = useState()
+  const [groups, setGroups] = useState([])
+  const [group, setGroup] = useState('')
   const [copyUrlMessage, setCopyUrlMessage] = useState()
 
-  console.log('board', board)
+  console.log('groups', groups)
   console.log('props.board', props.board)
 
   // Handling Socket Join Events
@@ -67,6 +73,11 @@ const Dashboard = props => {
         setActions(data.actions)
       }
 
+      if (data.groups && data.groups !== groups) {
+        console.log('data.groups', data.groups)
+        setGroups(data.groups)
+      }
+
       // Sending current state to server
       if (!data.template && template) {
         props.socket.emit('setTemplate', { board: board, template: template })
@@ -80,6 +91,7 @@ const Dashboard = props => {
     setTemplate('')
     setVotes(defaultVotes)
     setActions()
+    setGroups([])
   }
 
   const upVote = () => {
@@ -144,10 +156,20 @@ const Dashboard = props => {
   }, [props.columnsData])
 
   useEffect(() => {
+    console.log('props.actionsData', props.actionsData)
+    console.log('actions', actions)
     if (props.actionsData !== actions) {
       setActions(props.actionsData)
     }
   }, [props.actionsData])
+
+  useEffect(() => {
+    console.log('props.groupsData', props.groupsData)
+    console.log('groups', groups)
+    if (props.groupsData && (props.groupsData !== groups)) {
+      setGroups(props.groupsData)
+    }
+  }, [props.groupsData])
 
   // useEffect(() => {
   //   if (props.adminData !== admin) {
@@ -206,9 +228,12 @@ const Dashboard = props => {
     voteFunctions={{ upVote: upVote, downVote: downVote }}
     resetBoard={resetBoard}
     socket={props.socket}
-    actionsData={props.actionsData}
     actions={actions}
     setActions={setActions}
+    groups={groups}
+    setGroups={setGroups}
+    group={group}
+    setGroup={setGroup}
     columns={columns}
     setColumns={setColumns}
     id={id}
@@ -249,6 +274,7 @@ Dashboard.propTypes = {
   adminData: PropTypes.any,
   setJoin: PropTypes.any,
   actionsData: PropTypes.any,
+  groupsData: PropTypes.any,
   resetBoard: PropTypes.any,
   setResetBoard: PropTypes.any,
   templateData: PropTypes.any,

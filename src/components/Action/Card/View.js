@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons'
-import { faThumbsUp as solidFaThumbsUp, faThumbsDown as solidFaThumbsDown, faTimes, faPen } from '@fortawesome/free-solid-svg-icons'
+import { faThumbsUp as solidFaThumbsUp, faThumbsDown as solidFaThumbsDown, faTimes, faPen, faObjectGroup } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Row, Col, Button } from 'react-bootstrap'
 
 const View = props => {
+  console.log('props.card', props.card)
   // votes: { [props.id]: upVote: false, downVote: false }
   const setUserVotesProperty = () => {
     if (!props.card.votes.hasOwnProperty(props.id)) {
@@ -61,6 +62,13 @@ const View = props => {
     props.updateCard(props.card)
   }
 
+  const selectGroup = () => {
+    console.log('group', props.group)
+    props.card.group = props.group
+    console.log('props.card', props.card)
+    props.updateCard(props.card)
+  }
+
   const upVoted = props.card.votes.hasOwnProperty(props.id) && props.card.votes[props.id].upVote
   const downVoted = props.card.votes.hasOwnProperty(props.id) && props.card.votes[props.id].downVote
   const disabled = props.votes.disable && !upVoted && !downVoted
@@ -76,11 +84,15 @@ const View = props => {
     <FontAwesomeIcon className="icon-thumb" icon={faPen} />
   </Button>
 
+  // background: '#0cac84'
   return (
     <Row>
       <Col>
         <div className="viewCard">{props.card.value}</div>
         {props.id === props.card.id ? EditButton : null}
+        <Button style={{ background: props.group || '#0cac84', padding: '2px 5px' }} variant="flat-light" size="sm" className="float-right" onClick={selectGroup}>
+          <FontAwesomeIcon className="icon-thumb" icon={faObjectGroup} />
+        </Button>
         <div className={'inlineBlock' + (disabled ? ' disable' : '') + (upVoted ? ' up-voted' : ' thumb')} onClick={() => upVote()}>
           {upVoted ? null : <FontAwesomeIcon className="icon-thumb" icon={faThumbsUp} />}
           <FontAwesomeIcon className="icon-thumb-solid" icon={solidFaThumbsUp} />
@@ -103,7 +115,8 @@ View.propTypes = {
   updateCard: PropTypes.any,
   voteFunctions: PropTypes.any,
   votes: PropTypes.any,
-  id: PropTypes.any
+  id: PropTypes.any,
+  group: PropTypes.any
 }
 
 export default View

@@ -9,6 +9,7 @@ const SocketsEventsHandler = props => {
   const [stateByBoard, setStateByBoard] = useState()
   const [adminData, setAdminData] = useState()
   const [actionsData, setActionsData] = useState()
+  const [groupsData, setGroupsData] = useState()
   const [resetBoard, setResetBoard] = useState()
   const [templateData, setTemplateData] = useState()
   const [votesData, setVotesData] = useState()
@@ -49,6 +50,11 @@ const SocketsEventsHandler = props => {
     props.socket.on('setActions', actions => {
       console.log('On Actions Data:', actions)
       setActionsData(actions)
+    })
+
+    props.socket.on('setGroups', groups => {
+      console.log('On Groups Data:', groups)
+      setGroupsData(groups)
     })
 
     props.socket.on('resetBoard', reset => {
@@ -97,6 +103,7 @@ const SocketsEventsHandler = props => {
       adminData={adminData}
       setJoin={setJoin}
       actionsData={actionsData}
+      groupsData={groupsData}
       resetBoard={resetBoard}
       setResetBoard={setResetBoard}
       templateData={templateData}

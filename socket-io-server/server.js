@@ -160,6 +160,15 @@ io.sockets.on('connection', (socket) => {
     }
   })
 
+  socket.on('setGroups', data => {
+    console.log('groups', data)
+    if (boards[data.board]) {
+      socket.broadcast.to(data.board).emit('setGroups', data.actions)
+      boards[data.board].state.groups = data.groups
+      console.log('state: ', boards[data.board].state)
+    }
+  })
+
   socket.on('deleteCard', data => {
     console.log('deleteCard: ', data)
     if (boards[data.board]) {
