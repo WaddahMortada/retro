@@ -18,7 +18,7 @@ const Board = props => {
   const ColumnComponent = []
   const [showActions, setShowActions] = useState(props.routerHistroy.location.hash === '#showActions')
   const [showConfirm, setShowConfirm] = useState(false)
-  const [showGroups, setShowGroups] = useState(props.routerHistroy.location.hash === '#showGroups')
+  const [showGroups, setShowGroups] = useState(true)
   const [showAddColumn, setShowAddColumn] = useState(false)
   const [innerWidth, setInnerWidth] = useState(window.innerWidth)
   const [showNotification, setShowNotification] = useState(false)
@@ -44,11 +44,7 @@ const Board = props => {
     const hash = !showActions ? '#showActions' : '#hideActions'
     props.routerHistroy.push(props.routerHistroy.location.search + hash)
   }
-  const toggleShowGroups = () => {
-    setShowGroups(!showGroups)
-    const hash = !showGroups ? '#showGroups' : '#hideGroups'
-    props.routerHistroy.push(props.routerHistroy.location.search + hash)
-  }
+  const toggleShowGroups = () => setShowGroups(!showGroups)
   const hideNotification = () => props.setCopyUrlMessage(null)
 
   const resetBoard = () => {
