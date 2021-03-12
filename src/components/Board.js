@@ -18,7 +18,6 @@ const Board = props => {
   const ColumnComponent = []
   const [showActions, setShowActions] = useState(props.routerHistroy.location.hash === '#showActions')
   const [showConfirm, setShowConfirm] = useState(false)
-  const [showGroups, setShowGroups] = useState(true)
   const [showAddColumn, setShowAddColumn] = useState(false)
   const [innerWidth, setInnerWidth] = useState(window.innerWidth)
   const [showNotification, setShowNotification] = useState(false)
@@ -44,7 +43,6 @@ const Board = props => {
     const hash = !showActions ? '#showActions' : '#hideActions'
     props.routerHistroy.push(props.routerHistroy.location.search + hash)
   }
-  const toggleShowGroups = () => setShowGroups(!showGroups)
   const hideNotification = () => props.setCopyUrlMessage(null)
 
   const resetBoard = () => {
@@ -89,7 +87,6 @@ const Board = props => {
           socket={props.socket}
           deleteColumn={props.deleteColumn}
           board={props.board}
-          group={props.group}
         />
       </Col>
     )
@@ -127,9 +124,6 @@ const Board = props => {
               <Button variant="flat" size="sm" className="float-right actions-btn" onClick={toggleShowActions}>
                 <small><FontAwesomeIcon className="icon-thumb" icon={showActions ? faMinus : faPlus} /></small> <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
               </Button>
-              <Button variant="flat" size="sm" className="float-right actions-btn" onClick={toggleShowGroups}>
-                <small><FontAwesomeIcon className="icon-thumb" icon={showGroups ? faMinus : faPlus} /></small> <b>Groups</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
-              </Button>
             </Col>
           </Navbar>
         </Col>
@@ -145,7 +139,7 @@ const Board = props => {
         </Toast>
       </div>
       <Row className="fullHeight">
-        <Col md={{ span: showActions ? 6 : 9 }}>
+        <Col md={{ span: showActions ? 9 : 12 }}>
           <Row className="fullHeight nav">
             <Col>
               {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
@@ -168,9 +162,6 @@ const Board = props => {
         <Col className={' ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}>
           {showActions ? <ActionsColumn showActions={showActions} socket={props.socket} actions={props.actions} setActions={props.setActions} board={props.board} /> : null}
         </Col>
-        <Col className={' ' + (showGroups ? 'show' : 'hide')} md={{ span: 3 }}>
-          {showGroups ? <GroupsColumn showGroups={showGroups} socket={props.socket} groups={props.groups} setGroups={props.setGroups} setGroup={props.setGroup} board={props.board} /> : null}
-        </Col>
       </Row>
     </div>
   )
@@ -192,8 +183,6 @@ Board.propTypes = {
   setActions: PropTypes.any,
   groups: PropTypes.any,
   setGroups: PropTypes.any,
-  group: PropTypes.any,
-  setGroup: PropTypes.any,
   board: PropTypes.any,
   copyUrlMessage: PropTypes.any,
   setCopyUrlMessage: PropTypes.any,

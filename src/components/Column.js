@@ -78,7 +78,6 @@ const Column = props => {
         votes={props.votes}
         id={props.id}
         admin={props.admin}
-        group={props.group}
       />
     )
   })
@@ -157,8 +156,7 @@ Column.propTypes = {
   admin: PropTypes.any,
   socket: PropTypes.any,
   deleteColumn: PropTypes.any,
-  board: PropTypes.any,
-  group: PropTypes.any
+  board: PropTypes.any
 }
 
 export default Column

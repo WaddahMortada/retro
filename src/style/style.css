@@ -128,7 +128,7 @@ textarea:focus {
 }
 
 .up-voted {
-  color: #ffd500 !important;
+  color: #9cea38 !important;
   cursor: pointer;
 }
 
@@ -415,4 +415,13 @@ textarea:focus {
   top: 8%;
   right: 0px;
   width: 500px;
+}
+
+.groupsPopover {
+  max-width: 298px;
+  border: 2px solid #ceae30;
+}
+
+.popover-header::before {
+  border-bottom: none !important;
 }
