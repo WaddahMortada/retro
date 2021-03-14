@@ -8,10 +8,6 @@ import '../assets/warrimoo.png'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/style.css'
 
-// const isEmpty = obj => {
-//   return Object.keys(obj).length === 0
-// }
-
 const Dashboard = props => {
   const defaultVotes = { limit: 5, total: 0, disable: false }
   const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {}, group: '' }] }] // votes: { [userId]: 0 }
