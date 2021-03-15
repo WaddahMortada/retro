@@ -101,7 +101,7 @@ const View = props => {
       <Col>
         <div className="viewCard">{props.card.value}</div>
         {props.id === props.card.id ? EditButton : null}
-        <OverlayTrigger show={showGroups} onToggle={() => toggleShowGroups()} trigger="click" rootClose placement="bottom" overlay={PopoverComponent}>
+        <OverlayTrigger show={showGroups} onToggle={() => toggleShowGroups()} trigger="click" rootClose placement="auto" overlay={PopoverComponent}>
           <Button style={{ background: '#ceae31', padding: '2px 5px' }} variant="flat-light" size="sm" className="float-right" onClick={toggleShowGroups}>
             <FontAwesomeIcon className="icon-thumb" icon={faLayerGroup} />
           </Button>
