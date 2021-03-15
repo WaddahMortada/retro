@@ -11,7 +11,6 @@ const View = props => {
 
   const toggleShowGroups = () => setShowGroups(!showGroups)
 
-  console.log('props.card', props.card)
   // votes: { [props.id]: upVote: false, downVote: false }
   const setUserVotesProperty = () => {
     if (!props.card.votes.hasOwnProperty(props.id)) {
@@ -67,10 +66,8 @@ const View = props => {
     props.updateCard(props.card)
   }
 
-  const selectGroup = (group) => {
-    console.log('group', group)
+  const selectGroup = group => {
     props.card.group = group
-    console.log('props.card', props.card)
     props.updateCard(props.card)
     toggleShowGroups()
   }

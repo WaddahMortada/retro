@@ -182,8 +182,6 @@ Board.propTypes = {
   deleteColumn: PropTypes.any,
   actions: PropTypes.any,
   setActions: PropTypes.any,
-  groups: PropTypes.any,
-  setGroups: PropTypes.any,
   board: PropTypes.any,
   copyUrlMessage: PropTypes.any,
   setCopyUrlMessage: PropTypes.any,

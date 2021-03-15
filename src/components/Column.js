@@ -95,7 +95,6 @@ const Column = props => {
         tempCard={true}
         tempCardValue={tempCardValue}
         setTempCardValue={setTempCardValue}
-        // group={props.group}
       />
     )
   }
