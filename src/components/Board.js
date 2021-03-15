@@ -50,7 +50,9 @@ const Board = props => {
   }
 
   const updateColumn = (index, column, broadcastUpdate = true) => {
-    column.cards.sort((a, b) => parseFloat(b.totalVotes) - parseFloat(a.totalVotes))
+    column.cards.sort((a, b) => {
+      return b.group.id - a.group.id || parseFloat(b.totalVotes) - parseFloat(a.totalVotes)
+    })
     props.columns[index] = column
     const updatedColumns = [...props.columns]
     props.setColumns(updatedColumns)

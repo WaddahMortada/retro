@@ -61,7 +61,11 @@ body {
 .itemChildCard {
   background-color:  rgb(10, 61, 85);
   border-radius: 0.40rem;
-  margin: 0 0 10px 0;
+  margin: 5px 0;
+}
+
+.itemChildCard:last-child {
+  margin-bottom: 15px;
 }
 
 .nav {
@@ -420,8 +424,4 @@ textarea:focus {
 .groupsPopover {
   max-width: 298px;
   border: 2px solid #ceae30;
-}
-
-.popover-header::before {
-  border-bottom: none !important;
 }

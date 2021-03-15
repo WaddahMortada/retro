@@ -31,7 +31,7 @@ const Column = props => {
   }
 
   const addCard = () => {
-    setTempCard({ value: '', totalVotes: 0, id: props.id, votes: {} })
+    setTempCard({ value: '', totalVotes: 0, id: props.id, votes: {}, group: { id: 0, colour: '' } })
   }
 
   const updateTempCard = card => {

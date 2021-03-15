@@ -10,7 +10,7 @@ import '../style/style.css'
 
 const Dashboard = props => {
   const defaultVotes = { limit: 5, total: 0, disable: false }
-  const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {}, group: '' }] }] // votes: { [userId]: 0 }
+  const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {}, group: { id: 0, colour: '' } }] }] // votes: { [userId]: 0 }
 
   // Cards (2D array)
   // [[group 0][group 1][group z]]
