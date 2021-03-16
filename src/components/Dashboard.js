@@ -8,13 +8,9 @@ import '../assets/warrimoo.png'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/style.css'
 
-// const isEmpty = obj => {
-//   return Object.keys(obj).length === 0
-// }
-
 const Dashboard = props => {
   const defaultVotes = { limit: 5, total: 0, disable: false }
-  const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {} }] }] // votes: { [userId]: 0 }
+  const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {}, group: { id: 0, colour: '' } }] }] // votes: { [userId]: 0 }
 
   // const [board, setBoard] = useState(isEmpty(props.urlParams.board) ? '' : props.urlParams.board)
   const [board, setBoard] = useState(props.board)
@@ -26,9 +22,6 @@ const Dashboard = props => {
   const [columns, setColumns] = useState(defaultColumns)
   const [actions, setActions] = useState()
   const [copyUrlMessage, setCopyUrlMessage] = useState()
-
-  console.log('board', board)
-  console.log('props.board', props.board)
 
   // Handling Socket Join Events
   useEffect(() => {
@@ -144,6 +137,8 @@ const Dashboard = props => {
   }, [props.columnsData])
 
   useEffect(() => {
+    console.log('props.actionsData', props.actionsData)
+    console.log('actions', actions)
     if (props.actionsData !== actions) {
       setActions(props.actionsData)
     }
@@ -206,7 +201,6 @@ const Dashboard = props => {
     voteFunctions={{ upVote: upVote, downVote: downVote }}
     resetBoard={resetBoard}
     socket={props.socket}
-    actionsData={props.actionsData}
     actions={actions}
     setActions={setActions}
     columns={columns}

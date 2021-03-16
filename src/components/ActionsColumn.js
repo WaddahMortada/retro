@@ -97,7 +97,6 @@ const ActionsColumn = props => {
 ActionsColumn.propTypes = {
   showActions: PropTypes.any,
   socket: PropTypes.any,
-  actionsData: PropTypes.any,
   actions: PropTypes.any,
   setActions: PropTypes.any,
   board: PropTypes.any

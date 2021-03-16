@@ -50,7 +50,9 @@ const Board = props => {
   }
 
   const updateColumn = (index, column, broadcastUpdate = true) => {
-    column.cards.sort((a, b) => parseFloat(b.totalVotes) - parseFloat(a.totalVotes))
+    column.cards.sort((a, b) => {
+      return b.group.id - a.group.id || parseFloat(b.totalVotes) - parseFloat(a.totalVotes)
+    })
     props.columns[index] = column
     const updatedColumns = [...props.columns]
     props.setColumns(updatedColumns)
@@ -159,7 +161,7 @@ const Board = props => {
           </Row>
         </Col>
         <Col className={' ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}>
-          {showActions ? <ActionsColumn showActions={showActions} socket={props.socket} actionsData={props.actionsData} actions={props.actions} setActions={props.setActions} board={props.board} /> : null}
+          {showActions ? <ActionsColumn showActions={showActions} socket={props.socket} actions={props.actions} setActions={props.setActions} board={props.board} /> : null}
         </Col>
       </Row>
     </div>
@@ -178,7 +180,6 @@ Board.propTypes = {
   admin: PropTypes.any,
   setAdmin: PropTypes.any,
   deleteColumn: PropTypes.any,
-  actionsData: PropTypes.any,
   actions: PropTypes.any,
   setActions: PropTypes.any,
   board: PropTypes.any,
