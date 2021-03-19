@@ -60,7 +60,7 @@ const TemplateSelector = props => {
   }
 
   return (
-    <Row className="fullHeight nav">
+    <Row className="fullHeight">
       <Col>
         <Navbar className="navBar" bg="dark" variant="dark">
           <Col md={4}>
