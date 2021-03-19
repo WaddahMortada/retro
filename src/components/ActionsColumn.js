@@ -81,10 +81,10 @@ const ActionsColumn = props => {
       <Card.Header>
         <h5 className="inlineBlock">Actions</h5>
         <Button className="float-right" size="sm" variant="info" title="Export to PDF" onClick={() => exportActionsToPdf(props.actions)}>
-          {innerWidth > 1498 ? <small>Export PDF</small> : null} <FontAwesomeIcon className="icon-thumb" icon={faFileExport} />
+          {innerWidth > 1498 ? <b>PDF</b> : null} <FontAwesomeIcon className="icon-thumb" icon={faFileExport} />
         </Button>
         <Button className="float-right copy-button" size="sm" variant="copy" title="Copy to Clipboard" onClick={copyToClipboard}>
-          {innerWidth > 1498 ? <small>Copy to Clipboard</small> : null} <FontAwesomeIcon className="icon-thumb" icon={faCopy} />
+          {innerWidth > 1498 ? <b>Copy</b> : null} <FontAwesomeIcon className="icon-thumb" icon={faCopy} />
         </Button>
       </Card.Header>
       <Card.Body>
