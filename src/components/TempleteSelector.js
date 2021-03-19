@@ -34,8 +34,8 @@ const TemplateSelector = props => {
     props.socket.emit('setVotes', { board: board, votes: votes })
     props.socket.emit('setActions', { board: board, actions: '' })
 
-    const fullUrl = getFullUrl(board)
-    writeToClipboard(fullUrl)
+    // const fullUrl = getFullUrl(board)
+    // writeToClipboard(fullUrl)
 
     props.routerHistroy.push({
       search: '?board=' + board
