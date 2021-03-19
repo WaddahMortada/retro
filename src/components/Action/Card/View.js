@@ -89,7 +89,7 @@ const View = props => {
 
   const PopoverComponent = <Popover className="groupsPopover" placement="bottom">
     <Popover.Title style={{ backgroundColor: '#ceae31', color: '#faf6db', borderBottom: 'none' }}>
-      <strong className="mr-auto">Groups Selector</strong>
+      <strong className="mr-auto">Group Selector</strong>
     </Popover.Title>
     <Popover.Content style={{ backgroundColor: '#065f6d', color: '#faf6db' }}>
       <GroupsColumn setGroup={selectGroup}/>
