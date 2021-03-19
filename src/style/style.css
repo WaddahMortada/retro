@@ -55,7 +55,7 @@ body {
 
 .actionsBoardCard {
   background-color: rgb(10, 63, 88);
-  margin-top: 3px;
+  border-radius: 0;
 }
 
 .itemChildCard {
@@ -68,12 +68,8 @@ body {
   margin-bottom: 15px;
 }
 
-.nav {
-  margin-top: 4px;
-}
-
 .navBar {
-  border-radius: 5px;
+  min-height: 80px;
 }
 
 .columnButton {
@@ -333,15 +329,15 @@ textarea:focus {
 }
 
 .column {
-  padding: 0 10px;
+  padding: 0 5px;
 }
 
 .cardBody {
-  padding: 10px;
+  padding: 5px 8px;
 }
 
 .mainCardBody {
-  padding: 10px 15px;
+  padding: 8px 15px;
 }
 
 /* .carousel-32 {

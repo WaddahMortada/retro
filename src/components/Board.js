@@ -141,7 +141,7 @@ const Board = props => {
       </div>
       <Row className="fullHeight">
         <Col md={{ span: showActions ? 9 : 12 }}>
-          <Row className="fullHeight nav">
+          <Row className="fullHeight">
             <Col>
               {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
               <Card className="boardCard fullHeight">
