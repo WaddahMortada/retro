@@ -74,7 +74,7 @@ const TemplateSelector = props => {
           <Logo templateSelector={true} />
           {/* <AdminSelector admin={props.admin} setAdmin={props.setAdmin} /> */}
         </Navbar>
-        <Card className="templateCard">
+        <Card className="templateCard" style={{ height: '85vh' }}>
           <Card.Body>
             <form onSubmit={create}>
               <Row className="justify-content-md-center">
