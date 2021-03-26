@@ -111,7 +111,6 @@ body {
   resize: none;
   overflow: hidden;
   overflow-wrap: break-word;
-  min-height: 72vh;
 }
 
 textarea:focus {
