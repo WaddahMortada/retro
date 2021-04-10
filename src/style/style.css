@@ -1,8 +1,9 @@
 body {
-  background-color: rgb(33, 78, 59);
   /* background-color: rgb(31, 36, 43); */
   /* color: rgb(241, 234, 234); */
+  background-color: #202a35;
   color: #faf6db;
+  overflow-x: hidden !important;
 }
 
 .appContainer {
@@ -12,7 +13,7 @@ body {
 }
 
 #app {
-  height: 100vh;
+  height: 100%;
   /* padding-bottom: 5%; */
 }
 
@@ -31,6 +32,13 @@ body {
   display: inline-block;
 }
 
+.contentBoard {
+  min-height: 83vh;
+  background-color: #214e3c;
+  overflow: scroll;
+  /* padding-bottom: 5px; */
+}
+
 .boardCard {
   background-color: rgb(33, 78, 59);
   border-color: rgb(33, 78, 59);
@@ -45,6 +53,8 @@ body {
 .columnCard {
   background-color: rgb(32, 111, 82);
   border-color: rgb(33, 78, 59);
+  min-height: 81vh;
+  height: 100%;
   /* margin-top: 3px; */
 }
 
@@ -56,6 +66,8 @@ body {
 .actionsBoardCard {
   background-color: rgb(10, 63, 88);
   border-radius: 0;
+  height: 103% !important;
+  /* min-height: 83vh; */
 }
 
 .itemChildCard {
@@ -69,7 +81,8 @@ body {
 }
 
 .navBar {
-  min-height: 80px;
+  min-height: 55px;
+  padding: 0;
 }
 
 .columnButton {
@@ -88,7 +101,7 @@ body {
 }
 
 .fullHeight {
-  height: 98.5%;
+  height: 100%;
 }
 
 .textareaInput {
@@ -330,6 +343,7 @@ textarea:focus {
 
 .column {
   padding: 0 5px;
+  /* height: 100vh; */
 }
 
 .cardBody {
@@ -354,7 +368,9 @@ textarea:focus {
 
 .show{
   display: block;
-  padding-left: 0px;
+  padding-left: 20px;
+  padding-right: 0px;
+  margin-top: -9px;
 }
 
 .showCol {
@@ -380,6 +396,7 @@ textarea:focus {
 
 .center {
   width: 100%;
+  /* max-height: 50px; */
   text-align: center
 }
 

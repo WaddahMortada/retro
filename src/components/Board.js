@@ -6,7 +6,8 @@ import Column from './Column'
 import AddColumn from './Action/Column/Add'
 import ActionsColumn from './ActionsColumn'
 import AdminSelector from './AdminSelector'
-import { Container, Row, Col, Button, Navbar, Nav, Card, Toast } from 'react-bootstrap'
+import Footer from './Footer'
+import { Row, Col, Button, Navbar, Nav, Card, Toast } from 'react-bootstrap'
 import { faChalkboard, faColumns, faListUl, faPlus, faMinus, faUsers } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -139,9 +140,10 @@ const Board = props => {
           </Toast.Body>
         </Toast>
       </div>
-      <Row className="fullHeight">
-        <Col md={{ span: showActions ? 9 : 12 }}>
-          <Row className="fullHeight">
+      <Row className="fullHeight contentBoard">
+        {/* <Col md={{ span: showActions ? 9 : 12 }}> */}
+        <Col  >
+          <Row className="fullHeight" style={{ height: '75vh', paddingBottom: '2px' }}>
             <Col>
               {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
               <Card className="boardCard fullHeight">
@@ -153,15 +155,22 @@ const Board = props => {
                         {ColumnComponent}
                       </Row>
                     </Col>
-                    {/* <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}></Col> */}
+                    <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}>
+                      {showActions ? <ActionsColumn showActions={showActions} socket={props.socket} actions={props.actions} setActions={props.setActions} board={props.board} /> : null}
+                    </Col>
                   </Row>
                 </Card.Body>
               </Card>
             </Col>
           </Row>
         </Col>
-        <Col className={' ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}>
+        {/* <Col className={' ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}>
           {showActions ? <ActionsColumn showActions={showActions} socket={props.socket} actions={props.actions} setActions={props.setActions} board={props.board} /> : null}
+        </Col> */}
+      </Row>
+      <Row>
+        <Col style={{ width: '100%', position: 'fixed', left: 0, bottom: 0, padding: 0 }}>
+          <Footer />
         </Col>
       </Row>
     </div>

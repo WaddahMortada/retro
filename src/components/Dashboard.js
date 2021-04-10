@@ -5,6 +5,7 @@ import Board from './Board'
 import { toTitleCase, didUserVote } from '../lib/helpers'
 import { Container, Row, Col } from 'react-bootstrap'
 import '../assets/warrimoo.png'
+import '../assets/icon.png'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/style.css'
 
