@@ -6,8 +6,9 @@ import Column from './Column'
 import AddColumn from './Action/Column/Add'
 import ActionsColumn from './ActionsColumn'
 import AdminSelector from './AdminSelector'
-import { Container, Row, Col, Button, Navbar, Nav, Card, Toast } from 'react-bootstrap'
-import { faChalkboard, faColumns, faListUl, faPlus, faMinus, faUsers, faGithub } from '@fortawesome/free-solid-svg-icons'
+import { ModalFooter, Row, Col, Button, Navbar, Nav, Card, Toast } from 'react-bootstrap'
+import { faChalkboard, faColumns, faListUl, faPlus, faMinus, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Board = props => {
@@ -166,11 +167,18 @@ const Board = props => {
       </Row>
       <Row>
         <Col style={{ width: '100%', position: 'fixed', left: 0, bottom: 0, padding: 0 }}>
-          <Navbar className="navBar" bg="dark" variant="dark">
+          <Navbar style={{ color: '#faf6db' }} className="navBar justify-content-center" bg="dark" variant="dark">
             <Nav>
-              <a href="https://github.com/WaddahMortada">
-                <FontAwesomeIcon className="icon-thumb" icon={faGithub} />
-              </a>
+              <Nav.Item>
+                <Nav.Link href="https://github.com/WaddahMortada">
+                  GitHub <FontAwesomeIcon className="icon-thumb" icon={faGithub} />
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="https://www.linkedin.com/in/waddah-mortada">
+                  LinkedIn <FontAwesomeIcon className="icon-thumb" icon={faLinkedin} />
+                </Nav.Link>
+              </Nav.Item>
             </Nav>
           </Navbar>
         </Col>
