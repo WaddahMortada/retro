@@ -8,7 +8,7 @@ import ActionsColumn from './ActionsColumn'
 import AdminSelector from './AdminSelector'
 import Footer from './Footer'
 import { Row, Col, Button, Navbar, Nav, Card, Toast } from 'react-bootstrap'
-import { faChalkboard, faColumns, faListUl, faPlus, faMinus, faUsers } from '@fortawesome/free-solid-svg-icons'
+import { faChalkboard, faColumns, faListUl, faPlus, faMinus, faUsers, faCopy } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Board = props => {
@@ -72,6 +72,37 @@ const Board = props => {
     props.socket.emit('updateSocketColumnState', { board: props.board, columns: updatedColumns })
   }
 
+  const pad = n => {
+    return n < 10 ? `0${n}` : n
+  }
+
+  const copyBoard = () => {
+    const date = new Date()
+    let text = `Retro Baord - ${pad(date.getDate())}-${pad(date.getMonth())}-${date.getFullYear()} \n`
+
+    props.columns.forEach(column => {
+      console.log(column)
+      text += `${column.title} - Column \n`
+      column.cards.forEach(card => {
+        console.log(card)
+        text += `• ${card.value} \n`
+      })
+    })
+
+    text += 'Actions - Column \n'
+    text += props.actions
+
+    // writeToClipboard(text)
+  }
+
+  const writeToClipboard = text => {
+    navigator.clipboard.writeText(text).then(() => {
+      props.setCopyUrlMessage('The Board has been copied to clipboard successfully!')
+    }, (error) => {
+      console.log('clipboard write failed', error)
+    })
+  }
+
   let disableAddColumn = props.columns.length >= 5
   if (!props.admin) disableAddColumn = true
 
@@ -123,6 +154,9 @@ const Board = props => {
               <Button variant="success" size="sm" className="float-right add-column-btn" onClick={handleShowAddColumn} disabled={disableAddColumn}>
                 <b>Add {innerWidth > 1252 ? 'Column' : null}</b> <FontAwesomeIcon className="icon-thumb" icon={faColumns} />
               </Button>
+              {/* <Button style={{ color: '#faf6db', backgroundColor: '#dcb02c', marginLeft: '10px' }} variant="warning" size="sm" className="float-right" onClick={copyBoard}>
+                <b>Copy {innerWidth > 1252 ? 'Board' : null}</b> <FontAwesomeIcon className="icon-thumb" icon={faCopy} />
+              </Button> */}
               <Button variant="flat" size="sm" className="float-right actions-btn" onClick={toggleShowActions}>
                 <small><FontAwesomeIcon className="icon-thumb" icon={showActions ? faMinus : faPlus} /></small> <b>Actions</b> <FontAwesomeIcon className="icon-thumb" icon={faListUl} />
               </Button>
@@ -155,7 +189,7 @@ const Board = props => {
                         {ColumnComponent}
                       </Row>
                     </Col>
-                    <Col className={'fullHeight column ' + (showActions ? 'show' : 'hide')} md={{ span: 3 }}>
+                    <Col className={'fullHeight column ' + (showActions ? 'showActions' : 'hideActions')} md={{ span: 3 }}>
                       {showActions ? <ActionsColumn showActions={showActions} socket={props.socket} actions={props.actions} setActions={props.setActions} board={props.board} /> : null}
                     </Col>
                   </Row>

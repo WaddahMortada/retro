@@ -362,11 +362,11 @@ textarea:focus {
   flex: 0 0 45%;
 } */
 
-.hide {
+.hideActions {
   display: none;
 }
 
-.show{
+.showActions{
   display: block;
   padding-left: 20px;
   padding-right: 0px;
