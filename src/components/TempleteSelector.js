@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Row, Col, Nav, Navbar, Card, Button, Form } from 'react-bootstrap'
 import Logo from './Logo'
+import Footer from './Footer'
 import AdminSelector from './AdminSelector'
 import { faChalkboard } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -98,6 +99,7 @@ const TemplateSelector = props => {
             </form>
           </Card.Body>
         </Card>
+        <Footer />
       </Col>
     </Row>
   )
