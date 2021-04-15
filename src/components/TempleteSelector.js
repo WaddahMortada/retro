@@ -27,7 +27,6 @@ const TemplateSelector = props => {
     props.setVotes(votes)
     const board = props.board || generateBoardNumber()
 
-    // create a new board here? 🤷‍♂️
     if (props.boards && !props.boards[props.board]) props.socket.emit('createBoard', board)
 
     props.socket.emit('resetBoard', { board: board, reset: true })
