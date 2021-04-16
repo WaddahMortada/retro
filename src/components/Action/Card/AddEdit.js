@@ -57,7 +57,6 @@ const AddEdit = props => {
 
 AddEdit.propTypes = {
   card: PropTypes.any,
-  index: PropTypes.any,
   cardFunctions: PropTypes.any,
   tempCard: PropTypes.any,
   tempCardValue: PropTypes.any,
