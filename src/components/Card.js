@@ -20,7 +20,7 @@ const Card = props => {
   }
 
   const ViewCardModule = <ViewCard updateCard={updateCard} card={props.card} setEdit={setEdit} voteFunctions={props.voteFunctions} votes={props.votes} id={props.id} />
-  const AddEditCardModule = <AddEditCard index={props.index} card={props.card} cardFunctions={{ update: updateCard, delete: deleteCard }} tempCard={props.tempCard} tempCardValue={props.tempCardValue} setTempCardValue={props.setTempCardValue} />
+  const AddEditCardModule = <AddEditCard card={props.card} cardFunctions={{ update: updateCard, delete: deleteCard }} tempCard={props.tempCard} tempCardValue={props.tempCardValue} setTempCardValue={props.setTempCardValue} />
 
   const border = props.card.group.colour ? '1px solid ' + props.card.group.colour : ''
 
