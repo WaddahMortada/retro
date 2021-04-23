@@ -13,7 +13,6 @@ const Dashboard = props => {
   const defaultVotes = { limit: 5, total: 0, disable: false }
   const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {}, group: { id: 0, colour: '' } }] }] // votes: { [userId]: 0 }
 
-  // const [board, setBoard] = useState(isEmpty(props.urlParams.board) ? '' : props.urlParams.board)
   const [board, setBoard] = useState(props.board)
   const [boards, setBoards] = useState()
   const [id, setId] = useState()
