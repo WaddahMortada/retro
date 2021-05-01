@@ -436,3 +436,11 @@ textarea:focus {
   max-width: 320px;
   border: 2px solid #ceae30;
 }
+
+.footerLink {
+  color: #faf6db !important;
+}
+
+.footerLink:hover {
+  color: #c7c2a9 !important;
+}
