@@ -9,12 +9,12 @@ const Footer = () => {
       <Navbar style={{ color: '#faf6db' }} className="navBar justify-content-center" bg="dark" variant="dark">
         <Nav>
           <Nav.Item>
-            <Nav.Link href="https://github.com/WaddahMortada">
+            <Nav.Link className="footerLink" href="https://github.com/WaddahMortada">
               GitHub <FontAwesomeIcon className="icon-thumb" icon={faGithub} />
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="https://www.linkedin.com/in/waddah-mortada">
+            <Nav.Link className="footerLink" href="https://www.linkedin.com/in/waddah-mortada">
               LinkedIn <FontAwesomeIcon className="icon-thumb" icon={faLinkedin} />
             </Nav.Link>
           </Nav.Item>
