@@ -1,2 +1,2 @@
 # Retro Tool (Vetrom Board)
-A websocket and React JS Retro Tool app
+A Websocket and React JS retrospective tool app
