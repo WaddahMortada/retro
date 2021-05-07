@@ -1,13 +1,26 @@
 const express = require('express')
 const http = require('http')
+const app = express()
+const server = http.createServer(app)
 const socketIo = require('socket.io')
+// const io = require('socket.io')(server, {
+//   handlePreflightRequest: (req, res) => {
+//     console.log(req.headers)
+//     const headers = {
+//       "Access-Control-Allow-Headers": "Content-Type, Authorization",
+//       "Access-Control-Allow-Origin": 'http://0.0.0.0:3000', //req.headers.origin, //or the specific origin you want to give access to,
+//       "Access-Control-Allow-Credentials": true
+//     };
+//     res.writeHead(200, headers);
+//     res.end();
+//   }
+// })
 const port = process.env.PORT || 8080
 const index = require('./routes/index')
 
-const app = express()
-app.use(index)
 
-const server = http.createServer(app)
+app.use(index)
+// console.log(socketIo)
 const io = socketIo(server)
 
 const ids = []

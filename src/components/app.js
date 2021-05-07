@@ -3,6 +3,7 @@ import SocketsEventsHandler from './SocketsEventsHandler'
 import socketIOClient from 'socket.io-client'
 import {
   BrowserRouter as Router,
+  useLocation,
   Switch,
   Route
 } from "react-router-dom"
