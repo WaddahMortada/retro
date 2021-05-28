@@ -83,9 +83,19 @@ const TemplateSelector = props => {
                     <Form.Label>Template</Form.Label>
                     <Form.Control as="select" onChange={(e) => setTemplate(e.target.value)} value={template} required>
                       <option value="blank_board">Blank Board</option>
+                      <option value="liked_learnt_lacked_longed-for">4 Ls</option>
+                      <option value="what-went-well?_what-didn’t-go-so-well?_what-have-i-learned?_what-still-puzzles-me?">Original 4</option>
+                      <option value="wind-💨_sun-☀️_anchor-⚓️_reef-⛰">Sailboat ⛵️</option>
                       <option value="mad_sad_glad">Mad Sad Glad</option>
+                      <option value="good_bad_ideas">Good Bad Ideas</option>
+                      <option value="keep_add_remove">Keep Add Remove</option>
                       <option value="start_stop_continue">Start Stop Continue</option>
                       <option value="liked_learnt_lacked">Liked Learnt Lacked</option>
+                      <option value="keep-doing_less-of_more-of_start-doing_stop-doing">Keep Less More Start Stop</option>
+                      <option value="Engine:-what-make-us-move-faster?_parachute:-what-is-slowing-us-down?">Engine Parachute</option>
+                      <option value="happy-😃_meh-😑_sad-🙁">Happy Meh Sad</option>
+                      <option value="pros_cons">Pros Cons</option>
+                      <option value="drop_add_keep_improve">Drop Add Keep Improve</option>
                     </Form.Control>
                   </Form.Group>
                   <Form.Group>
