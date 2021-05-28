@@ -12,6 +12,7 @@ const Column = props => {
   const CardsComponent = []
   const [tempCard, setTempCard] = useState()
   const [tempCardValue, setTempCardValue] = useState()
+  const [position, setPosition] = useState()
   const [edit, setEdit] = useState(false)
   const [title, setTitle] = useState()
   const [displayConfirm, setDisplayConfirm] = useState(false)
@@ -78,6 +79,8 @@ const Column = props => {
         votes={props.votes}
         id={props.id}
         admin={props.admin}
+        position={position}
+        setPosition={setPosition}
       />
     )
   })
@@ -95,6 +98,8 @@ const Column = props => {
         tempCard={true}
         tempCardValue={tempCardValue}
         setTempCardValue={setTempCardValue}
+        position={position}
+        setPosition={setPosition}
       />
     )
   }
