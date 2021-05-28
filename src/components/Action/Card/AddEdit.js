@@ -28,9 +28,20 @@ const AddEdit = props => {
     handleClose()
   }
 
-  const updateInputSize = (e) => {
-    e.target.style.height = 'inherit'
-    e.target.style.height = `${e.target.scrollHeight}px`
+  const updateInput = event => {
+    updateInputSize(event)
+    event.target.selectionStart = props.position
+  }
+
+  const updateInputSize = event => {
+    event.target.style.height = 'inherit'
+    event.target.style.height = `${event.target.scrollHeight}px`
+  }
+
+  const updateInputText = event => {
+    console.log('input position: ', event.target.selectionStart)
+    setInputText(event.target.value)
+    props.setPosition(event.target.selectionStart)
   }
 
   useEffect(() => {
@@ -43,7 +54,7 @@ const AddEdit = props => {
     <form>
       {displayConfirm ? <Confirm type="delete" submit={deleteCard} show={displayConfirm} handleClose={handleClose} /> : null}
       <Form.Group>
-        <textarea className="textareaInput" onKeyUp={updateInputSize} onFocus={updateInputSize} autoFocus value={inputText} onChange={e => setInputText(e.target.value)} />
+        <textarea className="textareaInput" onKeyUp={updateInputSize} onFocus={updateInput} autoFocus value={inputText} onChange={updateInputText} />
       </Form.Group>
       <Button className="float-right submitCardButton" size="sm" variant="success" onClick={() => addCard()}>
         <FontAwesomeIcon className="icon-thumb" icon={faCheck} />
@@ -60,7 +71,9 @@ AddEdit.propTypes = {
   cardFunctions: PropTypes.any,
   tempCard: PropTypes.any,
   tempCardValue: PropTypes.any,
-  setTempCardValue: PropTypes.any
+  setTempCardValue: PropTypes.any,
+  position: PropTypes.any,
+  setPosition: PropTypes.any
 }
 
 export default AddEdit
