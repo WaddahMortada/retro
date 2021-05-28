@@ -17,6 +17,7 @@ const Dashboard = props => {
   const [id, setId] = useState()
   const [admin, setAdmin] = useState(true)
   const [template, setTemplate] = useState('')
+  const [previousTemplate, setPreviousTemplate] = useState('')
   const [votes, setVotes] = useState(defaultVotes)
   const [columns, setColumns] = useState(defaultColumns)
   const [actions, setActions] = useState()
@@ -69,6 +70,7 @@ const Dashboard = props => {
 
   // Dashboard Functions
   const resetBoard = () => {
+    setPreviousTemplate(template)
     setTemplate('')
     setVotes(defaultVotes)
     setActions()
@@ -216,6 +218,7 @@ const Dashboard = props => {
   />
 
   const TemplateSelectorComponent = <TemplateSelector
+    template={previousTemplate}
     setTemplate={setTemplate}
     votes={votes}
     setVotes={setVotes}
