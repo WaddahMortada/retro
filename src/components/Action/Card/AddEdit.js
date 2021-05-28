@@ -39,7 +39,6 @@ const AddEdit = props => {
   }
 
   const updateInputText = event => {
-    console.log('input position: ', event.target.selectionStart)
     setInputText(event.target.value)
     props.setPosition(event.target.selectionStart)
   }
