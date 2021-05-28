@@ -3,10 +3,13 @@ import pdfMake from 'pdfmake/build/pdfmake'
 import pdfFonts from 'pdfmake/build/vfs_fonts'
 
 export const toTitleCase = str => {
-  return str.replace(/_/g, ' ').replace(
-    /\w\S*/g,
-    txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-  )
+  return str.replace(/_/g, ' ')
+    .replace(
+      /\w\S*/g,
+      txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+    )
+    .replace(new RegExp('-', 'g'), ' ')
+    .replace(new RegExp(' i ', 'g'), ' I ')
 }
 
 export const exportActionsToPdf = (actions) => {
