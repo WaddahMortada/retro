@@ -25,6 +25,7 @@ const TemplateSelector = props => {
     props.votes.limit = voteLimit
     const votes = { ...props.votes }
     props.setVotes(votes)
+    props.setAdmin(true)
     const board = props.board || generateBoardNumber()
 
     if (props.boards && !props.boards[props.board]) props.socket.emit('createBoard', board)

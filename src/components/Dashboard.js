@@ -15,7 +15,7 @@ const Dashboard = props => {
   const [board, setBoard] = useState(props.board)
   const [boards, setBoards] = useState()
   const [id, setId] = useState()
-  const [admin, setAdmin] = useState(true)
+  const [admin, setAdmin] = useState(false)
   const [template, setTemplate] = useState('')
   const [previousTemplate, setPreviousTemplate] = useState('')
   const [votes, setVotes] = useState(defaultVotes)
