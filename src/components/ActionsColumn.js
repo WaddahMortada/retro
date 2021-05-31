@@ -69,7 +69,7 @@ const ActionsColumn = props => {
   }
 
   return (
-    <Card className="actionsBoardCard fullHeight">
+    <Card className="actionsBoardCard">
       <Toast className="actionsToasts" animation={false} show={showNotification} onClose={toggleShowNotification} delay={3000} autohide>
         <Toast.Header>
           <strong className="mr-auto">Notification</strong>

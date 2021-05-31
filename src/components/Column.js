@@ -130,7 +130,7 @@ const Column = props => {
   </div>
 
   return (
-    <CardBootstrap className="columnCard fullHeight">
+    <CardBootstrap className="columnCard">
       <CardBootstrap.Header className="columnCardHeader">
         {edit ? EditTitle : DisplayTitle}
         <Button variant="dark" className="addCardButton" onClick={() => addCard()}>

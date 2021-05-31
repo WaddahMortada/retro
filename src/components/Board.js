@@ -174,22 +174,22 @@ const Board = props => {
           </Toast.Body>
         </Toast>
       </div>
-      <Row className="fullHeight contentBoard">
+      <Row className="contentBoard">
         {/* <Col md={{ span: showActions ? 9 : 12 }}> */}
         <Col  >
-          <Row className="fullHeight" style={{ height: '75vh', paddingBottom: '2px' }}>
+          <Row style={{ height: '75vh', paddingBottom: '2px' }}>
             <Col>
               {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
-              <Card className="boardCard fullHeight">
+              <Card className="boardCard">
                 <Card.Body className="mainCardBody">
-                  <Row className="fullHeight">
+                  <Row>
                     <Col className={' ' + (showActions ? 'showCol' : null)}>
                       {showAddColumn ? AddColumnModule : null}
-                      <Row className="fullHeight">
+                      <Row>
                         {ColumnComponent}
                       </Row>
                     </Col>
-                    <Col className={'fullHeight column ' + (showActions ? 'showActions' : 'hideActions')} md={{ span: 3 }}>
+                    <Col className={'column ' + (showActions ? 'showActions' : 'hideActions')} md={{ span: 3 }}>
                       {showActions ? <ActionsColumn showActions={showActions} socket={props.socket} actions={props.actions} setActions={props.setActions} board={props.board} /> : null}
                     </Col>
                   </Row>
