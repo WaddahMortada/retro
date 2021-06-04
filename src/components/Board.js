@@ -130,8 +130,8 @@ const Board = props => {
   return (
     <div style={{ height: '100%' }}>
       <Row>
-        <Col style={{ width: '100%' }}>
-          <Navbar className="navBar" bg="dark" variant="dark">
+        <Col style={{ width: '100%', paddingRight: 0 }}>
+          <Navbar className="navBar justify-content-center" bg="dark" variant="dark">
             <Col md={4}>
               <Nav className="mr-auto">
                 <div className="navText">
@@ -177,7 +177,7 @@ const Board = props => {
       <Row className="contentBoard">
         {/* <Col md={{ span: showActions ? 9 : 12 }}> */}
         <Col  >
-          <Row style={{ height: '75vh', paddingBottom: '2px' }}>
+          <Row>
             <Col>
               {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
               <Card className="boardCard">
@@ -203,7 +203,7 @@ const Board = props => {
         </Col> */}
       </Row>
       <Row>
-        <Col style={{ width: '100%', position: 'fixed', left: 0, bottom: 0, padding: 0 }}>
+        <Col style={{ width: '100%' }}>
           <Footer />
         </Col>
       </Row>

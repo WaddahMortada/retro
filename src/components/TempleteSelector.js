@@ -61,8 +61,8 @@ const TemplateSelector = props => {
   }
 
   return (
-    <Row>
-      <Col>
+    <Row style={{ height: '90%' }}>
+      <Col style={{ paddingRight: 0 }}>
         <Navbar className="navBar" bg="dark" variant="dark">
           <Col md={4}>
             <Nav className="mr-auto">
@@ -75,7 +75,7 @@ const TemplateSelector = props => {
           <Logo templateSelector={true} />
           {/* <AdminSelector admin={props.admin} setAdmin={props.setAdmin} /> */}
         </Navbar>
-        <Card className="templateCard" style={{ height: '83vh' }}>
+        <Card className="templateCard">
           <Card.Body>
             <form onSubmit={create}>
               <Row className="justify-content-md-center">
