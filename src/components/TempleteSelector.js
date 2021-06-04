@@ -61,8 +61,8 @@ const TemplateSelector = props => {
   }
 
   return (
-    <Row>
-      <Col>
+    <Row style={{ height: '90%' }}>
+      <Col style={{ paddingRight: 0 }}>
         <Navbar className="navBar" bg="dark" variant="dark">
           <Col md={4}>
             <Nav className="mr-auto">
