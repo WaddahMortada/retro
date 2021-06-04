@@ -146,7 +146,7 @@ const Board = props => {
               </Nav>
             </Col>
             <Logo />
-            <Col md={4}>
+            <Col md={4} style={{ paddingRight: '30px' }}>
               {/* <AdminSelector admin={props.admin} setAdmin={props.setAdmin} /> */}
               <Button style={{ padding: '5px 10px' }} size="sm" variant="dark-red" className="inlineBlock float-right" onClick={handleShowConfirm} disabled={!props.admin}>
                 <b>New {innerWidth > 1252 ? 'Board' : null}</b> <FontAwesomeIcon className="icon-thumb" icon={faChalkboard} />
