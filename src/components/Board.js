@@ -203,7 +203,7 @@ const Board = props => {
         </Col> */}
       </Row>
       <Row>
-        <Col style={{ width: '100%', position: 'fixed', left: 0, bottom: 0, padding: 0 }}>
+        <Col style={{ width: '100%' }}>
           <Footer />
         </Col>
       </Row>
