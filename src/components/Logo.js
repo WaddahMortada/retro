@@ -6,8 +6,8 @@ import { Col } from 'react-bootstrap'
 
 const Logo = props => {
   return (
-    <Col md={4} >
       <div className="center">
+    <Col md={4}  style={{ paddingRight: '30px' }}>
         <a href="/">
           {/* Vetrom Board - trees */}
           <div style={{ transform: 'scale(0.8)' }}>
