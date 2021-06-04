@@ -130,8 +130,8 @@ const Board = props => {
   return (
     <div style={{ height: '100%' }}>
       <Row>
-        <Col style={{ width: '100%' }}>
-          <Navbar className="navBar" bg="dark" variant="dark">
+        <Col style={{ width: '100%', paddingRight: 0 }}>
+          <Navbar className="navBar justify-content-center" bg="dark" variant="dark">
             <Col md={4}>
               <Nav className="mr-auto">
                 <div className="navText">
