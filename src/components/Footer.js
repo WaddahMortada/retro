@@ -5,8 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Footer = () => {
   return (
-    <Col style={{ width: '100%', position: 'fixed', margin: 'auto', left: 0, bottom: 0, padding: '10px' }}>
-      <Navbar style={{ color: '#faf6db' }} className="navBar justify-content-center" bg="dark" variant="dark">
+    <Navbar fixed="bottom" style={{ color: '#faf6db', bottom: 0, height: '7%' }} className="navBar justify-content-center" bg="dark" variant="dark">
         <Nav>
           <Nav.Item>
             <Nav.Link className="footerLink" href="https://github.com/WaddahMortada">
@@ -20,7 +19,6 @@ const Footer = () => {
           </Nav.Item>
         </Nav>
       </Navbar>
-    </Col>
   )
 }
 
