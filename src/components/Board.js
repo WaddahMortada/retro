@@ -177,7 +177,7 @@ const Board = props => {
       <Row className="contentBoard">
         {/* <Col md={{ span: showActions ? 9 : 12 }}> */}
         <Col  >
-          <Row style={{ height: '75vh', paddingBottom: '2px' }}>
+          <Row>
             <Col>
               {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
               <Card className="boardCard">
