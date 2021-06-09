@@ -17,7 +17,7 @@ const generateBoardNumber = () => {
 
 const TemplateSelector = props => {
   const [voteLimit, setVoteLimit] = useState(5)
-  const [template, setTemplate] = useState(props.template ? props.template : 'mad_sad_glad')
+  const [template, setTemplate] = useState(props.template ? props.template : 'liked_learnt_lacked_longed-for')
 
   const create = () => {
     event.preventDefault()
