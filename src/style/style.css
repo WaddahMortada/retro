@@ -35,7 +35,7 @@ body {
 }
 
 .contentBoard {
-  height: 83%;
+  height: 85%;
   background-color: #214e3c;
   overflow: scroll;
   /* padding-bottom: 5px; */
