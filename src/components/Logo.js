@@ -8,7 +8,7 @@ const Logo = props => {
   return (
     <Col md={4}  style={{ paddingRight: '30px' }}>
       {/* Vetrom Board - trees */}
-      <div className="center" style={{ transform: 'scale(0.77)' }}>
+      <div className="center" style={{ transform: 'scale(0.7)' }}>
         <a href="/">
           <svg width="279.3761013461513" height="80" viewBox="0 0 279.3761013461513 109.44143561085913" className="css-1j8o68f">
             <defs id="SvgjsDefs31213"></defs>
