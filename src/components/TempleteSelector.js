@@ -101,7 +101,7 @@ const TemplateSelector = props => {
                   </Form.Group>
                   <Form.Group>
                     <Form.Label>Max votes per user (whole board)</Form.Label>
-                    <Form.Control size="sm" type="number" min="1" step="1" pattern="\d+" value={voteLimit} onChange={(e) => setVoteLimit(e.target.value)} required />
+                    <Form.Control size="sm" type="number" min="1" max="30" step="1" pattern="\d+" value={voteLimit} onChange={(e) => setVoteLimit(e.target.value)} required />
                   </Form.Group>
                   <Button className="float-right submitModalButton" variant="success" as="input" type="submit" value="Create" />
                 </Col>
