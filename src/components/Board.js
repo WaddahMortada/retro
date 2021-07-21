@@ -177,15 +177,15 @@ const Board = props => {
       <Row className="contentBoard">
         {/* <Col md={{ span: showActions ? 9 : 12 }}> */}
         <Col  >
-          <Row>
+          <Row style={{ height: '100%' }}>
             <Col>
               {showConfirm ? <Confirm type="reset" submit={resetBoard} show={showConfirm} handleClose={handleCloseConfirm} /> : null}
               <Card className="boardCard">
                 <Card.Body className="mainCardBody">
-                  <Row>
                     <Col className={' ' + (showActions ? 'showCol' : null)}>
+                  <Row style={{ height: '99%' }}>
                       {showAddColumn ? AddColumnModule : null}
-                      <Row>
+                      <Row style={{ height: '100%' }}>
                         {ColumnComponent}
                       </Row>
                     </Col>

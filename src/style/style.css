@@ -44,6 +44,7 @@ body {
 .boardCard {
   background-color: rgb(33, 78, 59);
   border-color: rgb(33, 78, 59);
+  height: 100%;
   /* margin-top: 3px; */
 }
 
