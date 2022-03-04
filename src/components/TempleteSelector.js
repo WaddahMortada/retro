@@ -33,7 +33,7 @@ const TemplateSelector = props => {
     props.socket.emit('resetBoard', { board: board, reset: true })
     props.socket.emit('setTemplate', { board: board,  template: template })
     props.socket.emit('setVotes', { board: board, votes: votes })
-    props.socket.emit('setActions', { board: board, actions: '' })
+    props.socket.emit('setActions', { board: board, actions: { current: '', previous: '' } })
 
     // const fullUrl = getFullUrl(board)
     // writeToClipboard(fullUrl)

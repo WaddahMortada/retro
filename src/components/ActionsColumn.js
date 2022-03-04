@@ -26,7 +26,8 @@ const ActionsColumn = props => {
   const toggleShowNotification = () => setShowNotification(!showNotification)
 
   useEffect(() => {
-    if (!props.actions) props.setActions(bulletWithSpace)
+    const actions = { current: bulletWithSpace, previous: props.actions.previous}
+    if (!props.actions.current) props.setActions(actions)
   }, [])
 
   useEffect(() => {
@@ -56,9 +57,10 @@ const ActionsColumn = props => {
     }
   }
 
-  const updateActions = newActions => {
-    props.setActions(newActions)
-    props.socket.emit('setActions', { board: props.board, actions: newActions })
+  const updateActions = (newActions, previousActions = false) => {
+    const actions = previousActions ? { current: props.actions.current, previous: newActions } : { current: newActions, previous: props.actions.previous }
+    props.setActions(actions)
+    props.socket.emit('setActions', { board: props.board, actions: actions })
   }
 
   const copyToClipboard = (e) => {
@@ -88,7 +90,9 @@ const ActionsColumn = props => {
         </Button>
       </Card.Header>
       <Card.Body>
-        <textarea className="textareaInput" ref={actionsRef} autoFocus={props.showActions} onChange={(e) => updateActions(e.target.value)} onKeyUp={handleInput} onClick={handleInput} value={props.actions}></textarea>
+        <textarea className="textareaInput" ref={actionsRef} autoFocus={props.showActions} onChange={(e) => updateActions(e.target.value)} onKeyUp={handleInput} onClick={handleInput} value={props.actions.current}></textarea>
+        <h6>Previous Actions:</h6>
+        <textarea className="textareaInput" onChange={(e) => updateActions(e.target.value, true)} onKeyUp={handleInput} onClick={handleInput} value={props.actions.previous}></textarea>
       </Card.Body>
     </Card>
   )

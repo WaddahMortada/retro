@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import '../style/style.css'
 
 const Dashboard = props => {
+  const defaultActions = { current: '', previous: '' }
   const defaultVotes = { limit: 5, total: 0, disable: false }
   const defaultColumns = [{ title: '', cards: [{ value: '', totalVotes: 0, id: '', votes: {}, group: { id: 0, colour: '' } }] }] // votes: { [userId]: 0 }
 
@@ -20,7 +21,7 @@ const Dashboard = props => {
   const [previousTemplate, setPreviousTemplate] = useState('')
   const [votes, setVotes] = useState(defaultVotes)
   const [columns, setColumns] = useState(defaultColumns)
-  const [actions, setActions] = useState()
+  const [actions, setActions] = useState(defaultActions)
   const [copyUrlMessage, setCopyUrlMessage] = useState()
 
   // Handling Socket Join Events
@@ -73,7 +74,7 @@ const Dashboard = props => {
     setPreviousTemplate(template)
     setTemplate('')
     setVotes(defaultVotes)
-    setActions()
+    setActions(defaultActions)
   }
 
   const upVote = () => {
@@ -140,7 +141,7 @@ const Dashboard = props => {
   useEffect(() => {
     console.log('props.actionsData', props.actionsData)
     console.log('actions', actions)
-    if (props.actionsData !== actions) {
+    if (props.actionsData && (props.actionsData !== actions)) {
       setActions(props.actionsData)
     }
   }, [props.actionsData])
