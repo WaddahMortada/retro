@@ -10,9 +10,9 @@ import {
 const App = props => {
   // http://54.229.181.64:8080
   const socket = socketIOClient('http://localhost:8080', {
-    forceNew: false
+    forceNew: false,
     // path: '/myownpath'
-    // transports: ['websocket'],
+    transports: ['websocket']
     // upgrade: false
   })
 
