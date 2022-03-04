@@ -82,7 +82,7 @@ const ActionsColumn = props => {
       </Toast>
       <Card.Header>
         <h5 className="inlineBlock">Actions</h5>
-        <Button className="float-right" size="sm" variant="info" title="Export to PDF" onClick={() => exportActionsToPdf(props.actions)}>
+        <Button className="float-right" size="sm" variant="info" title="Export to PDF" onClick={() => exportActionsToPdf(props.actions.current)}>
           {innerWidth > 1498 ? <b>PDF</b> : null} <FontAwesomeIcon className="icon-thumb" icon={faFileExport} />
         </Button>
         <Button className="float-right copy-button" size="sm" variant="copy" title="Copy to Clipboard" onClick={copyToClipboard}>
