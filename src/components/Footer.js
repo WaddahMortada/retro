@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Footer = () => {
   return (
-    <Navbar fixed="bottom" style={{ color: '#faf6db', bottom: 0, height: '7%' }} className="navBar justify-content-center" bg="dark" variant="dark">
+    <Navbar fixed="bottom" style={{ color: '#faf6db', bottom: 0, height: '6%' }} className="navBarFooter justify-content-center" bg="dark" variant="dark">
         <Nav>
           <Nav.Item>
             <Nav.Link className="footerLink" href="https://github.com/WaddahMortada">
